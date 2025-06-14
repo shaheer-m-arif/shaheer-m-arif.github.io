@@ -4,60 +4,85 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shaheer Arif | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    :root {
+      --bg: #0d0d11;
+      --fg: #e0e0e0;
+      --accent1: #3b3c56;
+      --accent2: #283048;
+      --accent3: #6a5acd;
+    }
+    * {
       margin: 0;
       padding: 0;
-      background: #f9f9f9;
-      color: #333;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
     }
     header {
-      background: #222;
-      color: #fff;
-      padding: 60px 20px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent3));
+      padding: 80px 20px;
       text-align: center;
+      color: #fff;
     }
     header h1 {
-      margin: 0;
-      font-size: 3em;
+      font-size: 3rem;
+      margin-bottom: 10px;
     }
     header p {
-      margin-top: 10px;
-      font-size: 1.2em;
+      font-size: 1.2rem;
+      opacity: 0.9;
     }
     section {
-      max-width: 800px;
+      max-width: 900px;
       margin: auto;
-      padding: 40px 20px;
+      padding: 60px 20px;
+      animation: fadeInUp 0.8s ease forwards;
     }
-    .projects h2, .about h2, .contact h2 {
-      font-size: 2em;
-      margin-bottom: 20px;
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: var(--accent3);
     }
     .project-card {
-      background: #fff;
-      padding: 20px;
+      background: var(--accent1);
+      padding: 25px;
       margin-bottom: 20px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-      border-radius: 8px;
+      border-radius: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(106, 90, 205, 0.3);
     }
     footer {
       text-align: center;
-      padding: 20px;
-      background: #eee;
+      padding: 30px 20px;
+      background: #111;
+      color: #888;
     }
     a.button {
       display: inline-block;
       margin: 10px;
-      padding: 10px 20px;
-      background: #222;
+      padding: 12px 24px;
+      background: var(--accent3);
       color: #fff;
       text-decoration: none;
-      border-radius: 5px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
     }
     a.button:hover {
-      background: #444;
+      background: #7a6bf2;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
