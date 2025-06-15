@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Shaheer Arif | Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a2e5c5b6da.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTTXRNkX6g4k+6S+9zB7bBpOy1q9aL3KykU4K6SnQSmc+MeT+zU2Nc4bCVsNwJ/l7HFgZyI9Rw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     :root {
       --bg: #0d0d11;
@@ -193,7 +193,91 @@
     <p>A passionate Electrical Engineering student at the University of Calgary, building systems that blend hardware with code — from RC cars to embedded circuits.</p>
   </header>
 
-  <!-- rest of your site unchanged -->
+  <section class="internship-banner">
+    📢 Open to Summer 2026 Electrical/Embedded Engineering Internships — let's connect!
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p><strong>Where:</strong> Born in Jeddah, Saudi Arabia — now based in Calgary studying Electrical Engineering at the University of Calgary.</p>
+    <p><strong>Why:</strong> I’ve always been drawn to electronics — breaking open RC cars, tinkering with circuits, and fixing things that shouldn’t have been touched.</p>
+    <p><strong>How:</strong> That passion evolved into technical skills — now I build real systems, code embedded devices, and combine hardware + software to solve problems that matter.</p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div>
+        <strong>Technical</strong><br/>
+        Python, HTML, CSS, JavaScript, SolidWorks, Fusion 360, Soldering
+      </div>
+      <div>
+        <strong>Soft Skills</strong><br/>
+        Teamwork, Critical Thinking, Adaptability, Leadership, Event Coordination
+      </div>
+      <div>
+        <strong>Tools & Concepts</strong><br/>
+        Circuit Design, 3D Modeling, Project Management, Engineering Principles
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="carousel-container">
+      <div class="carousel-track" id="carousel-track">
+        <div class="carousel-item">
+          <h3>Remote-Controlled RC Car (ENEL 300)</h3>
+          <p>Designed and programmed an RC car with ultrasonic distance sensing and metal detection using AVR128DB28 microcontroller and RF communication.</p>
+        </div>
+        <div class="carousel-item">
+          <h3>Capacitor Bank Controller</h3>
+          <p>Built a digital controller to balance and monitor a capacitor array using C and basic signal processing techniques.</p>
+        </div>
+        <div class="carousel-item">
+          <h3>Custom Dashboard Interface</h3>
+          <p>Developed a sleek dashboard UI to display live embedded sensor data over serial communication using a JavaScript front-end.</p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-buttons">
+      <button onclick="moveSlide(-1)">&larr;</button>
+      <button onclick="moveSlide(1)">&rarr;</button>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="experience-item">
+      <strong>Vice President of Events</strong><br/>
+      Deepracer Calgary – Sep 2023 to Present<br/>
+      Coordinated events, managed sponsor communication (Amazon, AWS), and led national-level planning initiatives.
+    </div>
+    <div class="experience-item">
+      <strong>Operations Coordinator</strong><br/>
+      Glorek – Jeddah, Saudi Arabia – Jun 2023 to Aug 2023<br/>
+      Managed operations, led client communications, assisted in hiring processes, and improved internal workflow.
+    </div>
+    <div class="experience-item">
+      <strong>Operations Intern</strong><br/>
+      Al-Raya Supermarkets – Jeddah, Saudi Arabia – Jun 2020 to Aug 2020<br/>
+      Streamlined logistics, improved department communication, and resolved customer support issues.
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <div class="education-item">
+      <strong>BSc in Electrical Engineering</strong><br/>
+      University of Calgary | 2023–2027<br/>
+      Recipient of Jarrett Family Bursary in Engineering.
+    </div>
+    <div class="education-item">
+      <strong>High School Diploma (Valedictorian)</strong><br/>
+      Alwadi International School – Jeddah, Saudi Arabia – 2023<br/>
+      Completed A-Levels in Math, Physics, Chemistry, and IT.
+    </div>
+  </section>
 
   <section id="contact">
     <h2>Let’s Get In Touch!</h2>
