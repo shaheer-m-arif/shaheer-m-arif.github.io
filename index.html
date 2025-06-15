@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shaheer Arif | Portfolio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTTXRNkX6g4k+6S+9zB7bBpOy1q9aL3KykU4K6SnQSmc+MeT+zU2Nc4bCVsNwJ/l7HFgZyI9Rw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
     :root {
@@ -14,6 +14,14 @@
       --accent2: #1a1a2e;
       --accent3: #6a5acd;
       --card-bg: #1a1a26;
+    }
+    body.light-mode {
+      --bg: #f7f7f7;
+      --fg: #1a1a1a;
+      --accent1: #cccccc;
+      --accent2: #e0e0e0;
+      --accent3: #6a5acd;
+      --card-bg: #ffffff;
     }
     * {
       margin: 0;
@@ -26,6 +34,7 @@
       background: var(--bg);
       color: var(--fg);
       line-height: 1.6;
+      transition: all 0.3s ease;
     }
     nav {
       position: sticky;
@@ -34,9 +43,13 @@
       background: rgba(13, 13, 17, 0.9);
       padding: 15px 30px;
       display: flex;
-      justify-content: center;
-      gap: 30px;
+      justify-content: space-between;
+      align-items: center;
       box-shadow: 0 1px 6px rgba(0,0,0,0.2);
+    }
+    nav .links {
+      display: flex;
+      gap: 30px;
     }
     nav a {
       color: var(--fg);
@@ -46,6 +59,14 @@
     }
     nav a:hover {
       color: var(--accent3);
+    }
+    .toggle-btn {
+      background: transparent;
+      border: 2px solid var(--accent3);
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: var(--fg);
+      cursor: pointer;
     }
     header {
       background: radial-gradient(circle at center, var(--accent2) 0%, var(--accent3) 70%);
@@ -90,6 +111,17 @@
       margin-bottom: 30px;
       color: var(--accent3);
     }
+    .card-box, .experience-item {
+      background: var(--card-bg);
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+    .card-box:hover, .experience-item:hover {
+      transform: scale(1.03);
+    }
     .internship-banner {
       max-width: 900px;
       margin: 30px auto 40px;
@@ -98,82 +130,7 @@
       border-left: 4px solid var(--accent3);
       border-radius: 8px;
       font-weight: 600;
-      text-align: center;
       color: var(--fg);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    }
-    .card-box {
-      background: var(--card-bg);
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease;
-    }
-    .card-box:hover {
-      transform: scale(1.03);
-    }
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      text-align: left;
-    }
-    .skills-grid div {
-      background: var(--card-bg);
-      padding: 20px;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
-    }
-    .skills-grid div:hover,
-    .experience-item:hover,
-    .education-item:hover,
-    .carousel-item:hover {
-      transform: scale(1.03);
-    }
-    .carousel-container {
-      position: relative;
-      overflow: hidden;
-    }
-    .carousel-track {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-    }
-    .carousel-item {
-      min-width: 100%;
-      padding: 40px;
-      box-sizing: border-box;
-      background: var(--card-bg);
-      border-radius: 12px;
-      text-align: center;
-    }
-    .carousel-item h3 {
-      margin-bottom: 10px;
-      color: var(--accent3);
-    }
-    .carousel-buttons {
-      text-align: center;
-      margin-top: 20px;
-    }
-    .carousel-buttons button {
-      background: var(--accent3);
-      color: white;
-      border: none;
-      margin: 0 10px;
-      padding: 10px 15px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .carousel-buttons button:hover {
-      background: #7a6bf2;
-    }
-    .experience-item, .education-item {
-      background: var(--card-bg);
-      padding: 25px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      text-align: left;
-      transition: transform 0.3s ease;
     }
     .contact-buttons {
       display: flex;
@@ -208,30 +165,79 @@
   </style>
 </head>
 <body>
-<!-- The rest of the HTML content remains the same up to the Experience section -->
-  <section data-aos="fade-up">
-    <h2>Experience</h2>
-    <div class="experience-item">
-      <strong>Vice President of Events</strong><br>
-      Deepracer Calgary – Sep 2023 to Present<br>
-      Coordinated events, managed sponsor communication (Amazon, AWS), and led national-level planning initiatives.
-    </div>
-    <div class="experience-item">
-      <strong>Volunteer – Ministry of Hajj and Umrah</strong><br>
-      Jeddah, Saudi Arabia – 2022<br>
-      Guided pilgrims during Hajj season, managed language assistance and logistics, and coordinated alongside the Ministry of Interior.
-    </div>
-    <div class="experience-item">
-      <strong>Operations Coordinator – Glorek</strong><br>
-      Jeddah, Saudi Arabia – Jun 2023 to Aug 2023<br>
-      Managed day-to-day business operations, streamlined processes, and supported hiring coordination.
-    </div>
-    <div class="experience-item">
-      <strong>Operations Coordinator – Al-Raya Supermarkets</strong><br>
-      Jeddah, Saudi Arabia – Jun 2020 to Aug 2020<br>
-      Supported procurement and inventory teams, coordinated internal communication, and improved store processes.
-    </div>
-  </section>
-<!-- The rest of the HTML content remains the same -->
+<nav>
+  <div class="links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="toggle-btn" onclick="document.body.classList.toggle('light-mode')">Toggle Theme</button>
+</nav>
+<header>
+  <p>Hello, I'm</p>
+  <h1>Shaheer Arif</h1>
+  <p>Electrical Engineering Student @ University of Calgary - Passionate about circuits, coding, and problem-solving</p>
+  <img src="IMG_5580.jpeg" alt="Shaheer Arif profile photo">
+</header>
+<section id="about" data-aos="fade-up">
+  <h2>About Me</h2>
+  <div class="card-box">
+    <p>Born in Jeddah, Saudi Arabia, I moved to Calgary to pursue Electrical Engineering at the University of Calgary. From a young age, I enjoyed working with electronics and taking apart cars. I'm passionate about building real-world solutions and currently seeking an internship for Summer 2026.</p>
+  </div>
+</section>
+<section class="internship-banner" data-aos="fade-up">
+  🚀 Open to Summer 2026 Internship Opportunities in Electrical, Embedded Systems, or Software Engineering
+</section>
+<section id="experience" data-aos="fade-up">
+  <h2>Experience</h2>
+  <div class="experience-item">
+    <strong>Vice President of Events</strong><br>
+    Deepracer Calgary — Sep 2023 to Present<br>
+    Coordinated sponsor communication (Amazon, AWS), event planning, and national-level outreach.
+  </div>
+  <div class="experience-item">
+    <strong>Volunteer — Ministry of Hajj and Umrah</strong><br>
+    Jeddah, Saudi Arabia — 2022<br>
+    Guided pilgrims, managed crowd flow, provided language support, collaborated with Interior Ministry.
+  </div>
+  <div class="experience-item">
+    <strong>Operations Coordinator — Glorek</strong><br>
+    Jeddah, Saudi Arabia — Jun 2023 to Aug 2023<br>
+    Managed operations, streamlined inventory, supported logistics.
+  </div>
+  <div class="experience-item">
+    <strong>Operations Coordinator — Al-Raya Supermarkets</strong><br>
+    Jeddah, Saudi Arabia — Jun 2020 to Aug 2020<br>
+    Assisted procurement and logistics teams, tracked stock movement.
+  </div>
+</section>
+<section id="skills" data-aos="fade-up">
+  <h2>Skills</h2>
+  <div class="card-box">
+    <p>C, C++, Python, SQL, Verilog, HTML/CSS/JS, PCB Design, Circuit Debugging, Team Leadership</p>
+  </div>
+</section>
+<section id="projects" data-aos="fade-up">
+  <h2>Projects</h2>
+  <div class="card-box">
+    <p>Coming soon: Photo-based project cards for your ENEL 300 RC car, I2C modules, or other tech builds.</p>
+  </div>
+</section>
+<section id="contact" data-aos="fade-up">
+  <h2>Let's Get in Touch!</h2>
+  <div class="contact-buttons">
+    <a class="button" href="https://github.com/shaheer-m-arif" target="_blank"><i class="fab fa-github"></i></a>
+    <a class="button" href="https://www.linkedin.com/in/shaheermarif/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a class="button" href="mailto:shaheermarif@outlook.com"><i class="fas fa-envelope"></i></a>
+    <a class="button" href="tel:+18252887530"><i class="fas fa-phone"></i></a>
+  </div>
+</section>
+<footer>
+  &copy; 2025 Shaheer Arif. All rights reserved.
+</footer>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init();</script>
 </body>
 </html>
