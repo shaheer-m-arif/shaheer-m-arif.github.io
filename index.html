@@ -6,163 +6,165 @@
   <title>Shaheer Arif | Portfolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0d0d11;
-      --fg: #e0e0e0;
-      --accent1: #3b3c56;
-      --accent2: #1a1a2e;
-      --accent3: #6a5acd;
-      --card-bg: #1a1a26;
-    }
-    body.light-mode {
-      --bg: #f7f7f7;
-      --fg: #1a1a1a;
-      --accent1: #cccccc;
-      --accent2: #e0e0e0;
-      --accent3: #6a5acd;
-      --card-bg: #ffffff;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--fg);
-      line-height: 1.6;
-      transition: all 0.3s ease;
-    }
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      background: rgba(13, 13, 17, 0.9);
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.2);
-    }
-    nav .links {
-      display: flex;
-      gap: 30px;
-    }
-    nav a {
-      color: var(--fg);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.2s;
-    }
-    nav a:hover {
-      color: var(--accent3);
-    }
-    .toggle-btn {
-      background: transparent;
-      border: 2px solid var(--accent3);
-      padding: 5px 10px;
-      border-radius: 5px;
-      color: var(--fg);
-      cursor: pointer;
-    }
-    header {
-      background: radial-gradient(circle at center, var(--accent2) 0%, var(--accent3) 70%);
-      padding: 100px 20px 60px;
-      text-align: center;
-      color: #fff;
-    }
-    header img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #fff;
-      margin-top: 30px;
-      box-shadow: 0 0 10px rgba(106,90,205,0.7);
-    }
-    header p:first-child {
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      opacity: 0.8;
-    }
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      text-shadow: 0 0 10px rgba(106, 90, 205, 0.8);
-    }
-    header p:last-of-type {
-      font-size: 1.2rem;
-      opacity: 0.9;
-      max-width: 700px;
-      margin: auto;
-    }
-    section {
-      max-width: 1000px;
-      margin: auto;
-      padding: 60px 20px;
-      text-align: center;
-    }
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 30px;
-      color: var(--accent3);
-    }
-    .card-box, .experience-item {
-      background: var(--card-bg);
-      padding: 25px 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      margin-bottom: 20px;
-      transition: transform 0.3s ease;
-    }
-    .card-box:hover, .experience-item:hover {
-      transform: scale(1.03);
-    }
-    .internship-banner {
-      max-width: 900px;
-      margin: 30px auto 40px;
-      padding: 16px 20px;
-      background: #16161e;
-      border-left: 4px solid var(--accent3);
-      border-radius: 8px;
-      font-weight: 600;
-      color: var(--fg);
-    }
-    .contact-buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-top: 20px;
-    }
-    .contact-buttons a.button {
-      width: 60px;
-      height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.5rem;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-      background: var(--accent3);
-      color: white;
-      text-decoration: none;
-    }
-    .contact-buttons a.button:hover {
-      transform: scale(1.2);
-      background: #7a6bf2;
-    }
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      background: #111;
-      color: #888;
-    }
-  </style>
+<style>
+  :root {
+    --bg: #0d0d11;
+    --fg: #e0e0e0;
+    --accent1: #3b3c56;
+    --accent2: #1a1a2e;
+    --accent3: #6a5acd;
+    --card-bg: #1a1a26;
+  }
+  body.light-mode {
+    --bg: #f7f7f7;
+    --fg: #1a1a1a;
+    --accent1: #cccccc;
+    --accent2: #e0e0e0;
+    --accent3: #6a5acd;
+    --card-bg: #ffffff;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    transition: all 0.3s ease;
+  }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    background: rgba(13, 13, 17, 0.9);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+  }
+  nav .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  nav a {
+    color: var(--fg);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  nav a:hover {
+    color: var(--accent3);
+  }
+  .toggle-btn {
+    background: transparent;
+    border: 2px solid var(--accent3);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: var(--fg);
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  header {
+    background: radial-gradient(circle at center, var(--accent2) 0%, var(--accent3) 70%);
+    padding: 80px 20px 40px;
+    text-align: center;
+    color: #fff;
+  }
+  header img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(106, 90, 205, 0.7);
+  }
+  header p:first-child {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+  header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+  }
+  header p:last-of-type {
+    font-size: 1rem;
+    max-width: 700px;
+    margin: auto;
+    padding: 0 10px;
+  }
+  section {
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: var(--accent3);
+  }
+  .card-box, .experience-item {
+    background: var(--card-bg);
+    padding: 20px 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+    text-align: left;
+  }
+  .card-box:hover, .experience-item:hover {
+    transform: scale(1.02);
+  }
+  .internship-banner {
+    margin: 30px auto 40px;
+    padding: 14px 18px;
+    background: #16161e;
+    border-left: 4px solid var(--accent3);
+    border-radius: 8px;
+    font-weight: 600;
+    color: var(--fg);
+  }
+  .contact-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .contact-buttons a.button {
+    width: 55px;
+    height: 55px;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: var(--accent3);
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .contact-buttons a.button:hover {
+    transform: scale(1.15);
+    background: #7a6bf2;
+  }
+  footer {
+    text-align: center;
+    padding: 25px 15px;
+    background: #111;
+    color: #888;
+    font-size: 0.9rem;
+  }
+</style>
 </head>
 <body>
 <nav>
