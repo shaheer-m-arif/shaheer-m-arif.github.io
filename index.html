@@ -72,6 +72,16 @@
       color: var(--accent3);
       text-align: center;
     }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .skills-grid div {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 10px;
+    }
     .carousel-container {
       position: relative;
       overflow: hidden;
@@ -109,6 +119,18 @@
     .carousel-buttons button:hover {
       background: #7a6bf2;
     }
+    .experience-item, .education-item, .internship-banner {
+      background: var(--card-bg);
+      padding: 25px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+    }
+    .internship-banner {
+      border-left: 5px solid var(--accent3);
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
     footer {
       text-align: center;
       padding: 30px 20px;
@@ -138,7 +160,9 @@
   <nav>
     <a href="#home">Home</a>
     <a href="#about">About</a>
+    <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
     <a href="#contact">Contact</a>
   </nav>
 
@@ -147,12 +171,30 @@
     <p>Electrical Engineering Student at University of Calgary</p>
   </header>
 
-  <section id="about" class="about">
+  <section id="about">
     <h2>About Me</h2>
     <p>I’m an Electrical Engineering student entering my 3rd year at the University of Calgary. I enjoy building electronics projects, coding, and working on embedded systems.</p>
   </section>
 
-  <section id="projects" class="projects">
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div>
+        <strong>Technical</strong><br/>
+        Python, HTML, CSS, JavaScript, SolidWorks, Fusion 360, Soldering
+      </div>
+      <div>
+        <strong>Soft Skills</strong><br/>
+        Teamwork, Critical Thinking, Adaptability, Leadership, Event Coordination
+      </div>
+      <div>
+        <strong>Tools & Concepts</strong><br/>
+        Circuit Design, 3D Modeling, Project Management, Engineering Principles
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
     <h2>Projects</h2>
     <div class="carousel-container">
       <div class="carousel-track" id="carousel-track">
@@ -176,10 +218,47 @@
     </div>
   </section>
 
-  <section id="contact" class="contact">
+  <section class="internship-banner">
+    📢 Open to Summer 2025 Electrical/Embedded Engineering Internships — let's connect!
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="experience-item">
+      <strong>Vice President of Events</strong><br/>
+      Deepracer Calgary – Sep 2023 to Present<br/>
+      Coordinated events, managed sponsor communication (Amazon, AWS), and led national-level planning initiatives.
+    </div>
+    <div class="experience-item">
+      <strong>Operations Coordinator</strong><br/>
+      Glorek – Jeddah, Saudi Arabia – Jun 2023 to Aug 2023<br/>
+      Managed operations, led client communications, assisted in hiring processes, and improved internal workflow.
+    </div>
+    <div class="experience-item">
+      <strong>Operations Intern</strong><br/>
+      Al-Raya Supermarkets – Jeddah, Saudi Arabia – Jun 2020 to Aug 2020<br/>
+      Streamlined logistics, improved department communication, and resolved customer support issues.
+    </div>
+  </section>
+
+  <section id="contact">
     <h2>Contact</h2>
     <a class="button" href="https://github.com/shaheerarif" target="_blank">GitHub</a>
     <a class="button" href="https://linkedin.com/in/shaheerarif" target="_blank">LinkedIn</a>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <div class="education-item">
+      <strong>BSc in Electrical Engineering (Minor in Mechatronics)</strong><br/>
+      University of Calgary | 2023–2027<br/>
+      Recipient of Jarrett Family Bursary in Engineering.
+    </div>
+    <div class="education-item">
+      <strong>High School Diploma (Valedictorian)</strong><br/>
+      Alwadi International School – Jeddah, Saudi Arabia – 2023<br/>
+      Completed A-Levels in Math, Physics, Chemistry, and IT.
+    </div>
   </section>
 
   <footer>
@@ -197,7 +276,7 @@
       track.style.transform = `translateX(${offset}%)`;
     }
 
-    setInterval(() => moveSlide(1), 7000); // Auto-slide every 7 seconds
+    setInterval(() => moveSlide(1), 7000);
   </script>
 </body>
 </html>
