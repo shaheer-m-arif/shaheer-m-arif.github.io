@@ -129,7 +129,14 @@
       transform: translate(var(--bgx), var(--bgy));
     }
     @keyframes bgMove { from{ transform:translate(var(--bgx), var(--bgy)) } to{ transform:translate(calc(var(--bgx) + 24px), calc(var(--bgy) - 24px)) } }
-</style>
+  /* Letter-by-letter hero animation */
+    .letters{display:inline-block; white-space:nowrap}
+    .letter{display:inline-block; will-change: transform; transition: transform .2s ease}
+    /* Chevron scroll indicator */
+    .chevron{position:relative; display:inline-block; margin-top:18px; width:36px; height:36px; opacity:.7}
+    .chevron svg{position:absolute; inset:0; animation:bounce 1.4s infinite}
+    @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+  </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
 </head>
 <body>
@@ -140,25 +147,25 @@
         <a href="#top" aria-label="Home">Shaheer&nbsp;Arif</a>
       </div>
       <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#projects" class="active">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
+        <a href="#/" data-route>Home</a>
+        <a href="#/projects" data-route>Projects</a>
+        <a href="#/experience" data-route>Experience</a>
+        <a href="#/skills" data-route>Skills</a>
+        <a href="#/contact" data-route>Contact</a>
       </div>
       <span class="badge" title="Actively seeking">Open to Summer 2026 internships</span>
     </div>
   </nav>
 
-  <main id="top" class="container">
+  <main id="top" class="container" data-router="outlet">
     <section class="hero" aria-label="Intro">
       <div>
         <p class="sub">Electrical Engineering @ University of Calgary • Embedded systems • Mobile & Web • AI tooling</p>
-        <h1>Hi, I'm Shaheer , I build pragmatic, clean solutions across hardware & software.</h1>
-        <p>
-          Recent work includes a remote‑controlled RC car with metal detection & distance sensing (AVR128DB28), a Telegram stock/briefing bot on Heroku, and a student‑first schedule app concept that unifies .ics calendars and D2L tasks.
-        </p>
-        <!-- CTA removed per request -->
+        <h1 id="hero-title">Hi, I'm <span class="letters">Shaheer Arif</span> — I build pragmatic, clean solutions across hardware & software.</h1>
+        <!-- CTA intentionally removed per your request -->
+        <a href="#about" class="chevron" aria-label="Scroll to About">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </a>
       </div>
       <aside class="hero-card" aria-label="Snapshot">
         <div class="hero-grid">
@@ -351,6 +358,86 @@
     document.documentElement.style.setProperty('--bgx', x + 'px');
     document.documentElement.style.setProperty('--bgy', y + 'px');
   });
+  // Letter splitting and magnetic hover like your friend's site
+  const nameWrap = document.querySelector('#hero-title .letters');
+  if(nameWrap){
+    const text = nameWrap.textContent.trim();
+    nameWrap.textContent = '';
+    [...text].forEach(ch=>{
+      const span = document.createElement('span');
+      span.className = 'letter'; span.textContent = ch;
+      nameWrap.appendChild(span);
+    });
+    const letters = [...nameWrap.querySelectorAll('.letter')];
+    const strength = 16; // hover displacement
+    nameWrap.addEventListener('mousemove', (e)=>{
+      const rect = nameWrap.getBoundingClientRect();
+      letters.forEach((L,i)=>{
+        const cx = rect.left + (i+0.5)*(rect.width/letters.length);
+        const cy = rect.top + rect.height/2;
+        const dx = (e.clientX - cx)/rect.width;
+        const dy = (e.clientY - cy)/rect.height;
+        L.style.transform = `translate(${dx*strength}px, ${dy*strength}px)`;
+      });
+    });
+    nameWrap.addEventListener('mouseleave', ()=>letters.forEach(L=>L.style.transform=''));
+  }
+
+  // Active nav link on scroll
+  const sections = ['about','projects','experience','skills','contact'];
+  const navLinks = new Map([...document.querySelectorAll('.nav-links a')].map(a=>[a.getAttribute('href').slice(1), a]));
+  const highlight = (id)=>{
+    navLinks.forEach(a=>a.classList.remove('active')); if(navLinks.get(id)) navLinks.get(id).classList.add('active');
+  };
+  const so = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ highlight(e.target.id); }});
+  }, {rootMargin:'-50% 0px -40% 0px', threshold:0});
+  sections.forEach(id=>{ const el=document.getElementById(id); if(el) so.observe(el); });
+
+  // Subtle parallax for background overlay (already scroll-based). Add mouse parallax, too.
+  window.addEventListener('mousemove', (e)=>{
+    const x = (e.clientX/window.innerWidth - .5) * 10;
+    const y = (e.clientY/window.innerHeight - .5) * -10;
+    document.documentElement.style.setProperty('--bgx', x+'px');
+    document.documentElement.style.setProperty('--bgy', y+'px');
+  });
+
+  // Keep previous scroll parallax
+  window.addEventListener('scroll', ()=>{
+    const y = window.scrollY * -0.03;
+    const x = window.scrollY * 0.015;
+    document.documentElement.style.setProperty('--bgx', x + 'px');
+    document.documentElement.style.setProperty('--bgy', y + 'px');
+  });
+  // --- Simple hash router to mimic multi-page nav on GitHub Pages ---
+  const routes = {
+    '/': ['hero','about','projects','experience','skills','contact'],
+    '/projects': ['projects','contact'],
+    '/experience': ['experience','contact'],
+    '/skills': ['skills','contact'],
+    '/contact': ['contact']
+  };
+  const allSections = [...document.querySelectorAll('main section')];
+  function show(ids){
+    window.scrollTo({top:0, behavior:'instant'});
+    const set = new Set(ids);
+    allSections.forEach(sec=>{
+      sec.style.display = set.has(sec.id) || sec.classList.contains('hero') && set.has('hero') ? '' : 'none';
+    });
+    // update nav active
+    const current = location.hash.replace('#','').replace(/^\/??/,'/') || '/';
+    document.querySelectorAll('.nav-links a').forEach(a=>{
+      a.classList.toggle('active', a.getAttribute('href') === '#'+current);
+    });
+  }
+  function onRoute(){
+    const path = location.hash.replace('#','');
+    const key = path && routes[path] ? path : '/';
+    show(routes[key]);
+  }
+  window.addEventListener('hashchange', onRoute);
+  if(!location.hash) location.hash = '#/';
+  onRoute();
 </script>
 </body>
 </html>
