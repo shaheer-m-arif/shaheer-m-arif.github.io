@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shaheer Arif — Portfolio</title>
-  <meta name="description" content="Shaheer Arif — Electrical Engineering student building embedded systems, mobile apps, and AI‑powered tools." />
+  <title>Shaheer Arif , Portfolio</title>
+  <meta name="description" content="Shaheer Arif , Electrical Engineering student building embedded systems, mobile apps, and AI‑powered tools." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -74,7 +74,7 @@
     .card{min-width:280px; background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:16px; scroll-snap-align:start}
     .card h3{margin:8px 0 6px; font-size:18px}
     .pill{display:inline-block; font-size:12px; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.06); margin-right:6px}
-    .card .links{display:flex; gap:12px; margin-top:10px}
+    .card .links{display:none}
 
     .car-ctr{display:flex; gap:8px; margin-top:10px}
     .ctrl{border:1px solid rgba(255,255,255,.08); background:#151733; padding:10px 12px; border-radius:12px; cursor:pointer}
@@ -117,7 +117,19 @@
     .contact-buttons{display:flex; justify-content:center; flex-wrap:wrap; gap:16px; margin-top:20px}
     .contact-buttons a.button{width:55px; height:55px; font-size:1.4rem; display:flex; justify-content:center; align-items:center; border-radius:50%; background:var(--brand1); color:white; text-decoration:none; transition:transform .3s ease, filter .3s ease}
     .contact-buttons a.button:hover{transform:translateY(-4px) scale(1.05); filter:brightness(1.15)}
-  </style>
+    /* Animated gradient overlay */
+    :root{ --bgx:0px; --bgy:0px }
+    body::before{
+      content:""; position:fixed; inset:-20% -10% -10% -10%; z-index:-1;
+      background:
+        radial-gradient(900px 600px at 15% 10%, rgba(108,99,255,.18), transparent 60%),
+        radial-gradient(900px 600px at 85% 20%, rgba(177,92,255,.14), transparent 65%),
+        radial-gradient(700px 500px at 50% 100%, rgba(34,211,238,.10), transparent 60%);
+      will-change: transform; animation: bgMove 18s ease-in-out infinite alternate;
+      transform: translate(var(--bgx), var(--bgy));
+    }
+    @keyframes bgMove { from{ transform:translate(var(--bgx), var(--bgy)) } to{ transform:translate(calc(var(--bgx) + 24px), calc(var(--bgy) - 24px)) } }
+</style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
 </head>
 <body>
@@ -142,14 +154,11 @@
     <section class="hero" aria-label="Intro">
       <div>
         <p class="sub">Electrical Engineering @ University of Calgary • Embedded systems • Mobile & Web • AI tooling</p>
-        <h1>Hi, I'm Shaheer — I build pragmatic, clean solutions across hardware & software.</h1>
+        <h1>Hi, I'm Shaheer , I build pragmatic, clean solutions across hardware & software.</h1>
         <p>
           Recent work includes a remote‑controlled RC car with metal detection & distance sensing (AVR128DB28), a Telegram stock/briefing bot on Heroku, and a student‑first schedule app concept that unifies .ics calendars and D2L tasks.
         </p>
-        <div class="cta">
-          <a class="btn primary" href="#projects">See projects</a>
-          <a class="btn ghost" href="https://github.com/shaheer-m-arif" target="_blank" rel="noopener">GitHub</a>
-        </div>
+        <!-- CTA removed per request -->
       </div>
       <aside class="hero-card" aria-label="Snapshot">
         <div class="hero-grid">
@@ -175,10 +184,10 @@
 
     <section id="about" aria-label="About">
       <h2>About Me</h2>
-      <p class="sub">A quick intro — Where / Why / How.</p>
+      
       <div class="card">
         <p><strong>Where:</strong> Born and raised in Jeddah, Saudi Arabia, currently pursuing a BSc in Electrical Engineering at the University of Calgary.</p>
-        <p><strong>Why:</strong> From a young age, I was fascinated by electronics, always tinkering with circuits and exploring how things work—especially in cars and consumer tech.</p>
+        <p><strong>Why:</strong> From a young age, I was fascinated by electronics, always tinkering with circuits and exploring how things work,especially in cars and consumer tech.</p>
         <p><strong>How:</strong> By combining strong fundamentals in electronics and coding with hands-on project work. I strive to build practical, impactful systems and am currently open to Summer 2026 internships in electrical or embedded systems engineering.</p>
       </div>
     </section>
@@ -192,25 +201,25 @@
           <!-- Project SHARIF -->
           <article class="card" tabindex="0">
             <div class="pill">AI • iOS • SwiftUI</div>
-            <h3>S.H.A.R.I.F. — Personal Assistant</h3>
+            <h3>S.H.A.R.I.F. , Personal Assistant</h3>
             <p>Multi‑phase JARVIS‑inspired assistant. Phase 1 shipped a Telegram bot with daily stock, weather, and news. Phase 2 adds hourly price updates and class‑schedule integration with text parsing. Phase 3 (WIP) transitions to iOS with chat and a personal dashboard. Phase 4 explores voice (STT/TTS) and health‑tracking.</p>
-            <p><em>Skills:</em> Node.js, API integration, cloud deployment, SwiftUI, NLP, system design, project planning.</p>
+            
           </article>
 
           <!-- Project Glorek -->
           <article class="card" tabindex="0">
             <div class="pill">React Native • API</div>
             <h3>Glorek Client Mobile App</h3>
-            <p>Led a cross‑platform app (iOS/Android) for B2C service interactions. Built secure auth (login, OTP, sign‑up), modern glass UI, reusable components, scalable navigation, and profile management. Integrated Axios APIs so clients can order diagnostics and pay via an external gateway — a seamless end‑to‑end booking flow.</p>
-            <p><em>Skills:</em> React Native, JavaScript, API integration, authentication, E2E development, collaboration, scalable navigation.</p>
+            <p>Led a cross‑platform app (iOS/Android) for B2C service interactions. Built secure auth (login, OTP, sign‑up), modern glass UI, reusable components, scalable navigation, and profile management. Integrated Axios APIs so clients can order diagnostics and pay via an external gateway , a seamless end‑to‑end booking flow.</p>
+            
           </article>
 
           <!-- Project ENEL 300 -->
           <article class="card" tabindex="0">
             <div class="pill">AVR • Embedded • C</div>
-            <h3>RC Car — ENEL 300</h3>
+            <h3>RC Car (ENEL 300)</h3>
             <p>Co‑developed an RC car with ultrasonic ranging (to 1 m), servo steering, LCD feedback, and a 433 MHz RF link. As Programming & Hardware Integration Lead: drove AVR128DB28 firmware, assisted PCB design, and rebuilt on breadboard after PCB issues to restore functionality under deadline.</p>
-            <p><em>Skills:</em> C, PCB design, AVR microcontrollers, circuit design, wireless comms.</p>
+            
           </article>
         </div>
         <div class="car-ctr">
@@ -224,30 +233,30 @@
       <h2>Experience</h2>
       <div class="timeline">
         <div class="row">
-          <div class="when">Jan 2024 — Present</div>
+          <div class="when">Jan 2024 to Present</div>
           <div class="what">
-            <strong>Vice President of Events — DeepRacer Calgary</strong>
+            <strong>Vice President of Events, DeepRacer Calgary</strong>
             <p>Coordinated sponsor communications (AWS/Amazon), event planning, and national‑level outreach.</p>
           </div>
         </div>
         <div class="row">
-          <div class="when">May 2024 — Aug 2024</div>
+          <div class="when">May 2024 to Aug 2024</div>
           <div class="what">
-            <strong>Operations Coordinator — Glorek International Co.</strong>
+            <strong>Operations Coordinator, Glorek International Co.</strong>
             <p>Managed operations, streamlined inventory and logistics, and supported on‑site coordination.</p>
           </div>
         </div>
         <div class="row">
-          <div class="when">May 2023 — Aug 2023</div>
+          <div class="when">May 2023 to Aug 2023</div>
           <div class="what">
-            <strong>Operations Coordinator Intern — Glorek International Co.</strong>
+            <strong>Operations Coordinator Intern, Glorek International Co.</strong>
             <p>Handled procurement and scheduling tasks; contributed to process documentation.</p>
           </div>
         </div>
         <div class="row">
-          <div class="when">May 2021 — Sep 2021</div>
+          <div class="when">May 2021 to Sep 2021</div>
           <div class="what">
-            <strong>Operations Coordinator — AlRaya Supermarkets</strong>
+            <strong>Operations Coordinator, AlRaya Supermarkets</strong>
             <p>Assisted procurement and logistics teams; tracked stock movement and supported HR coordination.</p>
           </div>
         </div>
@@ -286,14 +295,14 @@
 
     <section id="contact" aria-label="Contact">
       <h2>Let's Get in Touch!</h2>
-      <p class="sub">Based in Calgary, AB. Open to internships for Summer 2026.</p>
+      <p class="sub">Calgary, AB • Open to Summer 2026 internships.</p>
       <div class="contact-buttons">
         <a class="button" href="https://github.com/shaheer-m-arif" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
         <a class="button" href="https://www.linkedin.com/in/shaheermarif/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
         <a class="button" href="mailto:shaheermarif@outlook.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
         <a class="button" href="tel:+18252887530" aria-label="Phone"><i class="fas fa-phone"></i></a>
       </div>
-      <p class="sub" style="text-align:center;margin-top:14px">Arabic (Pro), English (Native), Urdu (Native).</p>
+      <p class="sub" style="text-align:center;margin-top:14px">Arabic • English • Urdu</p>
     </section>
   </main>
 
@@ -335,6 +344,13 @@
     entries.forEach(ent=>{ if(ent.isIntersecting){ ent.target.classList.add('in'); io.unobserve(ent.target);} });
   }, {threshold:0.12});
   document.querySelectorAll('.card').forEach(el=>io.observe(el));
+  // Subtle parallax for background overlay
+  window.addEventListener('scroll', ()=>{
+    const y = window.scrollY * -0.03;
+    const x = window.scrollY * 0.015;
+    document.documentElement.style.setProperty('--bgx', x + 'px');
+    document.documentElement.style.setProperty('--bgy', y + 'px');
+  });
 </script>
 </body>
 </html>
