@@ -1,254 +1,338 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shaheer Arif | Portfolio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-<style>
-  :root {
-    --bg: #0d0d11;
-    --fg: #e0e0e0;
-    --accent1: #3b3c56;
-    --accent2: #1a1a2e;
-    --accent3: #6a5acd;
-    --card-bg: #1a1a26;
-  }
-  body.light-mode {
-    --bg: #f7f7f7;
-    --fg: #1a1a1a;
-    --accent1: #cccccc;
-    --accent2: #e0e0e0;
-    --accent3: #6a5acd;
-    --card-bg: #ffffff;
-  }
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
-  }
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    background: var(--bg);
-    color: var(--fg);
-    transition: all 0.3s ease;
-  }
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    position: sticky;
-    top: 0;
-    background: rgba(13, 13, 17, 0.9);
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
-    z-index: 999;
-  }
-  nav .links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-  nav a {
-    color: var(--fg);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.2s;
-  }
-  nav a:hover {
-    color: var(--accent3);
-  }
-  .toggle-btn {
-    background: transparent;
-    border: 2px solid var(--accent3);
-    padding: 5px 10px;
-    border-radius: 5px;
-    color: var(--fg);
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  header {
-    background: radial-gradient(circle at center, var(--accent2) 0%, var(--accent3) 70%);
-    padding: 80px 20px 40px;
-    text-align: center;
-    color: #fff;
-  }
-  header img {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #fff;
-    margin-top: 20px;
-    box-shadow: 0 0 10px rgba(106, 90, 205, 0.7);
-  }
-  header p:first-child {
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    opacity: 0.8;
-  }
-  header h1 {
-    font-size: 2.2rem;
-    margin-bottom: 10px;
-  }
-  header p:last-of-type {
-    font-size: 1rem;
-    max-width: 700px;
-    margin: auto;
-    padding: 0 10px;
-  }
-  section {
-    max-width: 1000px;
-    margin: auto;
-    padding: 40px 20px;
-    text-align: center;
-  }
-  section h2 {
-    font-size: 1.8rem;
-    margin-bottom: 25px;
-    color: var(--accent3);
-  }
-  .card-box, .experience-item {
-    background: var(--card-bg);
-    padding: 20px 25px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
-    transition: transform 0.3s ease;
-    text-align: left;
-  }
-  .card-box:hover, .experience-item:hover {
-    transform: scale(1.02);
-  }
-  .internship-banner {
-    margin: 30px auto 40px;
-    padding: 14px 18px;
-    background: #16161e;
-    border-left: 4px solid var(--accent3);
-    border-radius: 8px;
-    font-weight: 600;
-    color: var(--fg);
-  }
-  .contact-buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-top: 20px;
-  }
-  .contact-buttons a.button {
-    width: 55px;
-    height: 55px;
-    font-size: 1.4rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    background: var(--accent3);
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-  .contact-buttons a.button:hover {
-    transform: scale(1.15);
-    background: #7a6bf2;
-  }
-  footer {
-    text-align: center;
-    padding: 25px 15px;
-    background: #111;
-    color: #888;
-    font-size: 0.9rem;
-  }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shaheer Arif — Portfolio</title>
+  <meta name="description" content="Shaheer Arif — Electrical Engineering student building embedded systems, mobile apps, and AI‑powered tools." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0d17;
+      --bg2: #0f1122;
+      --fg: #e6eaf2;
+      --muted: #a9b0c1;
+      --brand1: #6c63ff; /* indigo */
+      --brand2: #b15cff; /* purple */
+      --card: #121429;
+      --accent: #22d3ee; /* cyan */
+      --success: #22c55e;
+      --danger: #ef4444;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+
+    html,body{height:100%}
+    *{box-sizing:border-box}
+    body{
+      margin:0; color:var(--fg); background: radial-gradient(1200px 800px at 20% -10%, rgba(108,99,255,.15), transparent 60%),
+                                      radial-gradient(1200px 800px at 120% 0%, rgba(177,92,255,.12), transparent 60%),
+                                      linear-gradient(180deg, var(--bg), var(--bg2));
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a{color:var(--fg); text-decoration:none}
+    a:hover{opacity:.9}
+
+    .container{width:min(1100px, 92%); margin:0 auto}
+
+    /* Nav */
+    nav{position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.2) blur(8px); background:rgba(11,13,23,.45); border-bottom:1px solid rgba(255,255,255,.06)}
+    .nav-wrap{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px}
+    .badge{font-size:12px; font-weight:600; padding:6px 10px; border-radius:999px; background:linear-gradient(135deg, var(--brand1), var(--brand2)); box-shadow: var(--shadow)}
+    .nav-links{display:flex; gap:22px}
+    .nav-links a{color:var(--muted); font-weight:600}
+    .nav-links a.active, .nav-links a:hover{color:var(--fg)}
+
+    /* Hero */
+    .hero{display:grid; grid-template-columns: 1.2fr .8fr; gap:26px; align-items:center; padding:48px 0 24px}
+    .hero h1{font-size: clamp(28px, 4vw, 44px); line-height:1.15; margin:10px 0}
+    .hero p{color:var(--muted); max-width:680px}
+    .cta{display:flex; gap:14px; margin-top:18px}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:14px; font-weight:700; border:1px solid rgba(255,255,255,.08); background:#171a31}
+    .btn.primary{background:linear-gradient(135deg, var(--brand1), var(--brand2)); border:none}
+    .btn.ghost{background:transparent}
+
+    .hero-card{background:linear-gradient(180deg, rgba(108,99,255,.12), rgba(177,92,255,.08)); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .hero-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    .mini{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:14px}
+    .mini .k{font-size:28px; font-weight:800}
+    .mini .t{color:var(--muted); font-size:13px}
+
+    section{padding:28px 0}
+    section h2{font-size: clamp(22px,3.2vw,30px); margin:0 0 14px}
+    .sub{color:var(--muted); margin:0 0 16px}
+
+    /* Projects carousel */
+    .carousel{position:relative}
+    .track{display:grid; grid-auto-flow:column; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:6px}
+    .card{min-width:280px; background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:16px; scroll-snap-align:start}
+    .card h3{margin:8px 0 6px; font-size:18px}
+    .pill{display:inline-block; font-size:12px; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.06); margin-right:6px}
+    .card .links{display:flex; gap:12px; margin-top:10px}
+
+    .car-ctr{display:flex; gap:8px; margin-top:10px}
+    .ctrl{border:1px solid rgba(255,255,255,.08); background:#151733; padding:10px 12px; border-radius:12px; cursor:pointer}
+
+    /* Experience */
+    .timeline{display:grid; gap:12px}
+    .row{display:grid; grid-template-columns: 140px 1fr; gap:16px; align-items:flex-start}
+    .row .when{color:var(--muted); font-size:13px}
+    .row .what{background:var(--card); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:14px}
+
+    /* Skills */
+    .grid{display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:12px}
+    .chip{display:inline-block; padding:8px 10px; border-radius:12px; background:rgba(255,255,255,.06); margin:6px 6px 0 0; font-size:13px}
+
+    /* Contact */
+    .contact{display:grid; grid-template-columns: 1fr; gap:12px}
+    .card.inline{display:flex; align-items:center; justify-content:space-between}
+    .contact a{color:var(--accent); word-break:break-all}
+
+    footer{color:var(--muted); padding:24px 0 48px; text-align:center}
+
+    /* Small screens */
+    @media (max-width: 880px){
+      .hero{grid-template-columns: 1fr;}
+      .row{grid-template-columns: 1fr;}
+      .grid{grid-template-columns: 1fr;}
+      .hero-grid{grid-template-columns:1fr 1fr}
+    }
+  </style>
 </head>
 <body>
-<nav>
-  <div class="links">
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </div>
-  <button class="toggle-btn" onclick="document.body.classList.toggle('light-mode')">Toggle Theme</button>
-</nav>
-<header>
-  <p>Hello, I'm</p>
-  <h1>Shaheer Arif</h1>
-  <p>Electrical Engineering Student @ University of Calgary - Passionate about circuits, coding, and problem-solving</p>
-  <img src="profile.jpg" alt="Shaheer Arif profile photo">
-</header>
-<section id="about" data-aos="fade-up">
-  <h2>About Me</h2>
-  <div class="card-box">
-    <p><strong>Where:</strong> Born and raised in Jeddah, Saudi Arabia, currently pursuing a BSc in Electrical Engineering at the University of Calgary.</p>
-    <p><strong>Why:</strong> From a young age, I was fascinated by electronics, always tinkering with circuits and exploring how things work—especially in cars and consumer tech.</p>
-    <p><strong>How:</strong> By combining strong fundamentals in electronics and coding with hands-on project work. I strive to build practical, impactful systems and am currently open to Summer 2026 internships in electrical or embedded systems engineering.</p>
-  </div>
-</section>
-<section class="internship-banner" data-aos="fade-up">
-  🚀 Open to Summer 2026 Internship Opportunities in Electrical, Embedded Systems, or Software Engineering
-</section>
-<section id="experience" data-aos="fade-up">
-  <h2>Experience</h2>
-  <div class="experience-item">
-    <strong>Vice President of Events</strong><br>
-    Deepracer Calgary — Sep 2023 to Present<br>
-    Coordinated sponsor communication (Amazon, AWS), event planning, and national-level outreach.
-  </div>
-  <div class="experience-item">
-    <strong>Volunteer — Ministry of Hajj and Umrah</strong><br>
-    Jeddah, Saudi Arabia — 2022<br>
-    Guided pilgrims, managed crowd flow, provided language support, collaborated with Interior Ministry.
-  </div>
-  <div class="experience-item">
-    <strong>Operations Coordinator — Glorek</strong><br>
-    Jeddah, Saudi Arabia — Jun 2023 to Aug 2023<br>
-    Managed operations, streamlined inventory, supported logistics.
-  </div>
-  <div class="experience-item">
-    <strong>Operations Coordinator — Al-Raya Supermarkets</strong><br>
-    Jeddah, Saudi Arabia — Jun 2020 to Aug 2020<br>
-    Assisted procurement and logistics teams, tracked stock movement.
-  </div>
-</section>
-<section id="skills" data-aos="fade-up">
-  <h2>Skills</h2>
-  <div class="card-box">
-    <p>C, C++, Python, SQL, HTML/CSS/JavaScript, PCB Design, Circuit Debugging, I2C/SPI Communication, Embedded Systems</p>
-  </div>
-</section>
-<section id="projects" data-aos="fade-up">
-  <h2>Projects</h2>
-  <div class="card-box">
-    <p><strong>Smart RC Car (ENEL 300)</strong><br>Designed and programmed a remote-controlled car using AVR128DB28 microcontroller. Integrated ultrasonic sensors for distance sensing, servo for steering, and RF for wireless communication. Added LCD display and I2C modules for feedback.</p>
-  </div>
-  <div class="card-box">
-    <p><strong>Metal Detector Integration</strong><br>Built a metal detection system and integrated it into an existing vehicle project. Designed circuitry to amplify and relay inductive detection signals and process results via microcontroller.</p>
-  </div>
-  <div class="card-box">
-    <p><strong>Basic Home Automation System</strong><br>Prototyped a smart system that controls lights and appliances via Bluetooth and IR modules. Created mobile-controlled interface using Arduino and app integration.</p>
-  </div>
-</section>
-<section id="contact" data-aos="fade-up">
-  <h2>Let's Get in Touch!</h2>
-  <p>Whether you have a question, an opportunity, or just want to say hi — I'm always open to a conversation.</p>
-  <div class="contact-buttons">
-    <a class="button" href="https://github.com/shaheer-m-arif" target="_blank"><i class="fab fa-github"></i></a>
-    <a class="button" href="https://www.linkedin.com/in/shaheermarif/" target="_blank"><i class="fab fa-linkedin"></i></a>
-    <a class="button" href="mailto:shaheermarif@outlook.com"><i class="fas fa-envelope"></i></a>
-    <a class="button" href="tel:+18252887530"><i class="fas fa-phone"></i></a>
-  </div>
-</section>
-<footer>
-  &copy; 2025 Shaheer Arif. All rights reserved.
-</footer>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>AOS.init();</script>
+  <nav>
+    <div class="container nav-wrap">
+      <div class="brand">
+        <span style="width:10px;height:10px;border-radius:999px;background:linear-gradient(135deg,var(--brand1),var(--brand2));display:inline-block"></span>
+        <a href="#top" aria-label="Home">Shaheer&nbsp;Arif</a>
+      </div>
+      <div class="nav-links">
+        <a href="#projects" class="active">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <span class="badge" title="Actively seeking">Open to Summer 2026 internships</span>
+    </div>
+  </nav>
+
+  <main id="top" class="container">
+    <section class="hero" aria-label="Intro">
+      <div>
+        <p class="sub">Electrical Engineering @ University of Calgary • Embedded systems • Mobile & Web • AI tooling</p>
+        <h1>Hi, I'm Shaheer — I build pragmatic, clean solutions across hardware & software.</h1>
+        <p>
+          Recent work includes a remote‑controlled RC car with metal detection & distance sensing (AVR128DB28), a Telegram stock/briefing bot on Heroku, and a student‑first schedule app concept that unifies .ics calendars and D2L tasks.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="#projects">See projects</a>
+          <a class="btn ghost" href="https://github.com/shaheer-m-arif" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="Snapshot">
+        <div class="hero-grid">
+          <div class="mini">
+            <div class="k">ENEL</div>
+            <div class="t">Labs & projects: 300, 335, 453, 469</div>
+          </div>
+          <div class="mini">
+            <div class="k">iOS · RN</div>
+            <div class="t">SwiftUI prototypes, React Native apps</div>
+          </div>
+          <div class="mini">
+            <div class="k">uC</div>
+            <div class="t">AVR128DB28, sensors, RF links</div>
+          </div>
+          <div class="mini">
+            <div class="k">Bots</div>
+            <div class="t">Stocks, weather, calendar briefs</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="projects" aria-label="Projects">
+      <h2>Projects</h2>
+      <p class="sub">A few things I've shipped and tinkered on recently.</p>
+
+      <div class="carousel">
+        <div class="track" id="track">
+          <!-- Project 1 -->
+          <article class="card" tabindex="0">
+            <div class="pill">AVR • Embedded • C</div>
+            <h3>ENEL 300 RC Car — Sensors & Control</h3>
+            <p>Remote‑controlled RC car with 433 MHz RF control, ultrasonic distance, and metal detection. Rebuilt on breadboard after PCB damage; hard‑wired interfaces and restored functionality under deadline.</p>
+            <div class="links">
+              <a href="https://github.com/shaheer-m-arif" target="_blank" rel="noopener">Repo</a>
+              <a href="#" aria-disabled="true" style="opacity:.6">Demo</a>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="card" tabindex="0">
+            <div class="pill">Node • Heroku • Telegram</div>
+            <h3>Stock & News Briefing Bot</h3>
+            <p>Telegram bot that collates weather, portfolio prices, and company headlines into a morning brief. Includes scheduled jobs, formatting overhaul, and plans for hourly price pings.</p>
+            <div class="links">
+              <a href="https://github.com/shaheer-m-arif/jarvis-tele-bot" target="_blank" rel="noopener">Repo</a>
+              <a href="#" aria-disabled="true" style="opacity:.6">Demo</a>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="card" tabindex="0">
+            <div class="pill">iOS • SwiftUI</div>
+            <h3>Unified Campus App (Concept)</h3>
+            <p>Better than Pulse: merges class schedule (.ics) and D2L tasks. Focus on a calm UI, offline‑first data, and proactive reminders for midterms, quizzes, and project milestones.</p>
+            <div class="links">
+              <a href="https://github.com/shaheer-m-arif" target="_blank" rel="noopener">Notes</a>
+              <a href="#" aria-disabled="true" style="opacity:.6">Screens</a>
+            </div>
+          </article>
+
+          <!-- Project 4 (placeholder) -->
+          <article class="card" tabindex="0">
+            <div class="pill">React Native • API</div>
+            <h3>Facility Management Apps</h3>
+            <p>Client & technician apps in React Native with a Node backend and React web portal. Modular service tickets, scheduling, and role‑based access.</p>
+            <div class="links">
+              <a href="https://github.com/shaheer-m-arif" target="_blank" rel="noopener">Repo</a>
+            </div>
+          </article>
+        </div>
+        <div class="car-ctr">
+          <button class="ctrl" id="prev" aria-label="Previous">◀</button>
+          <button class="ctrl" id="next" aria-label="Next">▶</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" aria-label="Experience">
+      <h2>Experience</h2>
+      <div class="timeline">
+        <div class="row">
+          <div class="when">2024 — 2025</div>
+          <div class="what">
+            <strong>Software & Hardware Integration Lead — ENEL 300</strong>
+            <p>Led RF controller integration, programmed sensor stack, and re‑architected system after PCB failure. Coordinated team deliverables & live demo.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="when">Ongoing</div>
+          <div class="what">
+            <strong>Personal Projects</strong>
+            <p>iOS SwiftUI utilities, React Native client apps, Node services, and GitHub Pages web sites. I like shipping small tools that remove friction.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" aria-label="Skills">
+      <h2>Skills</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Languages & Tools</h3>
+          <p>
+            <span class="chip">C / C++</span>
+            <span class="chip">Python</span>
+            <span class="chip">Verilog</span>
+            <span class="chip">Swift / SwiftUI</span>
+            <span class="chip">JavaScript / TypeScript</span>
+            <span class="chip">React / React Native</span>
+            <span class="chip">Node</span>
+            <span class="chip">Git / GitHub</span>
+          </p>
+        </div>
+        <div class="card">
+          <h3>Domains</h3>
+          <p>
+            <span class="chip">Embedded systems</span>
+            <span class="chip">Microcontrollers</span>
+            <span class="chip">Wireless & RF</span>
+            <span class="chip">Controls</span>
+            <span class="chip">Signal processing</span>
+            <span class="chip">Mobile apps</span>
+            <span class="chip">Web backends</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-label="Contact">
+      <h2>Contact</h2>
+      <p class="sub">Based in Calgary, AB. Open to internships for Summer 2026.</p>
+      <div class="contact">
+        <div class="card inline">
+          <div>
+            <strong>Email</strong><br>
+            <a href="mailto:shaheermarif@outlook.com">shaheermarif@outlook.com</a>
+          </div>
+          <a class="btn" href="mailto:shaheermarif@outlook.com">Write</a>
+        </div>
+        <div class="card inline">
+          <div>
+            <strong>GitHub</strong><br>
+            <a href="https://github.com/shaheer-m-arif" target="_blank" rel="noopener">github.com/shaheer-m-arif</a>
+          </div>
+          <a class="btn" href="https://github.com/shaheer-m-arif" target="_blank" rel="noopener">Open</a>
+        </div>
+        <div class="card inline">
+          <div>
+            <strong>LinkedIn</strong><br>
+            <a href="https://www.linkedin.com/in/shaheermarif/" target="_blank" rel="noopener">linkedin.com/in/shaheermarif</a>
+          </div>
+          <a class="btn" href="https://www.linkedin.com/in/shaheermarif/" target="_blank" rel="noopener">Open</a>
+        </div>
+        <div class="card inline">
+          <div>
+            <strong>Phone</strong><br>
+            <a href="tel:+18252887530">+1 825‑288‑7530</a>
+          </div>
+          <a class="btn" href="tel:+18252887530">Call</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <small>© <span id="y"></span> Shaheer Arif • Built with plain HTML/CSS/JS • Deployed on GitHub Pages</small>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Simple carousel controls
+    const track = document.getElementById('track');
+    const next = document.getElementById('next');
+    const prev = document.getElementById('prev');
+    const scrollBy = () => Math.min(360, track.clientWidth * 0.9);
+    next.addEventListener('click', () => track.scrollBy({left: scrollBy(), behavior:'smooth'}));
+    prev.addEventListener('click', () => track.scrollBy({left: -scrollBy(), behavior:'smooth'}));
+
+    // Keyboard support
+    track.addEventListener('keydown', (e)=>{
+      if(e.key === 'ArrowRight') next.click();
+      if(e.key === 'ArrowLeft') prev.click();
+    });
+
+    // Smooth anchor scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href').slice(1);
+        if(!id) return;
+        const el = document.getElementById(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+      });
+    });
+  </script>
 </body>
 </html>
