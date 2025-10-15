@@ -438,6 +438,59 @@
   window.addEventListener('hashchange', onRoute);
   if(!location.hash) location.hash = '#/';
   onRoute();
+  // --- Live Wallpaper (Particles) ---
+  const canvas = document.getElementById('bgfx');
+  const ctx = canvas.getContext('2d');
+  let W = canvas.width = innerWidth, H = canvas.height = innerHeight;
+  const DPR = Math.min(devicePixelRatio || 1, 2);
+  canvas.width = W * DPR; canvas.height = H * DPR; ctx.scale(DPR, DPR);
+  const particles = Array.from({length: 120}, ()=>({
+    x: Math.random()*W,
+    y: Math.random()*H,
+    vx: (Math.random()-.5)*0.6,
+    vy: (Math.random()-.5)*0.6,
+    r: Math.random()*2 + 0.6
+  }));
+  let mx = W/2, my = H/2;
+  window.addEventListener('mousemove', (e)=>{ mx = e.clientX; my = e.clientY; });
+  window.addEventListener('resize', ()=>{ W = canvas.width = innerWidth; H = canvas.height = innerHeight; canvas.width = W*DPR; canvas.height = H*DPR; ctx.scale(DPR, DPR); });
+  function tick(){
+    ctx.clearRect(0,0,W,H);
+    // soft vignette glow
+    const g = ctx.createRadialGradient(W*0.6,H*0.4,0,W*0.6,H*0.4,Math.max(W,H)*0.9);
+    g.addColorStop(0,'rgba(177,92,255,0.05)');
+    g.addColorStop(1,'rgba(0,0,0,0.0)');
+    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    // particles
+    particles.forEach(p=>{
+      // mouse parallax/repel
+      const dx = p.x - mx, dy = p.y - my; const d2 = dx*dx + dy*dy; if(d2 < 140*140){ p.vx += dx*0.00003; p.vy += dy*0.00003; }
+      p.x += p.vx; p.y += p.vy;
+      if(p.x< -10) p.x=W+10; if(p.x>W+10) p.x=-10; if(p.y<-10) p.y=H+10; if(p.y>H+10) p.y=-10;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(255,255,255,0.6)'; ctx.shadowColor='rgba(138,92,255,0.6)'; ctx.shadowBlur=6; ctx.fill(); ctx.shadowBlur=0;
+    });
+    // connect nearby
+    for(let i=0;i<particles.length;i++){
+      for(let j=i+1;j<particles.length;j++){
+        const a=particles[i], b=particles[j];
+        const dx=a.x-b.x, dy=a.y-b.y; const d=dx*dx+dy*dy; if(d<120*120){
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
+          ctx.strokeStyle='rgba(140,120,255,'+(1-d/(120*120))+')'; ctx.lineWidth=0.6; ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+  tick();
+
+  // --- Rotating role word ---
+  const roles = ['student','developer','engineer','designer','maker'];
+  const roleEl = document.getElementById('role');
+  let idx=0; setInterval(()=>{ idx=(idx+1)%roles.length; roleEl.textContent = roles[idx]; }, 1600);
+
+  // Keep previous effects (nav highlight, bg parallax, card reveals)
+  // ... (existing script content above) ...
 </script>
 </body>
 </html>
