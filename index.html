@@ -103,7 +103,22 @@
       .grid{grid-template-columns: 1fr;}
       .hero-grid{grid-template-columns:1fr 1fr}
     }
+  
+    /* Offsets so anchors don't hide under sticky nav */
+    section{scroll-margin-top:90px}
+    /* Card micro-interactions & reveal */
+    .card{transition:transform .35s ease, box-shadow .35s ease, opacity .35s ease; opacity:0; transform:translateY(12px)}
+    .card.in{opacity:1; transform:none}
+    .card:hover{transform:translateY(-4px); box-shadow:0 12px 28px rgba(0,0,0,.35)}
+    /* Floating hero card */
+    .hero-card{animation: float 8s ease-in-out infinite alternate}
+    @keyframes float{from{transform:translateY(0)}to{transform:translateY(-8px)}}
+    /* Circular contact buttons */
+    .contact-buttons{display:flex; justify-content:center; flex-wrap:wrap; gap:16px; margin-top:20px}
+    .contact-buttons a.button{width:55px; height:55px; font-size:1.4rem; display:flex; justify-content:center; align-items:center; border-radius:50%; background:var(--brand1); color:white; text-decoration:none; transition:transform .3s ease, filter .3s ease}
+    .contact-buttons a.button:hover{transform:translateY(-4px) scale(1.05); filter:brightness(1.15)}
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous">
 </head>
 <body>
   <nav>
@@ -113,6 +128,7 @@
         <a href="#top" aria-label="Home">Shaheer&nbsp;Arif</a>
       </div>
       <div class="nav-links">
+        <a href="#about">About</a>
         <a href="#projects" class="active">Projects</a>
         <a href="#experience">Experience</a>
         <a href="#skills">Skills</a>
@@ -157,53 +173,44 @@
       </aside>
     </section>
 
+    <section id="about" aria-label="About">
+      <h2>About Me</h2>
+      <p class="sub">A quick intro — Where / Why / How.</p>
+      <div class="card">
+        <p><strong>Where:</strong> Born and raised in Jeddah, Saudi Arabia, currently pursuing a BSc in Electrical Engineering at the University of Calgary.</p>
+        <p><strong>Why:</strong> From a young age, I was fascinated by electronics, always tinkering with circuits and exploring how things work—especially in cars and consumer tech.</p>
+        <p><strong>How:</strong> By combining strong fundamentals in electronics and coding with hands-on project work. I strive to build practical, impactful systems and am currently open to Summer 2026 internships in electrical or embedded systems engineering.</p>
+      </div>
+    </section>
+
     <section id="projects" aria-label="Projects">
       <h2>Projects</h2>
       <p class="sub">A few things I've shipped and tinkered on recently.</p>
 
       <div class="carousel">
         <div class="track" id="track">
-          <!-- Project 1 -->
+          <!-- Project SHARIF -->
           <article class="card" tabindex="0">
-            <div class="pill">AVR • Embedded • C</div>
-            <h3>ENEL 300 RC Car — Sensors & Control</h3>
-            <p>Remote‑controlled RC car with 433 MHz RF control, ultrasonic distance, and metal detection. Rebuilt on breadboard after PCB damage; hard‑wired interfaces and restored functionality under deadline.</p>
-            <div class="links">
-              <a href="https://github.com/shaheer-m-arif" target="_blank" rel="noopener">Repo</a>
-              <a href="#" aria-disabled="true" style="opacity:.6">Demo</a>
-            </div>
+            <div class="pill">AI • iOS • SwiftUI</div>
+            <h3>S.H.A.R.I.F. — Personal Assistant</h3>
+            <p>Multi‑phase JARVIS‑inspired assistant. Phase 1 shipped a Telegram bot with daily stock, weather, and news. Phase 2 adds hourly price updates and class‑schedule integration with text parsing. Phase 3 (WIP) transitions to iOS with chat and a personal dashboard. Phase 4 explores voice (STT/TTS) and health‑tracking.</p>
+            <p><em>Skills:</em> Node.js, API integration, cloud deployment, SwiftUI, NLP, system design, project planning.</p>
           </article>
 
-          <!-- Project 2 -->
-          <article class="card" tabindex="0">
-            <div class="pill">Node • Heroku • Telegram</div>
-            <h3>Stock & News Briefing Bot</h3>
-            <p>Telegram bot that collates weather, portfolio prices, and company headlines into a morning brief. Includes scheduled jobs, formatting overhaul, and plans for hourly price pings.</p>
-            <div class="links">
-              <a href="https://github.com/shaheer-m-arif/jarvis-tele-bot" target="_blank" rel="noopener">Repo</a>
-              <a href="#" aria-disabled="true" style="opacity:.6">Demo</a>
-            </div>
-          </article>
-
-          <!-- Project 3 -->
-          <article class="card" tabindex="0">
-            <div class="pill">iOS • SwiftUI</div>
-            <h3>Unified Campus App (Concept)</h3>
-            <p>Better than Pulse: merges class schedule (.ics) and D2L tasks. Focus on a calm UI, offline‑first data, and proactive reminders for midterms, quizzes, and project milestones.</p>
-            <div class="links">
-              <a href="https://github.com/shaheer-m-arif" target="_blank" rel="noopener">Notes</a>
-              <a href="#" aria-disabled="true" style="opacity:.6">Screens</a>
-            </div>
-          </article>
-
-          <!-- Project 4 (placeholder) -->
+          <!-- Project Glorek -->
           <article class="card" tabindex="0">
             <div class="pill">React Native • API</div>
-            <h3>Facility Management Apps</h3>
-            <p>Client & technician apps in React Native with a Node backend and React web portal. Modular service tickets, scheduling, and role‑based access.</p>
-            <div class="links">
-              <a href="https://github.com/shaheer-m-arif" target="_blank" rel="noopener">Repo</a>
-            </div>
+            <h3>Glorek Client Mobile App</h3>
+            <p>Led a cross‑platform app (iOS/Android) for B2C service interactions. Built secure auth (login, OTP, sign‑up), modern glass UI, reusable components, scalable navigation, and profile management. Integrated Axios APIs so clients can order diagnostics and pay via an external gateway — a seamless end‑to‑end booking flow.</p>
+            <p><em>Skills:</em> React Native, JavaScript, API integration, authentication, E2E development, collaboration, scalable navigation.</p>
+          </article>
+
+          <!-- Project ENEL 300 -->
+          <article class="card" tabindex="0">
+            <div class="pill">AVR • Embedded • C</div>
+            <h3>RC Car — ENEL 300</h3>
+            <p>Co‑developed an RC car with ultrasonic ranging (to 1 m), servo steering, LCD feedback, and a 433 MHz RF link. As Programming & Hardware Integration Lead: drove AVR128DB28 firmware, assisted PCB design, and rebuilt on breadboard after PCB issues to restore functionality under deadline.</p>
+            <p><em>Skills:</em> C, PCB design, AVR microcontrollers, circuit design, wireless comms.</p>
           </article>
         </div>
         <div class="car-ctr">
@@ -217,17 +224,31 @@
       <h2>Experience</h2>
       <div class="timeline">
         <div class="row">
-          <div class="when">2024 — 2025</div>
+          <div class="when">Jan 2024 — Present</div>
           <div class="what">
-            <strong>Software & Hardware Integration Lead — ENEL 300</strong>
-            <p>Led RF controller integration, programmed sensor stack, and re‑architected system after PCB failure. Coordinated team deliverables & live demo.</p>
+            <strong>Vice President of Events — DeepRacer Calgary</strong>
+            <p>Coordinated sponsor communications (AWS/Amazon), event planning, and national‑level outreach.</p>
           </div>
         </div>
         <div class="row">
-          <div class="when">Ongoing</div>
+          <div class="when">May 2024 — Aug 2024</div>
           <div class="what">
-            <strong>Personal Projects</strong>
-            <p>iOS SwiftUI utilities, React Native client apps, Node services, and GitHub Pages web sites. I like shipping small tools that remove friction.</p>
+            <strong>Operations Coordinator — Glorek International Co.</strong>
+            <p>Managed operations, streamlined inventory and logistics, and supported on‑site coordination.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="when">May 2023 — Aug 2023</div>
+          <div class="what">
+            <strong>Operations Coordinator Intern — Glorek International Co.</strong>
+            <p>Handled procurement and scheduling tasks; contributed to process documentation.</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="when">May 2021 — Sep 2021</div>
+          <div class="what">
+            <strong>Operations Coordinator — AlRaya Supermarkets</strong>
+            <p>Assisted procurement and logistics teams; tracked stock movement and supported HR coordination.</p>
           </div>
         </div>
       </div>
@@ -241,62 +262,38 @@
           <p>
             <span class="chip">C / C++</span>
             <span class="chip">Python</span>
-            <span class="chip">Verilog</span>
-            <span class="chip">Swift / SwiftUI</span>
             <span class="chip">JavaScript / TypeScript</span>
+            <span class="chip">Swift / SwiftUI</span>
+            <span class="chip">Node.js</span>
             <span class="chip">React / React Native</span>
-            <span class="chip">Node</span>
             <span class="chip">Git / GitHub</span>
           </p>
         </div>
         <div class="card">
-          <h3>Domains</h3>
+          <h3>Embedded & Domains</h3>
           <p>
-            <span class="chip">Embedded systems</span>
-            <span class="chip">Microcontrollers</span>
-            <span class="chip">Wireless & RF</span>
-            <span class="chip">Controls</span>
-            <span class="chip">Signal processing</span>
-            <span class="chip">Mobile apps</span>
-            <span class="chip">Web backends</span>
+            <span class="chip">Microcontrollers (AVR)</span>
+            <span class="chip">I²C / SPI / UART</span>
+            <span class="chip">Wireless 433 MHz</span>
+            <span class="chip">PCB & circuit design</span>
+            <span class="chip">System design</span>
+            <span class="chip">API integration</span>
+            <span class="chip">Authentication systems</span>
           </p>
         </div>
       </div>
     </section>
 
     <section id="contact" aria-label="Contact">
-      <h2>Contact</h2>
+      <h2>Let's Get in Touch!</h2>
       <p class="sub">Based in Calgary, AB. Open to internships for Summer 2026.</p>
-      <div class="contact">
-        <div class="card inline">
-          <div>
-            <strong>Email</strong><br>
-            <a href="mailto:shaheermarif@outlook.com">shaheermarif@outlook.com</a>
-          </div>
-          <a class="btn" href="mailto:shaheermarif@outlook.com">Write</a>
-        </div>
-        <div class="card inline">
-          <div>
-            <strong>GitHub</strong><br>
-            <a href="https://github.com/shaheer-m-arif" target="_blank" rel="noopener">github.com/shaheer-m-arif</a>
-          </div>
-          <a class="btn" href="https://github.com/shaheer-m-arif" target="_blank" rel="noopener">Open</a>
-        </div>
-        <div class="card inline">
-          <div>
-            <strong>LinkedIn</strong><br>
-            <a href="https://www.linkedin.com/in/shaheermarif/" target="_blank" rel="noopener">linkedin.com/in/shaheermarif</a>
-          </div>
-          <a class="btn" href="https://www.linkedin.com/in/shaheermarif/" target="_blank" rel="noopener">Open</a>
-        </div>
-        <div class="card inline">
-          <div>
-            <strong>Phone</strong><br>
-            <a href="tel:+18252887530">+1 825‑288‑7530</a>
-          </div>
-          <a class="btn" href="tel:+18252887530">Call</a>
-        </div>
+      <div class="contact-buttons">
+        <a class="button" href="https://github.com/shaheer-m-arif" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a class="button" href="https://www.linkedin.com/in/shaheermarif/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a class="button" href="mailto:shaheermarif@outlook.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a class="button" href="tel:+18252887530" aria-label="Phone"><i class="fas fa-phone"></i></a>
       </div>
+      <p class="sub" style="text-align:center;margin-top:14px">Arabic (Pro), English (Native), Urdu (Native).</p>
     </section>
   </main>
 
@@ -333,6 +330,11 @@
         if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
       });
     });
-  </script>
+    // Reveal-on-scroll animations
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(ent=>{ if(ent.isIntersecting){ ent.target.classList.add('in'); io.unobserve(ent.target);} });
+  }, {threshold:0.12});
+  document.querySelectorAll('.card').forEach(el=>io.observe(el));
+</script>
 </body>
 </html>
