@@ -1,185 +1,37 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
+import { useReveal } from "../lib/useReveal.js";
 
 const LINKS = [
-  {
-    label: "Email",
-    value: "shaheermarif@outlook.com",
-    href: "mailto:shaheermarif@outlook.com",
-    hint: "Open mail client",
-  },
-  {
-    label: "LinkedIn",
-    value: "/in/shaheermarif",
-    href: "https://www.linkedin.com/in/shaheermarif/",
-    hint: "View profile",
-  },
-  {
-    label: "GitHub",
-    value: "shaheer-m-arif",
-    href: "https://github.com/shaheer-m-arif",
-    hint: "Browse repos",
-  },
+  { label: "Email", value: "salman.mohammad.arif@gmail.com", href: "mailto:salman.mohammad.arif@gmail.com" },
+  { label: "LinkedIn", value: "linkedin.com/in/shaheer-m-arif", href: "https://linkedin.com/in/shaheer-m-arif" },
+  { label: "GitHub", value: "github.com/shaheer-m-arif", href: "https://github.com/shaheer-m-arif" },
 ];
 
 export default function ContactSection() {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("in"); }),
-      { threshold: 0.15 }
-    );
-    sectionRef.current?.querySelectorAll(".reveal").forEach((el) => io.observe(el));
-    return () => io.disconnect();
-  }, []);
+  const ref = useRef(null);
+  useReveal(ref);
 
   return (
-    <section id="contact" ref={sectionRef} style={{
-      minHeight: "100vh",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      padding: "120px 8vw",
-    }}>
+    <section className="section contact-section" id="contact" ref={ref}>
+      <div className="container">
+        <div className="section-num reveal">04 / CONTACT</div>
+        <h2 className="contact-title reveal">LET'S TALK.</h2>
 
-      <div className="reveal" style={{
-        fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase",
-        color: "#d4f050", marginBottom: "64px",
-        display: "flex", alignItems: "center", gap: "12px",
-      }}>
-        <span style={{ width: "32px", height: "1px", background: "#d4f050", display: "inline-block" }} />
-        Contact
-      </div>
-
-      {/* Two-column layout */}
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: "80px",
-        alignItems: "center",
-        maxWidth: "1000px",
-      }}>
-
-        {/* Left: heading + copy */}
-        <div className="reveal">
-          <h2 style={{
-            fontSize: "clamp(52px, 9vw, 120px)",
-            fontWeight: 900,
-            letterSpacing: "-0.04em",
-            lineHeight: 0.88,
-            color: "#fff",
-            marginBottom: "28px",
-          }}>
-            LET'S<br />
-            <span style={{ color: "#d4f050" }}>TALK.</span>
-          </h2>
-          <p style={{
-            fontSize: "15px",
-            color: "rgba(255,255,255,0.38)",
-            lineHeight: 1.65,
-            maxWidth: "320px",
-          }}>
-            Open to conversations about EE, embedded systems, AI, fintech, or anything in between.
-            Internships, collabs, or just a good chat.
-          </p>
-        </div>
-
-        {/* Right: contact cards */}
-        <div className="reveal" style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "14px",
-          transitionDelay: "100ms",
-        }}>
-          {LINKS.map(({ label, value, href, hint }) => (
-            <a
-              key={label}
-              href={href}
-              target={href.startsWith("http") ? "_blank" : undefined}
-              rel="noreferrer"
-              className="contact-card"
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                padding: "22px 24px",
-                border: "1px solid rgba(255,255,255,0.07)",
-                borderRadius: "10px",
-                textDecoration: "none",
-                transition: "all 0.22s ease",
-                background: "rgba(255,255,255,0.02)",
-              }}
-            >
-              <div>
-                <div style={{
-                  fontSize: "11px",
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.28)",
-                  marginBottom: "5px",
-                }}>
-                  {label}
-                </div>
-                <div style={{
-                  fontSize: "14.5px",
-                  fontWeight: 500,
-                  color: "rgba(255,255,255,0.78)",
-                }}>
-                  {value}
-                </div>
-              </div>
-              <div style={{ textAlign: "right" }}>
-                <div style={{
-                  fontSize: "18px",
-                  color: "rgba(212,240,80,0.35)",
-                  transition: "all 0.22s ease",
-                  marginBottom: "4px",
-                }}
-                  className="card-arrow"
-                >
-                  ↗
-                </div>
-                <div style={{
-                  fontSize: "10px",
-                  letterSpacing: "0.08em",
-                  color: "rgba(255,255,255,0.18)",
-                  textTransform: "uppercase",
-                }}>
-                  {hint}
-                </div>
-              </div>
+        <div className="contact-links reveal">
+          {LINKS.map((l) => (
+            <a className="contact-link-row" key={l.label} href={l.href} target="_blank" rel="noreferrer" data-hover>
+              <span className="ck-label">{l.label}</span>
+              <span className="ck-value">{l.value}</span>
+              <span className="ck-arrow">↗</span>
             </a>
           ))}
         </div>
-      </div>
 
-      <div className="reveal" style={{
-        marginTop: "96px",
-        fontSize: "12px",
-        color: "rgba(255,255,255,0.18)",
-        letterSpacing: "0.06em",
-        transitionDelay: "200ms",
-      }}>
-        © {new Date().getFullYear()} · Shaheer Arif
+        <div className="footer-bar reveal">
+          <span>SHAHEER ARIF © 2026</span>
+          <span>CALGARY, AB</span>
+        </div>
       </div>
-
-      <style>{`
-        .contact-card:hover {
-          border-color: rgba(212,240,80,0.25) !important;
-          background: rgba(212,240,80,0.04) !important;
-          transform: translateX(4px);
-        }
-        .contact-card:hover .card-arrow {
-          color: #d4f050 !important;
-          transform: translate(3px, -3px);
-        }
-        @media (max-width: 700px) {
-          #contact > div:nth-child(2) {
-            grid-template-columns: 1fr !important;
-            gap: 48px !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

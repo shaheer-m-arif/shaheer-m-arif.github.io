@@ -51,8 +51,8 @@ export default function Cursor() {
         ringRef.current.style.width = sz + "px";
         ringRef.current.style.height = sz + "px";
         ringRef.current.style.borderColor = hovering
-          ? "rgba(212,240,80,0.8)"
-          : "rgba(212,240,80,0.3)";
+          ? "rgba(255,180,84,0.8)"
+          : "rgba(255,180,84,0.3)";
       }
 
       trailRefs.current.forEach((el, i) => {
@@ -88,7 +88,7 @@ export default function Cursor() {
           style={{
             position: "fixed", top: 0, left: 0,
             borderRadius: "50%",
-            background: "#d4f050",
+            background: "#ffb454",
             pointerEvents: "none",
             zIndex: 99990 - i,
             opacity: active ? undefined : 0,
@@ -102,7 +102,7 @@ export default function Cursor() {
         position: "fixed", top: 0, left: 0,
         width: "6px", height: "6px",
         borderRadius: "50%",
-        background: "#d4f050",
+        background: "#ffb454",
         pointerEvents: "none",
         zIndex: 99999,
         opacity: active ? 1 : 0,
@@ -114,7 +114,7 @@ export default function Cursor() {
         position: "fixed", top: 0, left: 0,
         width: "34px", height: "34px",
         borderRadius: "50%",
-        border: "1px solid rgba(212,240,80,0.3)",
+        border: "1px solid rgba(255,180,84,0.3)",
         pointerEvents: "none",
         zIndex: 99998,
         opacity: active ? 1 : 0,

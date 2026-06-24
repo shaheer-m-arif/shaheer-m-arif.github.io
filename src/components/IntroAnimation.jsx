@@ -11,12 +11,12 @@ export default function IntroAnimation({ onDone }) {
 
   useEffect(() => {
     // Skip on repeat views within same session
-    if (sessionStorage.getItem("intro_v3")) {
+    if (sessionStorage.getItem("intro_v4")) {
       setGone(true);
       onDone();
       return;
     }
-    sessionStorage.setItem("intro_v3", "1");
+    sessionStorage.setItem("intro_v4", "1");
 
     let frame = 0;
     const totalFrames = 55;
@@ -54,7 +54,7 @@ export default function IntroAnimation({ onDone }) {
       position: "fixed",
       top: 0, left: 0,
       width: "100vw", height: "100vh",
-      background: "#000",
+      background: "#06070a",
       zIndex: 9999,
       display: "flex",
       flexDirection: "column",
@@ -67,10 +67,10 @@ export default function IntroAnimation({ onDone }) {
     }}>
       <div style={{
         fontSize: "clamp(24px, 5.5vw, 72px)",
-        fontWeight: 900,
-        letterSpacing: "-0.04em",
-        color: "#fff",
-        fontFamily: "Inter, sans-serif",
+        fontWeight: 700,
+        letterSpacing: "-0.03em",
+        color: "#edeff2",
+        fontFamily: "'Space Grotesk', sans-serif",
         lineHeight: 1,
       }}>
         {text}
@@ -78,7 +78,7 @@ export default function IntroAnimation({ onDone }) {
       <div style={{
         width: "40px",
         height: "2px",
-        background: "#d4f050",
+        background: "#ffb454",
         opacity: 0.7,
         animation: "introBar 1.65s ease infinite",
       }} />

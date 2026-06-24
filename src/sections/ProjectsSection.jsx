@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
+import { useReveal } from "../lib/useReveal.js";
 
 const PROJECTS = [
   {
@@ -60,135 +61,44 @@ const PROJECTS = [
 ];
 
 export default function ProjectsSection() {
-  const sectionRef = useRef(null);
-  const [hovered, setHovered] = useState(null);
-
-  useEffect(() => {
-    const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("in"); }),
-      { threshold: 0.05 }
-    );
-    sectionRef.current?.querySelectorAll(".reveal").forEach((el) => io.observe(el));
-    return () => io.disconnect();
-  }, []);
+  const ref = useRef(null);
+  useReveal(ref);
 
   return (
-    <section id="projects" ref={sectionRef} style={{ padding: "120px 8vw", minHeight: "100vh" }}>
-
-      <div className="reveal" style={{
-        fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase",
-        color: "#d4f050", marginBottom: "64px",
-        display: "flex", alignItems: "center", gap: "12px",
-      }}>
-        <span style={{ width: "32px", height: "1px", background: "#d4f050", display: "inline-block" }} />
-        Projects
-      </div>
-
-      <div style={{ maxWidth: "900px" }}>
-        {PROJECTS.map((p, i) => (
-          <div
-            key={p.title}
-            className="reveal"
-            style={{ transitionDelay: `${i * 45}ms` }}
-            onMouseEnter={() => setHovered(i)}
-            onMouseLeave={() => setHovered(null)}
-          >
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "56px 1fr auto",
-              alignItems: "center",
-              gap: "24px",
-              padding: "22px 0",
-              borderTop: `1px solid ${hovered === i ? "rgba(212,240,80,0.15)" : "rgba(255,255,255,0.06)"}`,
-              cursor: "default",
-              transition: "border-color 0.2s",
-            }}>
-              <span style={{
-                fontSize: "12px", fontWeight: 700,
-                color: hovered === i ? "rgba(212,240,80,0.8)" : "rgba(212,240,80,0.4)",
-                letterSpacing: "0.06em",
-                transition: "color 0.2s",
-              }}>
-                {String(i + 1).padStart(2, "0")}
-              </span>
-
-              <div>
-                <div style={{
-                  fontSize: "clamp(16px, 2vw, 20px)",
-                  fontWeight: 700,
-                  color: hovered === i ? "#d4f050" : "#fff",
-                  transition: "color 0.2s",
-                  marginBottom: "4px",
-                }}>
-                  {p.title}
-                </div>
-                <div style={{ fontSize: "12.5px", color: "rgba(255,255,255,0.35)", letterSpacing: "0.02em" }}>
-                  {p.role}
-                </div>
-              </div>
-
-              <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-                <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.28)" }}>{p.year}</span>
-                <span style={{
-                  fontSize: "16px",
-                  color: hovered === i ? "#d4f050" : "rgba(255,255,255,0.25)",
-                  transition: "all 0.25s ease",
-                  transform: hovered === i ? "rotate(45deg)" : "none",
-                  display: "inline-block",
-                }}>+</span>
-              </div>
-            </div>
-
-            <div style={{
-              maxHeight: hovered === i ? "280px" : "0",
-              overflow: "hidden",
-              transition: "max-height 0.4s cubic-bezier(0.16,1,0.3,1)",
-            }}>
-              <div style={{ padding: "4px 0 28px 80px" }}>
-                <p style={{
-                  fontSize: "14.5px",
-                  lineHeight: 1.75,
-                  color: "rgba(255,255,255,0.58)",
-                  marginBottom: "16px",
-                  maxWidth: "600px",
-                }}>
-                  {p.desc}
-                </p>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-                  {p.tags.map((t) => (
-                    <span key={t} style={{
-                      fontSize: "11.5px",
-                      letterSpacing: "0.06em",
-                      padding: "4px 10px",
-                      border: "1px solid rgba(212,240,80,0.25)",
-                      borderRadius: "4px",
-                      color: "rgba(212,240,80,0.75)",
-                    }}>
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
+    <section className="section" id="projects" ref={ref}>
+      <div className="container">
+        <div className="section-head reveal">
+          <div>
+            <div className="section-num">02 / WORK</div>
+            <h2 className="section-title">Projects</h2>
           </div>
-        ))}
+        </div>
 
-        <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }} />
+        <div className="project-list">
+          {PROJECTS.map((p, i) => (
+            <div className="project-row reveal" key={p.title} data-hover>
+              <div className="project-idx">{String(i + 1).padStart(2, "0")}</div>
+              <div className="project-main">
+                <h3>
+                  {p.title} <span className="yr">({p.year})</span>
+                </h3>
+                <div className="project-role">{p.role}</div>
+                <p className="project-desc">{p.desc}</p>
+              </div>
+              <div className="project-tags">
+                {p.tags.map((t) => (
+                  <span className="tag" key={t}>{t}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
 
-        <div className="reveal" style={{
-          marginTop: "48px",
-          padding: "24px 28px",
-          border: "1px solid rgba(255,255,255,0.06)",
-          borderRadius: "8px",
-          maxWidth: "600px",
-        }}>
-          <p style={{
-            fontSize: "12.5px",
-            lineHeight: 1.75,
-            color: "rgba(255,255,255,0.3)",
-          }}>
-            Not all projects shown here are available for public viewing. Some are under IP agreements or work-product arrangements. I'm working on releasing everything I can. Reach out if you want to know more about a specific one.
-          </p>
+        <div className="projects-note reveal">
+          Not all projects shown here are available for public viewing. Some
+          are under IP agreements or work-product arrangements. I'm working on
+          releasing everything I can. Reach out if you want to know more about
+          a specific one.
         </div>
       </div>
     </section>
