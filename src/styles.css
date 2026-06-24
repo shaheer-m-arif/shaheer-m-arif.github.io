@@ -1,0 +1,53 @@
+/* ─── Tokens ─── */
+:root {
+  --black:   #000000;
+  --white:   rgba(255, 255, 255, 0.92);
+  --dim:     rgba(255, 255, 255, 0.48);
+  --muted:   rgba(255, 255, 255, 0.22);
+  --lime:    #d4f050;
+  --lime-20: rgba(212, 240, 80, 0.2);
+  --lime-08: rgba(212, 240, 80, 0.08);
+}
+
+/* ─── Reset ─── */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+html, body, #root { margin: 0; padding: 0; height: 100%; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3 { margin: 0; }
+
+/* ─── Canvas background ─── */
+#particle-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ─── Page stack ─── */
+#root > div {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Section reveal — Apple-style scale+translate ─── */
+.reveal {
+  opacity: 0;
+  transform: scale(1.04) translateY(40px);
+  transition:
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
