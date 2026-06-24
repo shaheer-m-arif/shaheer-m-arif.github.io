@@ -174,6 +174,22 @@ export default function ProjectsSection() {
         ))}
 
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }} />
+
+        <div className="reveal" style={{
+          marginTop: "48px",
+          padding: "24px 28px",
+          border: "1px solid rgba(255,255,255,0.06)",
+          borderRadius: "8px",
+          maxWidth: "600px",
+        }}>
+          <p style={{
+            fontSize: "12.5px",
+            lineHeight: 1.75,
+            color: "rgba(255,255,255,0.3)",
+          }}>
+            Not all projects shown here are available for public viewing. Some are under IP agreements or work-product arrangements. I'm working on releasing everything I can. Reach out if you want to know more about a specific one.
+          </p>
+        </div>
       </div>
     </section>
   );

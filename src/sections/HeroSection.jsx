@@ -14,7 +14,7 @@ const SPECS = [
   "STM32F4", "AVR128DB28", "433MHz RF", "PCB Layout",
   "UART · SPI · I2C", "SystemVerilog", "Basys3 FPGA",
   "C Firmware", "LTspice", "RF Telemetry", "Claude API",
-  "React Native", "Node.js", "SwiftUI",
+  "React Native", "Node.js", "SwiftUI", "Plaid API",
 ];
 
 function scramble(el, next, duration = 520) {
@@ -74,7 +74,7 @@ export default function HeroSection() {
 
   // Role scramble
   useEffect(() => {
-    const roles = ["Engineer", "Developer", "Builder"];
+    const roles = ["Engineer", "Developer", "Builder", "Student"];
     const el = document.getElementById("hero-role");
     let i = 0;
     const id = setInterval(() => {
@@ -127,8 +127,7 @@ export default function HeroSection() {
             fontSize: "clamp(72px, 16.5vw, 220px)",
             fontWeight: 900,
             letterSpacing: "-0.04em",
-            color: "#000",
-            WebkitTextStroke: "2px rgba(255,255,255,0.82)",
+            color: "rgba(255,255,255,0.11)",
           }}>
             <span ref={nameRef}>SHAHEER</span>
           </div>
@@ -165,7 +164,7 @@ export default function HeroSection() {
           }}>
             Electrical{" "}
             <span id="hero-role" style={{ color: "#d4f050", fontWeight: 600 }}>{role}</span>
-            {" "}Student · University of Calgary
+            {" "}· University of Calgary
           </p>
 
           <div style={{

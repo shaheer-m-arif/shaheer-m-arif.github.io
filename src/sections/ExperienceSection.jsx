@@ -181,8 +181,8 @@ export default function ExperienceSection() {
       </div>
 
       <style>{`
-        @media (max-width: 640px) {
-          #experience .reveal > div { grid-template-columns: 1fr !important; gap: 12px !important; }
+        @media (max-width: 768px) {
+          #experience .reveal[style] { grid-template-columns: 1fr !important; gap: 16px !important; }
         }
       `}</style>
     </section>

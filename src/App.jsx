@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { startParticles } from "./lib/particles.js";
+import { startGrid } from "./lib/grid.js";
 import Cursor from "./components/Cursor.jsx";
 import Grain from "./components/Grain.jsx";
 import IntroAnimation from "./components/IntroAnimation.jsx";
@@ -19,7 +19,7 @@ export default function App() {
     const canvas = document.getElementById("particle-canvas");
     if (!canvas || canvas.dataset.started === "1") return;
     canvas.dataset.started = "1";
-    const stop = startParticles(canvas);
+    const stop = startGrid(canvas);
     return stop;
   }, [ready]);
 
@@ -32,6 +32,11 @@ export default function App() {
       <canvas
         id="particle-canvas"
         style={{
+          position: "fixed",
+          top: 0, left: 0,
+          width: "100vw", height: "100vh",
+          pointerEvents: "none",
+          zIndex: 0,
           opacity: ready ? 1 : 0,
           transition: "opacity 0.8s ease",
         }}
