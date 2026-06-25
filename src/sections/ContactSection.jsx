@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useReveal } from "../lib/useReveal.js";
 
 const LINKS = [
-  { label: "Email", value: "salman.mohammad.arif@gmail.com", href: "mailto:salman.mohammad.arif@gmail.com" },
+  { label: "Email", value: "shaheermarif@outlook.com", href: "mailto:shaheermarif@outlook.com" },
   { label: "LinkedIn", value: "linkedin.com/in/shaheer-m-arif", href: "https://linkedin.com/in/shaheer-m-arif" },
   { label: "GitHub", value: "github.com/shaheer-m-arif", href: "https://github.com/shaheer-m-arif" },
 ];
