@@ -51,7 +51,7 @@ export function startFluid(canvas) {
       mouse.x *= u_res.x / u_res.y;
 
       float dMouse = distance(uv, mouse);
-      float pull = u_mouseActive * smoothstep(0.4, 0.0, dMouse) * 0.1;
+      float pull = u_mouseActive * (1.0 - smoothstep(0.0, 0.4, dMouse)) * 0.1;
       vec2 dir = normalize(uv - mouse + 0.0001);
 
       float t = u_time * 0.05;
@@ -73,7 +73,7 @@ export function startFluid(canvas) {
       col += amberDim() * glow * 0.12;
 
       // cursor halo
-      float halo = smoothstep(0.4, 0.0, dMouse) * u_mouseActive;
+      float halo = (1.0 - smoothstep(0.0, 0.4, dMouse)) * u_mouseActive;
       col += amber() * halo * 0.06;
 
       // vignette

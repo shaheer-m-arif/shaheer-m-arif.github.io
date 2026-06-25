@@ -5,14 +5,7 @@ const SKILLS = [
   "C", "Python", "JavaScript", "Java", "SystemVerilog", "MATLAB", "SQL",
   "React", "React Native", "Node.js", "Express", "SwiftUI", "Axios",
   "Git", "Vite", "Docker", "Claude API", "Termux", "STM32", "AVR128DB28",
-  "Arduino", "I2C", "SPI", "UART", "RF Telemetry", "Vivado", "LTspice",
-];
-
-const STATS = [
-  { num: "4th", label: "Year EE" },
-  { num: "3", label: "Co-op Terms" },
-  { num: "2", label: "PCBs Designed" },
-  { num: "2", label: "FPGAs Programmed" },
+  "Arduino", "I2C", "SPI", "UART", "RF Telemetry", "Vivado", "LTspice", "Multisim",
 ];
 
 const FACTS = [
@@ -36,34 +29,30 @@ export default function AboutSection() {
           </div>
         </div>
 
-        <div className="stat-row reveal">
-          {STATS.map((s) => (
-            <div className="stat-cell" key={s.label}>
-              <div className="stat-num">{s.num}</div>
-              <div className="stat-label">{s.label}</div>
-            </div>
-          ))}
-        </div>
-
         <div className="about-grid">
           <div className="about-bio reveal">
             <p>
               I'm Shaheer — a fourth-year Electrical Engineering student at the
-              University of Calgary (Schulich School of Engineering).
+              University of Calgary (Schulich School of Engineering), building
+              real systems instead of just studying them.
             </p>
             <p>
-              My work sits at the intersection of hardware and software.{" "}
+              My work lives at the intersection of hardware and software:{" "}
               <strong>C firmware on STM32 and AVR microcontrollers</strong>,
               custom PCB design, RF telemetry links, and sensor integration on
-              one side. <strong>React Native, Node.js backends</strong>, and AI
-              tools built on the Claude API on the other.
+              one side; <strong>React Native, Node.js backends</strong>, and AI
+              tools built on the Claude API on the other. I ship the whole
+              stack, from copper traces to production deploys.
             </p>
             <p>
-              Outside the lab I run two ventures.{" "}
-              <strong>VaultTen</strong> is a fintech startup I co-founded to
-              build the financial layer Canadian banks never shipped.{" "}
-              <strong>SHAX</strong> is a longer-term project to build a real AI
-              operating system that manages your life without being asked.
+              Outside the lab I'm building two companies.{" "}
+              <strong>VaultTen</strong> is the banking infrastructure Canadian
+              fintechs have been missing — a Banking-as-a-Service platform
+              that lets them issue cards and move money without building a
+              bank from scratch, and I'm building it end-to-end as co-founder
+              and CEO. <strong>SHAX</strong> is the longer bet: a personal AI
+              operating system that runs my life instead of waiting to be
+              asked — and it already does.
             </p>
 
             <div className="facts-list">
