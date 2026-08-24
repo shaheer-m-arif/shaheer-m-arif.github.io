@@ -12,9 +12,9 @@ export default function App() {
     <div className="page">
       <Header name={profile.name} nav={nav} />
       <Hero headline={profile.headline} intro={profile.intro} now={profile.now} />
+      <BackgroundSection paragraphs={background} />
       <WorkSection items={work} />
       <ExperienceSection roles={roles} />
-      <BackgroundSection paragraphs={background} />
       <ContactSection links={links} />
       <Footer name={profile.name} location={profile.location} />
     </div>

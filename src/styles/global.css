@@ -56,6 +56,15 @@ body {
   margin: 0 auto;
   padding: 0 24px;
 }
+/* Wide desktop: the single 720px column left huge dead space either side.
+   Widen the shell there; body copy keeps its own ch-based max-width
+   (see .sub, .item p, etc.) so line length doesn't change, only the
+   hero's photo column and the header/rule widths get the extra room. */
+@media (min-width: 860px) {
+  .page {
+    max-width: 1040px;
+  }
+}
 p {
   margin: 0;
 }
@@ -119,6 +128,40 @@ header nav a:focus-visible {
 /* ── opening ─────────────────────────────────── */
 .open {
   padding: clamp(56px, 9vw, 104px) 0 clamp(40px, 6vw, 64px);
+}
+.open-grid {
+  display: flex;
+  flex-direction: column;
+}
+.open-photo {
+  display: none;
+}
+/* Photo only appears once there's room for a real second column;
+   below that the mobile layout is untouched (no photo, single column). */
+@media (min-width: 860px) {
+  .open-grid {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: clamp(32px, 5vw, 64px);
+  }
+  .open-text {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .open-photo {
+    display: block;
+    flex: none;
+    padding-top: 6px;
+  }
+  .open-photo img {
+    display: block;
+    width: clamp(160px, 18vw, 240px);
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+  }
 }
 .open h1 {
   font-size: clamp(34px, 5.4vw, 52px);
