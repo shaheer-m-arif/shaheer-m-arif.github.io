@@ -8,8 +8,8 @@ export const profile = {
     "I also ship the other half: React Native apps, Node backends, and the AI tooling I use to run my own life. Two of the things below are companies I'm building right now.",
   ],
   now: {
-    lead: "Starting September 2026:",
-    body: "a 12-month SCADA and leak detection co-op with Cenovus Energy in Lloydminster, working on pipeline monitoring and real-time control infrastructure.",
+    lead: "Currently:",
+    body: "a 12-month SCADA and leak detection co-op with Cenovus Energy in Lloydminster, through September 2027, working on pipeline monitoring and real-time control infrastructure.",
   },
 };
 

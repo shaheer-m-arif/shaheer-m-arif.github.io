@@ -56,13 +56,13 @@ body {
   margin: 0 auto;
   padding: 0 24px;
 }
-/* Wide desktop: the single 720px column left huge dead space either side.
-   Widen the shell there; body copy keeps its own ch-based max-width
-   (see .sub, .item p, etc.) so line length doesn't change, only the
-   hero's photo column and the header/rule widths get the extra room. */
+/* Wide desktop: a fixed 720/1040px column left too much dead space on
+   large monitors. Scale the shell with the viewport instead of capping
+   it at one value, and size copy up to match (see the desktop type
+   block below) so wider lines don't read as thin text lost in a void. */
 @media (min-width: 860px) {
   .page {
-    max-width: 1040px;
+    max-width: min(1180px, 90vw);
   }
 }
 p {
@@ -411,4 +411,65 @@ footer {
   justify-content: space-between;
   gap: 14px;
   flex-wrap: wrap;
+}
+
+/* ── desktop type scale ──────────────────────────
+   The wider .page shell above needs copy sized to match, or it just
+   reads as small text with more air around it. Bumping size and the
+   ch-caps together keeps line length (and therefore readability)
+   roughly where it was, while the block itself carries more weight. */
+@media (min-width: 860px) {
+  body {
+    font-size: 21px;
+  }
+  .open h1 {
+    font-size: clamp(40px, 3.6vw, 64px);
+    max-width: 17ch;
+  }
+  .open .sub {
+    font-size: 22px;
+    max-width: 58ch;
+  }
+  .now {
+    font-size: 16px;
+  }
+  section > h2 {
+    font-size: 20px;
+  }
+  .item h3 {
+    font-size: 28px;
+  }
+  .item .role {
+    font-size: 15.5px;
+  }
+  .item p {
+    font-size: 20px;
+    max-width: 66ch;
+  }
+  .item .tech {
+    font-size: 14.5px;
+  }
+  .role-row .t {
+    font-size: 21.5px;
+  }
+  .role-row .o {
+    font-size: 15.5px;
+  }
+  .role-row .n {
+    font-size: 19px;
+    max-width: 62ch;
+  }
+  .background-copy p {
+    font-size: 21px;
+    max-width: 64ch;
+  }
+  .talk h2 {
+    font-size: clamp(34px, 3vw, 46px);
+  }
+  .talk p {
+    font-size: 20px;
+  }
+  .links {
+    font-size: 17px;
+  }
 }
