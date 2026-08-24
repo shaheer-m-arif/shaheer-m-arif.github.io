@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shaheer Arif — Reference Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAFAF9; --raise:#F4F4F2; --ink:#0A0A0A; --dim:#52525B; --faint:#6B7280;
+  --rule:#E4E4E7; --rule-hi:#D4D4D8; --accent:#1D4ED8; --accent-soft:rgba(29,78,216,.07);
+  --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --gut:clamp(20px,4vw,56px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme=light]){
+    --paper:#0B0B0C; --raise:#141416; --ink:#FAFAFA; --dim:#A1A1AA; --faint:#8A8A93;
+    --rule:#26262A; --rule-hi:#3F3F46; --accent:#60A5FA; --accent-soft:rgba(96,165,250,.09);
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans);
+  font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);
+  background-size:104px 104px; background-position:-1px -1px; background-attachment:fixed;
+}
+.wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 var(--gut)}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;line-height:1.05}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+ul{margin:0;padding:0;list-style:none}
+
+/* ── title block bar ─────────────────────────── */
+.bar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:saturate(1.2);border-bottom:1px solid var(--rule)}
+.bar-in{max-width:1240px;margin:0 auto;padding:10px var(--gut);display:flex;align-items:center;
+  justify-content:space-between;gap:16px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em}
+.bar-id{font-weight:600;color:var(--ink)}
+.bar-nav{display:flex;gap:22px}
+.bar-nav a{color:var(--dim);padding:4px 0;border-bottom:1px solid transparent;transition:color .18s,border-color .18s}
+.bar-nav a:hover,.bar-nav a:focus-visible{color:var(--accent);border-color:var(--accent)}
+.bar-rev{color:var(--faint)}
+@media (max-width:760px){.bar-nav,.bar-rev{display:none}}
+
+/* ── sheet scaffolding ───────────────────────── */
+.sheet{padding:clamp(64px,9vw,132px) 0;border-bottom:1px solid var(--rule)}
+.sheet-tag{display:flex;align-items:baseline;gap:14px;font-family:var(--mono);font-size:11.5px;
+  letter-spacing:.1em;color:var(--faint);margin-bottom:28px}
+.sheet-tag b{color:var(--accent);font-weight:600}
+.sheet-tag .fill{flex:1;height:1px;background:var(--rule);transform:translateY(-3px)}
+.sheet-h{font-size:clamp(26px,3.4vw,40px);margin-bottom:44px;letter-spacing:-.025em}
+
+/* ── 1.0 overview ────────────────────────────── */
+.hero{padding-top:clamp(52px,8vw,96px)}
+.hero-name{font-size:clamp(46px,10.5vw,132px);font-weight:600;letter-spacing:-.045em;line-height:.94}
+.hero-rule{height:2px;background:var(--ink);margin:26px 0 22px;max-width:180px}
+.hero-role{font-family:var(--mono);font-size:clamp(13px,1.6vw,16px);color:var(--dim);letter-spacing:.02em}
+.hero-role b{color:var(--accent);font-weight:500}
+.hero-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(28px,5vw,72px);align-items:start;margin-top:clamp(40px,5vw,64px)}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px}}
+.lede{font-size:clamp(16px,1.7vw,18.5px);line-height:1.65;color:var(--dim);max-width:60ch}
+.lede+.lede{margin-top:16px}
+.lede b{color:var(--ink);font-weight:600}
+.status{border:1px solid var(--rule-hi);background:var(--raise);padding:18px 20px}
+.status-k{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;color:var(--faint);margin-bottom:10px}
+.status-v{font-size:19px;font-weight:600;letter-spacing:-.015em;margin-bottom:6px}
+.status-d{font-family:var(--mono);font-size:12px;color:var(--dim);line-height:1.5}
+.pin{display:inline-block;width:6px;height:6px;background:var(--accent);margin-right:8px;vertical-align:middle}
+
+/* ── spec table ──────────────────────────────── */
+.tbl{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12.5px}
+.tbl caption{text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;
+  color:var(--faint);padding-bottom:12px}
+.tbl th{text-align:left;font-weight:600;color:var(--dim);font-size:10.5px;letter-spacing:.09em;
+  padding:8px 14px 8px 0;border-bottom:1px solid var(--rule-hi);white-space:nowrap}
+.tbl td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);color:var(--dim);vertical-align:top}
+.tbl td:first-child{color:var(--ink);font-weight:500}
+.tbl td em{font-style:normal;color:var(--accent)}
+.tbl-scroll{overflow-x:auto}
+
+/* ── 2.0 functional blocks ───────────────────── */
+.blocks{border-top:1px solid var(--rule-hi)}
+.blk{display:grid;grid-template-columns:56px 1fr 200px;gap:clamp(16px,3vw,40px);
+  padding:26px 0;border-bottom:1px solid var(--rule);transition:background .2s}
+.blk:hover{background:var(--accent-soft)}
+@media (max-width:880px){.blk{grid-template-columns:1fr;gap:12px;padding:22px 0}}
+.blk-n{font-family:var(--mono);font-size:11.5px;color:var(--faint);padding-top:5px;letter-spacing:.06em}
+.blk:hover .blk-n{color:var(--accent)}
+.blk-t{font-size:19.5px;font-weight:600;letter-spacing:-.018em;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.blk-t span{font-family:var(--mono);font-size:11.5px;color:var(--faint);font-weight:400}
+.blk-r{font-family:var(--mono);font-size:11.5px;color:var(--accent);letter-spacing:.03em;margin:6px 0 10px}
+.blk-d{font-size:14.5px;line-height:1.62;color:var(--dim);max-width:62ch}
+.blk-tags{display:flex;flex-wrap:wrap;gap:6px;align-content:start;padding-top:4px}
+.blk-tags i{font-style:normal;font-family:var(--mono);font-size:10.5px;color:var(--dim);
+  border:1px solid var(--rule-hi);padding:3px 8px;white-space:nowrap}
+
+/* ── 3.0 history ─────────────────────────────── */
+.hist{border-top:1px solid var(--rule-hi)}
+.row{display:grid;grid-template-columns:190px 1fr;gap:clamp(16px,3vw,40px);
+  padding:26px 0;border-bottom:1px solid var(--rule)}
+@media (max-width:760px){.row{grid-template-columns:1fr;gap:10px}}
+.row-d{font-family:var(--mono);font-size:11.5px;color:var(--faint);letter-spacing:.04em;padding-top:4px}
+.row-d u{display:inline-block;text-decoration:none;margin-top:8px;color:var(--accent);
+  border:1px solid var(--accent);padding:2px 7px;font-size:10px;letter-spacing:.09em}
+.row-t{font-size:17px;font-weight:600;letter-spacing:-.015em}
+.row-o{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin:5px 0 12px}
+.row-p li{position:relative;padding-left:18px;font-size:14px;line-height:1.6;color:var(--dim);margin-bottom:7px}
+.row-p li::before{content:"";position:absolute;left:0;top:10px;width:7px;height:1px;background:var(--accent)}
+
+/* ── 5.0 ordering ────────────────────────────── */
+.ord{display:flex;flex-direction:column;border-top:1px solid var(--rule-hi)}
+.ord a{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:22px 0;
+  border-bottom:1px solid var(--rule);transition:color .18s,padding-left .18s}
+.ord a:hover,.ord a:focus-visible{color:var(--accent);padding-left:10px}
+.ord-k{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;color:var(--faint);min-width:88px}
+.ord-v{font-size:clamp(16px,2.2vw,21px);font-weight:500;letter-spacing:-.015em;flex:1}
+.ord-a{font-family:var(--mono);font-size:13px;color:var(--faint)}
+.ord a:hover .ord-a{color:var(--accent)}
+
+/* ── drawing title block ─────────────────────── */
+.tb{margin:clamp(56px,7vw,88px) 0 0;border:1px solid var(--rule-hi);display:grid;
+  grid-template-columns:repeat(4,1fr);font-family:var(--mono);font-size:11px}
+@media (max-width:700px){.tb{grid-template-columns:repeat(2,1fr)}}
+.tb div{padding:12px 14px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.tb div:nth-child(4n){border-right:0}
+.tb div:nth-last-child(-n+4){border-bottom:0}
+@media (max-width:700px){
+  .tb div{border-right:1px solid var(--rule)!important;border-bottom:1px solid var(--rule)!important}
+  .tb div:nth-child(2n){border-right:0!important}
+  .tb div:nth-last-child(-n+2){border-bottom:0!important}
+}
+.tb b{display:block;color:var(--faint);font-weight:400;letter-spacing:.1em;font-size:9.5px;margin-bottom:5px}
+.tb span{color:var(--ink);font-weight:500}
+.foot{padding:20px 0 56px;font-family:var(--mono);font-size:10.5px;color:var(--faint);
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* No scroll-driven reveals: content paints once and stays painted.
+   Nothing here animates on scroll, so there is no per-frame work at all. */
+</style>
+</head>
+<body>
+
+<div class="bar"><div class="bar-in">
+  <span class="bar-id">SHAHEER ARIF</span>
+  <nav class="bar-nav">
+    <a href="#s2">2.0 BLOCKS</a><a href="#s3">3.0 HISTORY</a>
+    <a href="#s4">4.0 CHARACTERISTICS</a><a href="#s5">5.0 ORDERING</a>
+  </nav>
+  <span class="bar-rev">REV 2026.08 · SHEET 1/5</span>
+</div></div>
+
+<main class="wrap">
+
+  <section class="sheet hero" id="s1">
+    <div class="sheet-tag"><b>1.0</b> OVERVIEW <i class="fill"></i> CALGARY, AB</div>
+    <h1 class="hero-name">SHAHEER<br>ARIF</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-role">Electrical Engineering — <b>hardware &#8596; software</b> — University of Calgary, Schulich</p>
+
+    <div class="hero-grid">
+      <div>
+        <p class="lede">Fourth-year EE student who builds the whole stack: <b>C firmware on STM32 and AVR</b>, custom PCBs, RF telemetry links and sensor integration on one side — <b>React Native, Node.js backends</b> and AI tooling on the other.</p>
+        <p class="lede">Outside the lab I run two ventures. <b>VaultTen</b> is Banking-as-a-Service for Canadian fintechs, built end to end as co-founder and CEO. <b>SHAX</b> is a personal AI operating system that has been running my life for months.</p>
+      </div>
+      <div class="status">
+        <div class="status-k">CURRENT STATE</div>
+        <div class="status-v"><span class="pin"></span>Cenovus Energy</div>
+        <div class="status-d">SCADA &amp; Leak Detection Co-op<br>Lloydminster, AB<br>Sep 2026 — Sep 2027 · 12 months</div>
+      </div>
+    </div>
+
+    <div class="tbl-scroll" style="margin-top:clamp(44px,5vw,68px)">
+      <table class="tbl">
+        <caption>TABLE 1 — ABSOLUTE MAXIMUM RATINGS</caption>
+        <thead><tr><th>PARAMETER</th><th>MIN</th><th>TYP</th><th>MAX</th><th>NOTES</th></tr></thead>
+        <tbody>
+          <tr><td>Abstraction level</td><td>copper trace</td><td>bare-metal C</td><td>production deploy</td><td>no layer off limits</td></tr>
+          <tr><td>Languages</td><td>—</td><td>C / Python / JS</td><td><em>7 shipped</em></td><td>+ SystemVerilog, MATLAB, SQL</td></tr>
+          <tr><td>Projects delivered</td><td>—</td><td>—</td><td><em>8</em></td><td>2 currently active ventures</td></tr>
+          <tr><td>Spoken languages</td><td>—</td><td>—</td><td><em>3</em></td><td>Arabic, English, Urdu</td></tr>
+          <tr><td>Operating region</td><td>Jeddah, SA</td><td>Calgary, AB</td><td>remote</td><td>third culture kid</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sheet" id="s2">
+    <div class="sheet-tag"><b>2.0</b> FUNCTIONAL BLOCKS <i class="fill"></i> SHEET 2/5</div>
+    <h2 class="sheet-h">Projects</h2>
+    <div class="blocks">
+      <article class="blk"><div class="blk-n">B01</div><div>
+        <div class="blk-t">SHAX <span>2026</span></div><div class="blk-r">Founder &amp; Lead Developer</div>
+        <p class="blk-d">A personal AI operating system built to run my life, not answer questions about it. Lives on a dedicated Android handset through Termux, wired to the Claude API over WhatsApp. Holds long-running context, tracks goals without me logging anything, and triages its own work. Version three has run reliably for months.</p>
+      </div><div class="blk-tags"><i>Node.js</i><i>Claude API</i><i>WhatsApp</i><i>AI OS</i></div></article>
+
+      <article class="blk"><div class="blk-n">B02</div><div>
+        <div class="blk-t">VaultTen <span>2026</span></div><div class="blk-r">Co-Founder &amp; CEO</div>
+        <p class="blk-d">Banking-as-a-Service for Canadian fintechs: KYC, compliant CAD spending accounts, Mastercard virtual card issuing and real-time settlement against an immutable double-entry ledger. I built the Fastify/PostgreSQL backend and the Next.js dashboards, multi-tenant from day one. Deployed and live.</p>
+      </div><div class="blk-tags"><i>TypeScript</i><i>Fastify</i><i>PostgreSQL</i><i>Next.js</i><i>BaaS</i></div></article>
+
+      <article class="blk"><div class="blk-n">B03</div><div>
+        <div class="blk-t">Environmental Monitoring RC Boat <span>2025</span></div><div class="blk-r">Documentation Lead &amp; Systems Engineer</div>
+        <p class="blk-d">Six of us built an unmanned boat from nothing: our own PCB, a hand-waterproofed hull, STM32 firmware reading the water-quality sensors, and a 433 MHz link back to a handheld controller. Ground-side Python turns the telemetry stream into a topographic depth map. It went on water and came back with real data.</p>
+      </div><div class="blk-tags"><i>C</i><i>STM32</i><i>RF Telemetry</i><i>PCB Design</i></div></article>
+
+      <article class="blk"><div class="blk-n">B04</div><div>
+        <div class="blk-t">RC Car <span>2025</span></div><div class="blk-r">Programming Lead · ENEL 300</div>
+        <p class="blk-d">Bare-metal C on an AVR128DB28 — no RTOS, no HAL, nothing between me and the hardware. Interrupt handlers for the RF receiver, timer-driven PWM for steering and throttle, an HC-SR04 driver good to about a metre, and an LCD driver, all routed onto a board tight enough to fit inside the chassis.</p>
+      </div><div class="blk-tags"><i>C</i><i>AVR128DB28</i><i>433 MHz RF</i><i>Ultrasonic</i></div></article>
+
+      <article class="blk"><div class="blk-n">B05</div><div>
+        <div class="blk-t">FPGA Digital Systems <span>2025</span></div><div class="blk-r">Student Developer · ENEL 453</div>
+        <p class="blk-d">A semester of real digital hardware on a Xilinx Basys3: state machines, synchronous counters, debounce logic and seven-segment controllers, built bottom-up in synthesisable SystemVerilog. The bar was never passing simulation — it was meeting timing on real silicon.</p>
+      </div><div class="blk-tags"><i>SystemVerilog</i><i>FPGA</i><i>Basys3</i><i>Vivado</i></div></article>
+
+      <article class="blk"><div class="blk-n">B06</div><div>
+        <div class="blk-t">Glorek Mobile App <span>2025</span></div><div class="blk-r">Lead Mobile Developer</div>
+        <p class="blk-d">Shipped the iOS and Android apps for Glorek's field service platform — two distinct apps, one for clients and one for technicians, covering OTP auth, service ordering, job tracking and payments end to end. I owned the mobile side from first screen to real people using it.</p>
+      </div><div class="blk-tags"><i>React Native</i><i>Node.js</i><i>OTP Auth</i><i>Axios</i></div></article>
+
+      <article class="blk"><div class="blk-n">B07</div><div>
+        <div class="blk-t">S.H.A.R.I.F. <span>2025</span></div><div class="blk-r">Founder &amp; Lead Developer</div>
+        <p class="blk-d">Built in third year to test whether a personal AI assistant was worth having day to day. Ran on Telegram, sent a morning briefing before I woke up, tracked my portfolio, and had a SwiftUI companion on iOS. Ran for over a year before I retired it in favour of SHAX.</p>
+      </div><div class="blk-tags"><i>Node.js</i><i>Telegram</i><i>SwiftUI</i></div></article>
+
+      <article class="blk"><div class="blk-n">B08</div><div>
+        <div class="blk-t">Z-Transform Teaching Package <span>2025</span></div><div class="blk-r">Author · ENEL 327</div>
+        <p class="blk-d">The course notes had almost nothing usable on Z-transforms, so I wrote the resource I wanted: full theory, region of convergence, every property, three inverse methods worked from scratch, real DSP examples with complete solutions. Verified in SymPy, typeset in LaTeX. My professor handed it to the whole class.</p>
+      </div><div class="blk-tags"><i>Signals &amp; Systems</i><i>SymPy</i><i>LaTeX</i><i>DSP</i></div></article>
+    </div>
+    <p class="blk-d" style="margin-top:32px;padding-left:2px;border-left:2px solid var(--accent);padding:14px 0 14px 18px">Not everything is public — some work sits under IP or work-product agreements. Reach out if you want detail on a specific one.</p>
+  </section>
+
+  <section class="sheet" id="s3">
+    <div class="sheet-tag"><b>3.0</b> OPERATING HISTORY <i class="fill"></i> SHEET 3/5</div>
+    <h2 class="sheet-h">Experience</h2>
+    <div class="hist">
+      <div class="row"><div class="row-d">Sep 2026 — Sep 2027<br><u>UPCOMING</u></div><div>
+        <div class="row-t">SCADA &amp; Leak Detection Intern</div><div class="row-o">Cenovus Energy · Lloydminster, AB</div>
+        <ul class="row-p"><li>Joining upstream operations for a 12-month co-op in SCADA and pipeline leak detection.</li>
+        <li>Pipeline monitoring, control systems, and the real-time data infrastructure that keeps field operations running.</li>
+        <li>Embedded directly within the field engineering team on active operations.</li></ul></div></div>
+
+      <div class="row"><div class="row-d">Sep 2023 — Sep 2025</div><div>
+        <div class="row-t">Vice President of Events</div><div class="row-o">DeepRacer Calgary · Calgary, AB</div>
+        <ul class="row-p"><li>Ran the events side of UCalgary's AWS DeepRacer club for two years — 8 competitions, 100+ attendees each.</li>
+        <li>Handled sponsors, vendors, and the Amazon reps who came in for the bigger events.</li>
+        <li>If something broke on race day, I sorted it out.</li></ul></div></div>
+
+      <div class="row"><div class="row-d">May 2025 — Aug 2025</div><div>
+        <div class="row-t">Front-End Lead</div><div class="row-o">Glorek International Co. · Jeddah, Saudi Arabia</div>
+        <ul class="row-p"><li>Built the iOS and Android apps for Glorek's facility management platform in React Native.</li>
+        <li>Owned auth, service ordering, job status tracking and payment integration end to end.</li>
+        <li>Worked directly with the backend team on API contracts.</li></ul></div></div>
+
+      <div class="row"><div class="row-d">May 2024 — Aug 2024</div><div>
+        <div class="row-t">Operations Coordinator</div><div class="row-o">Glorek International Co. · Saudi Arabia</div>
+        <ul class="row-p"><li>Coordinated crews and equipment across multiple active client sites through a busy summer.</li>
+        <li>Became the main contact for several clients — scheduling changes, resource calls, last-minute everything.</li></ul></div></div>
+
+      <div class="row"><div class="row-d">May 2023 — Aug 2023</div><div>
+        <div class="row-t">Operations Coordinator Intern</div><div class="row-o">Glorek International Co. · Jeddah, Saudi Arabia</div>
+        <ul class="row-p"><li>First proper job. Ran operations from initial brief to job completion across a high-volume summer.</li>
+        <li>Supported recruitment and onboarding for new workers.</li></ul></div></div>
+
+      <div class="row"><div class="row-d">2020 — 2021</div><div>
+        <div class="row-t">Operations Coordinator (Seasonal)</div><div class="row-o">Al-Raya Supermarkets · Saudi Arabia</div>
+        <ul class="row-p"><li>Managed staffing and shift scheduling during peak demand at a large regional chain.</li>
+        <li>Tracked costs and produced daily operational reports for my section.</li></ul></div></div>
+    </div>
+  </section>
+
+  <section class="sheet" id="s4">
+    <div class="sheet-tag"><b>4.0</b> ELECTRICAL CHARACTERISTICS <i class="fill"></i> SHEET 4/5</div>
+    <h2 class="sheet-h">Stack</h2>
+    <div class="tbl-scroll">
+      <table class="tbl">
+        <caption>TABLE 2 — PARAMETRIC CHARACTERISTICS OVER OPERATING RANGE</caption>
+        <thead><tr><th>DOMAIN</th><th>PRIMARY</th><th>SECONDARY</th><th>DEPTH</th></tr></thead>
+        <tbody>
+          <tr><td>Firmware</td><td><em>C</em></td><td>bare-metal, no HAL</td><td>STM32 · AVR128DB28 · Arduino</td></tr>
+          <tr><td>Digital design</td><td><em>SystemVerilog</em></td><td>Vivado</td><td>Basys3 FPGA · timing closure</td></tr>
+          <tr><td>Buses &amp; signals</td><td><em>I2C · SPI · UART</em></td><td>PWM</td><td>433 MHz RF telemetry</td></tr>
+          <tr><td>Circuit</td><td><em>PCB layout</em></td><td>LTspice · Multisim</td><td>sensor front-ends</td></tr>
+          <tr><td>Mobile</td><td><em>React Native</em></td><td>SwiftUI</td><td>2 apps shipped to store</td></tr>
+          <tr><td>Backend</td><td><em>Node.js · TypeScript</em></td><td>Fastify · Express</td><td>PostgreSQL · Redis</td></tr>
+          <tr><td>Front-end</td><td><em>React · Next.js</em></td><td>Vite</td><td>multi-tenant dashboards</td></tr>
+          <tr><td>Scientific</td><td><em>Python</em></td><td>MATLAB · SymPy</td><td>telemetry &amp; DSP</td></tr>
+          <tr><td>Infrastructure</td><td><em>Docker · Git</em></td><td>Railway · Vercel</td><td>Postman · Termux</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sheet" id="s5" style="border-bottom:0">
+    <div class="sheet-tag"><b>5.0</b> ORDERING INFORMATION <i class="fill"></i> SHEET 5/5</div>
+    <h2 class="sheet-h" style="font-size:clamp(38px,7vw,84px);letter-spacing:-.04em">Let's talk.</h2>
+    <div class="ord">
+      <a href="mailto:shaheermarif@outlook.com"><span class="ord-k">EMAIL</span><span class="ord-v">shaheermarif@outlook.com</span><span class="ord-a">&#8599;</span></a>
+      <a href="https://linkedin.com/in/shaheer-m-arif" target="_blank" rel="noreferrer"><span class="ord-k">LINKEDIN</span><span class="ord-v">shaheer-m-arif</span><span class="ord-a">&#8599;</span></a>
+      <a href="https://github.com/shaheer-m-arif" target="_blank" rel="noreferrer"><span class="ord-k">GITHUB</span><span class="ord-v">shaheer-m-arif</span><span class="ord-a">&#8599;</span></a>
+    </div>
+
+    <div class="tb">
+      <div><b>DRAWN BY</b><span>S. ARIF</span></div>
+      <div><b>TITLE</b><span>PORTFOLIO</span></div>
+      <div><b>PART NO.</b><span>SA-2026-EE</span></div>
+      <div><b>REV</b><span>2026.08</span></div>
+      <div><b>INSTITUTION</b><span>U OF CALGARY</span></div>
+      <div><b>PROGRAM</b><span>ELECTRICAL ENG.</span></div>
+      <div><b>LOCATION</b><span>CALGARY, AB</span></div>
+      <div><b>SHEET</b><span>5 OF 5</span></div>
+    </div>
+    <div class="foot"><span>SHAHEER ARIF © 2026</span><span>ALL DIMENSIONS IN GOOD FAITH</span></div>
+  </section>
+
+</main>
+</body>
+</html>

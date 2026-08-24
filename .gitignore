@@ -1,2 +1,8 @@
 .DS_Store
 node_modules
+dist
+
+# design-exploration scratch, not part of the shipped site
+src_v1_backup
+src_v2_draft2
+src_v3_backup

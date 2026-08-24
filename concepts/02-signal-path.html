@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shaheer Arif — Signal Path</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAFAF9; --raise:#F4F4F2; --ink:#0A0A0A; --dim:#52525B; --faint:#6B7280;
+  --rule:#E4E4E7; --rule-hi:#D4D4D8; --accent:#1D4ED8; --accent-soft:rgba(29,78,216,.06);
+  --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --gut:clamp(20px,4vw,56px); --spine:15px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme=light]){
+    --paper:#0B0B0C; --raise:#141416; --ink:#FAFAFA; --dim:#A1A1AA; --faint:#8A8A93;
+    --rule:#26262A; --rule-hi:#3F3F46; --accent:#60A5FA; --accent-soft:rgba(96,165,250,.08);
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px;margin:0 auto;padding:0 var(--gut)}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;line-height:1.05}
+p{margin:0} a{color:inherit;text-decoration:none} ul{margin:0;padding:0;list-style:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* ── rail ────────────────────────────────────── */
+.rail{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+.rail-in{max-width:1200px;margin:0 auto;padding:11px var(--gut);display:flex;align-items:center;
+  justify-content:space-between;gap:16px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em}
+.rail b{font-weight:600}
+.rail nav{display:flex;gap:20px}
+.rail nav a{color:var(--dim);display:flex;align-items:center;gap:7px;transition:color .18s}
+.rail nav a::before{content:"";width:5px;height:5px;border:1px solid var(--rule-hi);background:var(--paper)}
+.rail nav a:hover,.rail nav a:focus-visible{color:var(--accent)}
+.rail nav a:hover::before{background:var(--accent);border-color:var(--accent)}
+.rail span{color:var(--faint)}
+@media (max-width:820px){.rail nav,.rail span{display:none}}
+
+/* ── hero signal chain ───────────────────────── */
+.hero{padding:clamp(52px,8vw,104px) 0 clamp(40px,6vw,72px)}
+.hero h1{font-size:clamp(44px,9.5vw,118px);letter-spacing:-.045em;line-height:.95;font-weight:600}
+.hero-tf{font-family:var(--mono);font-size:clamp(12.5px,1.5vw,15px);color:var(--dim);
+  margin-top:22px;letter-spacing:.02em}
+.hero-tf b{color:var(--accent);font-weight:500}
+
+.sig{display:flex;align-items:stretch;margin:clamp(36px,5vw,60px) 0 0;
+  border:1px solid var(--rule-hi);background:var(--raise);overflow-x:auto}
+.sig-cell{flex:1 0 auto;min-width:132px;padding:16px 18px;border-right:1px solid var(--rule);
+  display:flex;flex-direction:column;gap:6px;position:relative}
+.sig-cell:last-child{border-right:0}
+.sig-cell::after{content:"";position:absolute;right:-4px;top:50%;width:7px;height:7px;
+  border-top:1px solid var(--rule-hi);border-right:1px solid var(--rule-hi);
+  transform:translateY(-50%) rotate(45deg);background:var(--raise);z-index:1}
+.sig-cell:last-child::after{display:none}
+.sig-k{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--faint)}
+.sig-v{font-size:14px;font-weight:600;letter-spacing:-.01em}
+.sig-d{font-family:var(--mono);font-size:11px;color:var(--dim);line-height:1.45}
+.sig-cell.term{background:var(--accent-soft)}
+.sig-cell.term .sig-v{color:var(--accent)}
+
+/* ── spine + stages ──────────────────────────── */
+.chain{position:relative;padding-left:52px}
+.chain::before{content:"";position:absolute;left:var(--spine);top:0;bottom:0;width:1px;background:var(--rule-hi)}
+@media (max-width:700px){.chain{padding-left:30px}:root{--spine:7px}}
+
+.stage{position:relative;padding:clamp(52px,7vw,92px) 0 0}
+.stage::before{content:"";position:absolute;left:calc(-52px + var(--spine) - 4px);top:calc(clamp(52px,7vw,92px) + 5px);
+  width:9px;height:9px;background:var(--accent)}
+@media (max-width:700px){.stage::before{left:calc(-30px + var(--spine) - 4px)}}
+.stage-k{font-family:var(--mono);font-size:11.5px;letter-spacing:.11em;color:var(--faint);
+  display:flex;align-items:baseline;gap:12px;margin-bottom:8px}
+.stage-k b{color:var(--accent);font-weight:600}
+.stage-h{font-size:clamp(25px,3.3vw,38px);letter-spacing:-.025em;margin-bottom:12px}
+.stage-note{font-family:var(--mono);font-size:12px;color:var(--dim);margin-bottom:36px;max-width:56ch;line-height:1.6}
+
+/* ── prose ───────────────────────────────────── */
+.prose{max-width:64ch}
+.prose p{font-size:clamp(15.5px,1.65vw,18px);line-height:1.68;color:var(--dim)}
+.prose p+p{margin-top:15px}
+.prose b{color:var(--ink);font-weight:600}
+.src{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin-top:32px}
+.src div{background:var(--paper);padding:15px 16px}
+.src b{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--faint);
+  font-weight:400;margin-bottom:6px}
+.src span{font-size:14px;font-weight:500}
+
+/* ── nodes (projects) ────────────────────────── */
+.nodes{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:14px}
+.node{border:1px solid var(--rule-hi);background:var(--paper);padding:18px 20px 20px;
+  position:relative;transition:border-color .18s,background .18s}
+.node:hover{border-color:var(--accent);background:var(--accent-soft)}
+.node-top{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--faint);
+  padding-bottom:11px;margin-bottom:13px;border-bottom:1px solid var(--rule)}
+.node:hover .node-top{color:var(--accent);border-color:var(--accent)}
+.node-t{font-size:18px;font-weight:600;letter-spacing:-.018em;margin-bottom:5px}
+.node-r{font-family:var(--mono);font-size:11px;color:var(--accent);margin-bottom:11px}
+.node-d{font-size:14px;line-height:1.6;color:var(--dim)}
+.node-io{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px;padding-top:13px;border-top:1px solid var(--rule)}
+.node-io i{font-style:normal;font-family:var(--mono);font-size:10px;color:var(--dim);
+  border:1px solid var(--rule-hi);padding:2px 7px}
+
+/* ── gain (experience) ───────────────────────── */
+.gain{border-top:1px solid var(--rule-hi)}
+.gs{display:grid;grid-template-columns:176px 1fr;gap:clamp(14px,3vw,36px);
+  padding:24px 0;border-bottom:1px solid var(--rule)}
+@media (max-width:720px){.gs{grid-template-columns:1fr;gap:9px}}
+.gs-d{font-family:var(--mono);font-size:11.5px;color:var(--faint);letter-spacing:.04em;padding-top:3px}
+.gs-d u{display:inline-block;text-decoration:none;margin-top:7px;color:var(--accent);
+  border:1px solid var(--accent);padding:2px 7px;font-size:9.5px;letter-spacing:.09em}
+.gs-t{font-size:16.5px;font-weight:600;letter-spacing:-.015em}
+.gs-o{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin:4px 0 11px}
+.gs-p li{position:relative;padding-left:17px;font-size:13.8px;line-height:1.58;color:var(--dim);margin-bottom:6px}
+.gs-p li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:1px;background:var(--accent)}
+
+/* ── bus (skills) ────────────────────────────── */
+.bus{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));
+  gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.lane{background:var(--paper);padding:18px 20px 20px}
+.lane-k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--accent);
+  margin-bottom:13px;display:flex;align-items:center;gap:8px}
+.lane-k::before{content:"";width:6px;height:6px;background:var(--accent)}
+.lane ul{display:flex;flex-wrap:wrap;gap:5px}
+.lane li{font-family:var(--mono);font-size:11.5px;color:var(--dim);
+  border:1px solid var(--rule-hi);padding:3px 8px}
+
+/* ── termination (contact) ───────────────────── */
+.term-h{font-size:clamp(36px,7vw,80px);letter-spacing:-.04em;margin-bottom:36px}
+.out{border-top:1px solid var(--rule-hi)}
+.out a{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:21px 0;
+  border-bottom:1px solid var(--rule);transition:color .18s,padding-left .18s}
+.out a:hover,.out a:focus-visible{color:var(--accent);padding-left:10px}
+.out-k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--faint);min-width:84px}
+.out-v{font-size:clamp(15.5px,2.1vw,20px);font-weight:500;letter-spacing:-.015em;flex:1}
+.out-a{font-family:var(--mono);font-size:12.5px;color:var(--faint)}
+.out a:hover .out-a{color:var(--accent)}
+.end{margin:clamp(48px,6vw,76px) 0 0;padding:16px 0;border-top:1px solid var(--rule);
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  font-family:var(--mono);font-size:10.5px;color:var(--faint)}
+.tail{height:clamp(40px,6vw,64px)}
+</style>
+</head>
+<body>
+
+<div class="rail"><div class="rail-in">
+  <b>SHAHEER ARIF</b>
+  <nav>
+    <a href="#n1">01 PROCESSING</a><a href="#n2">02 GAIN</a>
+    <a href="#n3">03 BUS</a><a href="#n4">04 OUTPUT</a>
+  </nav>
+  <span>SIGNAL PATH · 2026</span>
+</div></div>
+
+<main class="wrap">
+
+  <section class="hero">
+    <h1>SHAHEER<br>ARIF</h1>
+    <p class="hero-tf">Electrical Engineering, University of Calgary — <b>hardware in, shipped product out</b></p>
+
+    <div class="sig">
+      <div class="sig-cell"><span class="sig-k">SOURCE</span><span class="sig-v">Jeddah, SA</span><span class="sig-d">raised taking things apart</span></div>
+      <div class="sig-cell"><span class="sig-k">STAGE 01</span><span class="sig-v">Schulich EE</span><span class="sig-d">4th year · Calgary, AB</span></div>
+      <div class="sig-cell"><span class="sig-k">STAGE 02</span><span class="sig-v">Firmware &amp; PCB</span><span class="sig-d">STM32 · AVR · RF</span></div>
+      <div class="sig-cell"><span class="sig-k">STAGE 03</span><span class="sig-v">Full stack</span><span class="sig-d">RN · Node · Next.js</span></div>
+      <div class="sig-cell term"><span class="sig-k">OUTPUT</span><span class="sig-v">Cenovus SCADA</span><span class="sig-d">Sep 2026 — Sep 2027</span></div>
+    </div>
+  </section>
+
+  <div class="chain">
+
+    <section class="stage" id="n0">
+      <div class="stage-k"><b>00</b> SOURCE</div>
+      <h2 class="stage-h">Where the signal starts</h2>
+      <p class="stage-note">Every chain needs a source. Mine is a third culture kid who never stopped opening things up to see what was inside.</p>
+      <div class="prose">
+        <p>I'm a fourth-year Electrical Engineering student at the University of Calgary, Schulich School of Engineering. My work lives on both sides of the boundary: <b>C firmware on STM32 and AVR microcontrollers</b>, custom PCB design, RF telemetry links and sensor integration built from scratch — and <b>React Native, Node.js backends</b> and AI tooling on the other side.</p>
+        <p>Outside the lab I run two ventures. <b>VaultTen</b> is Banking-as-a-Service for Canadian fintechs, which I build end to end as co-founder and CEO. <b>SHAX</b> is the longer bet: a personal AI operating system that already runs my life rather than waiting to be asked.</p>
+      </div>
+      <div class="src">
+        <div><b>ORIGIN</b><span>Jeddah, Saudi Arabia</span></div>
+        <div><b>OPERATING AT</b><span>Calgary, Alberta</span></div>
+        <div><b>LANGUAGES</b><span>Arabic · English · Urdu</span></div>
+        <div><b>ROOTS</b><span>Third culture kid</span></div>
+      </div>
+    </section>
+
+    <section class="stage" id="n1">
+      <div class="stage-k"><b>01</b> PROCESSING</div>
+      <h2 class="stage-h">Projects</h2>
+      <p class="stage-note">Eight nodes. Each one takes something in and puts something real out.</p>
+      <div class="nodes">
+
+        <article class="node"><div class="node-top"><span>NODE 01</span><span>2026</span></div>
+          <div class="node-t">SHAX</div><div class="node-r">Founder &amp; Lead Developer</div>
+          <p class="node-d">A personal AI operating system built to run my life, not answer questions about it. Lives on a dedicated Android handset through Termux, wired to the Claude API over WhatsApp. Holds long-running context, tracks goals without me logging anything, triages its own work. Version three has run reliably for months.</p>
+          <div class="node-io"><i>Node.js</i><i>Claude API</i><i>WhatsApp</i><i>AI OS</i></div></article>
+
+        <article class="node"><div class="node-top"><span>NODE 02</span><span>2026</span></div>
+          <div class="node-t">VaultTen</div><div class="node-r">Co-Founder &amp; CEO</div>
+          <p class="node-d">Banking-as-a-Service for Canadian fintechs: KYC, compliant CAD spending accounts, Mastercard virtual card issuing, real-time settlement against an immutable double-entry ledger. I built the Fastify/PostgreSQL backend and the Next.js dashboards, multi-tenant from day one. Deployed and live.</p>
+          <div class="node-io"><i>TypeScript</i><i>Fastify</i><i>PostgreSQL</i><i>Next.js</i></div></article>
+
+        <article class="node"><div class="node-top"><span>NODE 03</span><span>2025</span></div>
+          <div class="node-t">Environmental Monitoring RC Boat</div><div class="node-r">Systems Engineer · Design Project</div>
+          <p class="node-d">Six of us built an unmanned boat from nothing: our own PCB, a hand-waterproofed hull, STM32 firmware reading water-quality sensors, and a 433 MHz link to a handheld controller. Ground-side Python turns the telemetry into a topographic depth map. It went on water and came back with real data.</p>
+          <div class="node-io"><i>C</i><i>STM32</i><i>RF Telemetry</i><i>PCB Design</i></div></article>
+
+        <article class="node"><div class="node-top"><span>NODE 04</span><span>2025</span></div>
+          <div class="node-t">RC Car</div><div class="node-r">Programming Lead · ENEL 300</div>
+          <p class="node-d">Bare-metal C on an AVR128DB28 — no RTOS, no HAL, nothing between me and the hardware. Interrupt handlers for the RF receiver, timer-driven PWM for steering and throttle, an HC-SR04 driver good to about a metre, and an LCD driver, all routed onto a board tight enough to fit inside the chassis.</p>
+          <div class="node-io"><i>C</i><i>AVR128DB28</i><i>433 MHz RF</i><i>Ultrasonic</i></div></article>
+
+        <article class="node"><div class="node-top"><span>NODE 05</span><span>2025</span></div>
+          <div class="node-t">FPGA Digital Systems</div><div class="node-r">Student Developer · ENEL 453</div>
+          <p class="node-d">A semester of real digital hardware on a Xilinx Basys3: state machines, synchronous counters, debounce logic and seven-segment controllers, built bottom-up in synthesisable SystemVerilog. The bar was never passing simulation — it was meeting timing on real silicon.</p>
+          <div class="node-io"><i>SystemVerilog</i><i>FPGA</i><i>Basys3</i><i>Vivado</i></div></article>
+
+        <article class="node"><div class="node-top"><span>NODE 06</span><span>2025</span></div>
+          <div class="node-t">Glorek Mobile App</div><div class="node-r">Lead Mobile Developer</div>
+          <p class="node-d">Shipped the iOS and Android apps for Glorek's field service platform — two distinct apps, one for clients and one for technicians, covering OTP auth, service ordering, job tracking and payments end to end. I owned the mobile side from first screen to real people using it.</p>
+          <div class="node-io"><i>React Native</i><i>Node.js</i><i>OTP Auth</i></div></article>
+
+        <article class="node"><div class="node-top"><span>NODE 07</span><span>2025</span></div>
+          <div class="node-t">S.H.A.R.I.F.</div><div class="node-r">Founder &amp; Lead Developer</div>
+          <p class="node-d">Built in third year to test whether a personal AI assistant was worth having day to day. Ran on Telegram, sent a morning briefing before I woke up, tracked my portfolio, had a SwiftUI companion on iOS. Ran for over a year before I retired it in favour of SHAX.</p>
+          <div class="node-io"><i>Node.js</i><i>Telegram</i><i>SwiftUI</i></div></article>
+
+        <article class="node"><div class="node-top"><span>NODE 08</span><span>2025</span></div>
+          <div class="node-t">Z-Transform Teaching Package</div><div class="node-r">Author · ENEL 327</div>
+          <p class="node-d">The course notes had almost nothing usable on Z-transforms, so I wrote the resource I wanted: full theory, region of convergence, every property, three inverse methods worked from scratch, real DSP examples with complete solutions. Verified in SymPy, typeset in LaTeX. My professor handed it to the whole class.</p>
+          <div class="node-io"><i>SymPy</i><i>LaTeX</i><i>DSP</i></div></article>
+
+      </div>
+    </section>
+
+    <section class="stage" id="n2">
+      <div class="stage-k"><b>02</b> GAIN</div>
+      <h2 class="stage-h">Experience</h2>
+      <p class="stage-note">Each stage adds gain. Read bottom to top and you can watch the signal grow.</p>
+      <div class="gain">
+        <div class="gs"><div class="gs-d">Sep 2026 — Sep 2027<br><u>UPCOMING</u></div><div>
+          <div class="gs-t">SCADA &amp; Leak Detection Intern</div><div class="gs-o">Cenovus Energy · Lloydminster, AB</div>
+          <ul class="gs-p"><li>Joining upstream operations for a 12-month co-op in SCADA and pipeline leak detection.</li>
+          <li>Pipeline monitoring, control systems, and the real-time data infrastructure keeping field operations running.</li>
+          <li>Embedded directly within the field engineering team on active operations.</li></ul></div></div>
+
+        <div class="gs"><div class="gs-d">Sep 2023 — Sep 2025</div><div>
+          <div class="gs-t">Vice President of Events</div><div class="gs-o">DeepRacer Calgary · Calgary, AB</div>
+          <ul class="gs-p"><li>Ran the events side of UCalgary's AWS DeepRacer club for two years — 8 competitions, 100+ attendees each.</li>
+          <li>Handled sponsors, vendors, and the Amazon reps who came in for the bigger events.</li>
+          <li>If something broke on race day, I sorted it out.</li></ul></div></div>
+
+        <div class="gs"><div class="gs-d">May 2025 — Aug 2025</div><div>
+          <div class="gs-t">Front-End Lead</div><div class="gs-o">Glorek International Co. · Jeddah, Saudi Arabia</div>
+          <ul class="gs-p"><li>Built the iOS and Android apps for Glorek's facility management platform in React Native.</li>
+          <li>Owned auth, service ordering, job status tracking and payment integration end to end.</li>
+          <li>Worked directly with the backend team on API contracts.</li></ul></div></div>
+
+        <div class="gs"><div class="gs-d">May 2024 — Aug 2024</div><div>
+          <div class="gs-t">Operations Coordinator</div><div class="gs-o">Glorek International Co. · Saudi Arabia</div>
+          <ul class="gs-p"><li>Coordinated crews and equipment across multiple active client sites through a busy summer.</li>
+          <li>Became the main contact for several clients — scheduling changes, resource calls, last-minute everything.</li></ul></div></div>
+
+        <div class="gs"><div class="gs-d">May 2023 — Aug 2023</div><div>
+          <div class="gs-t">Operations Coordinator Intern</div><div class="gs-o">Glorek International Co. · Jeddah, Saudi Arabia</div>
+          <ul class="gs-p"><li>First proper job. Ran operations from initial brief to job completion across a high-volume summer.</li>
+          <li>Supported recruitment and onboarding for new workers.</li></ul></div></div>
+
+        <div class="gs"><div class="gs-d">2020 — 2021</div><div>
+          <div class="gs-t">Operations Coordinator (Seasonal)</div><div class="gs-o">Al-Raya Supermarkets · Saudi Arabia</div>
+          <ul class="gs-p"><li>Managed staffing and shift scheduling during peak demand at a large regional chain.</li>
+          <li>Tracked costs and produced daily operational reports for my section.</li></ul></div></div>
+      </div>
+    </section>
+
+    <section class="stage" id="n3">
+      <div class="stage-k"><b>03</b> BUS</div>
+      <h2 class="stage-h">Stack</h2>
+      <p class="stage-note">Parallel lanes running the width of the chain — everything the stages draw on.</p>
+      <div class="bus">
+        <div class="lane"><div class="lane-k">FIRMWARE</div><ul><li>C</li><li>STM32</li><li>AVR128DB28</li><li>Arduino</li><li>bare-metal</li></ul></div>
+        <div class="lane"><div class="lane-k">DIGITAL DESIGN</div><ul><li>SystemVerilog</li><li>Vivado</li><li>Basys3</li><li>timing closure</li></ul></div>
+        <div class="lane"><div class="lane-k">SIGNALS &amp; BUSES</div><ul><li>I2C</li><li>SPI</li><li>UART</li><li>PWM</li><li>433 MHz RF</li></ul></div>
+        <div class="lane"><div class="lane-k">CIRCUIT</div><ul><li>PCB layout</li><li>LTspice</li><li>Multisim</li><li>sensor front-ends</li></ul></div>
+        <div class="lane"><div class="lane-k">MOBILE</div><ul><li>React Native</li><li>SwiftUI</li><li>Axios</li></ul></div>
+        <div class="lane"><div class="lane-k">BACKEND</div><ul><li>Node.js</li><li>TypeScript</li><li>Fastify</li><li>Express</li><li>PostgreSQL</li><li>Redis</li></ul></div>
+        <div class="lane"><div class="lane-k">FRONT-END</div><ul><li>React</li><li>Next.js</li><li>Vite</li></ul></div>
+        <div class="lane"><div class="lane-k">SCIENTIFIC</div><ul><li>Python</li><li>MATLAB</li><li>SymPy</li><li>SQL</li></ul></div>
+        <div class="lane"><div class="lane-k">INFRASTRUCTURE</div><ul><li>Docker</li><li>Git</li><li>Railway</li><li>Vercel</li><li>Termux</li></ul></div>
+      </div>
+    </section>
+
+    <section class="stage" id="n4">
+      <div class="stage-k"><b>04</b> OUTPUT · TERMINATION</div>
+      <h2 class="stage-h term-h">Let's talk.</h2>
+      <div class="out">
+        <a href="mailto:shaheermarif@outlook.com"><span class="out-k">EMAIL</span><span class="out-v">shaheermarif@outlook.com</span><span class="out-a">&#8599;</span></a>
+        <a href="https://linkedin.com/in/shaheer-m-arif" target="_blank" rel="noreferrer"><span class="out-k">LINKEDIN</span><span class="out-v">shaheer-m-arif</span><span class="out-a">&#8599;</span></a>
+        <a href="https://github.com/shaheer-m-arif" target="_blank" rel="noreferrer"><span class="out-k">GITHUB</span><span class="out-v">shaheer-m-arif</span><span class="out-a">&#8599;</span></a>
+      </div>
+      <div class="end"><span>SHAHEER ARIF © 2026</span><span>CALGARY, AB · SIGNAL TERMINATED</span></div>
+    </section>
+
+  </div>
+  <div class="tail"></div>
+</main>
+</body>
+</html>

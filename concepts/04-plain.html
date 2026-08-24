@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shaheer Arif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FCFBF7; --ink:#16150F; --body:#3A382F; --muted:#6B685C;
+  --rule:#E5E2D8; --accent:#1F4E9C;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme=light]){
+    --paper:#14130F; --ink:#F5F3EC; --body:#C9C5B8; --muted:#918D80;
+    --rule:#2B2A24; --accent:#8FB3E8;
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--body);font-family:var(--serif);
+  font-size:19px;line-height:1.72;-webkit-font-smoothing:antialiased;
+  font-optical-sizing:auto}
+.page{max-width:720px;margin:0 auto;padding:0 24px}
+p{margin:0}
+a{color:inherit}
+h1,h2,h3{margin:0;font-weight:500;color:var(--ink);letter-spacing:-.012em;line-height:1.2}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* ── header ──────────────────────────────────── */
+header{padding:38px 0 0;display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap}
+header .me{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--ink)}
+header nav{display:flex;gap:20px;font-family:var(--sans);font-size:14.5px}
+header nav a{color:var(--muted);text-decoration:none;transition:color .15s}
+header nav a:hover,header nav a:focus-visible{color:var(--accent)}
+
+/* ── opening ─────────────────────────────────── */
+.open{padding:clamp(56px,9vw,104px) 0 clamp(40px,6vw,64px)}
+.open h1{font-size:clamp(34px,5.4vw,52px);font-weight:400;letter-spacing:-.022em;
+  line-height:1.22;color:var(--ink);max-width:19ch}
+.open h1 em{font-style:italic}
+.open .sub{margin-top:26px;font-size:20px;line-height:1.66;max-width:60ch}
+.open .sub+.sub{margin-top:16px}
+.now{margin-top:32px;padding-top:20px;border-top:1px solid var(--rule);
+  font-family:var(--sans);font-size:15px;color:var(--muted);line-height:1.6}
+.now b{color:var(--ink);font-weight:500}
+
+/* ── sections ────────────────────────────────── */
+section{padding:clamp(48px,7vw,80px) 0 0}
+section>h2{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--muted);
+  letter-spacing:.02em;margin-bottom:34px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+
+/* ── work ────────────────────────────────────── */
+.item{padding:0 0 clamp(34px,4.6vw,46px)}
+.item:last-child{padding-bottom:0}
+.item h3{font-size:25px;font-weight:500;letter-spacing:-.018em;display:flex;
+  align-items:baseline;gap:11px;flex-wrap:wrap}
+.item h3 span{font-family:var(--sans);font-size:14px;font-weight:400;color:var(--muted);letter-spacing:0}
+.item .role{font-family:var(--sans);font-size:14.5px;color:var(--muted);margin:5px 0 13px}
+.item p{font-size:18.5px;line-height:1.7;max-width:68ch}
+.item .tech{font-family:var(--sans);font-size:14px;color:var(--muted);margin-top:12px;line-height:1.55}
+
+/* ── roles ───────────────────────────────────── */
+.role-row{display:flex;align-items:baseline;justify-content:space-between;gap:18px;
+  padding:16px 0;border-bottom:1px solid var(--rule)}
+.role-row:last-of-type{border-bottom:0}
+.role-row .l{flex:1;min-width:0}
+.role-row .t{font-size:19.5px;color:var(--ink);font-weight:500;letter-spacing:-.012em}
+.role-row .o{font-family:var(--sans);font-size:14.5px;color:var(--muted);margin-top:2px}
+.role-row .d{font-family:var(--sans);font-size:14px;color:var(--muted);white-space:nowrap;flex:none}
+.role-row .n{font-size:17.5px;margin-top:8px;line-height:1.62;max-width:64ch}
+@media (max-width:600px){
+  .role-row{flex-direction:column;gap:4px}
+  .role-row .d{order:-1}
+}
+
+/* ── contact ─────────────────────────────────── */
+.talk{padding:clamp(52px,7vw,84px) 0 0}
+.talk h2{font-size:clamp(30px,4.6vw,42px);font-weight:400;letter-spacing:-.022em;
+  margin-bottom:18px;border:0;padding:0;font-family:var(--serif);color:var(--ink)}
+.talk p{font-size:19px;max-width:56ch;margin-bottom:26px}
+.talk a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;
+  text-decoration-thickness:1px}
+.talk a:hover{text-decoration-thickness:2px}
+.links{display:flex;gap:24px;flex-wrap:wrap;font-family:var(--sans);font-size:16px}
+footer{margin-top:clamp(56px,8vw,88px);padding:20px 0 60px;border-top:1px solid var(--rule);
+  font-family:var(--sans);font-size:13.5px;color:var(--muted);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <span class="me">Shaheer Arif</span>
+  <nav>
+    <a href="#work">Work</a><a href="#roles">Experience</a>
+    <a href="#background">Background</a><a href="#talk">Contact</a>
+  </nav>
+</header>
+
+<div class="open">
+  <h1>I build things that run on real hardware — and the software that talks to&nbsp;them.</h1>
+  <p class="sub">I'm a fourth-year Electrical Engineering student at the University of Calgary. I write C firmware for STM32 and AVR microcontrollers, design the boards it runs on, and get telemetry off them over RF.</p>
+  <p class="sub">I also ship the other half: React Native apps, Node backends, and the AI tooling I use to run my own life. Two of the things below are companies I'm building right now.</p>
+  <p class="now"><b>Starting September 2026:</b> a 12-month SCADA and leak detection co-op with Cenovus Energy in Lloydminster, working on pipeline monitoring and real-time control infrastructure.</p>
+</div>
+
+<section id="work">
+  <h2>Selected work</h2>
+
+  <article class="item">
+    <h3>VaultTen <span>2026</span></h3>
+    <div class="role">Co-founder and CEO</div>
+    <p>Banking infrastructure for Canadian fintechs. Companies plug into our API to run KYC, open compliant CAD spending accounts, issue Mastercard virtual cards, and settle transactions in real time against a double-entry ledger — without building a bank themselves. I built the backend and the dashboards, multi-tenant from day one so sandbox and live traffic never cross. It started as a pitch deck and it's a deployed product now.</p>
+    <p class="tech">TypeScript, Fastify, PostgreSQL, Redis, Next.js</p>
+  </article>
+
+  <article class="item">
+    <h3>SHAX <span>2026</span></h3>
+    <div class="role">Founder and lead developer</div>
+    <p>A personal AI system that actually runs my life rather than answering questions about it. It lives on a dedicated Android phone through Termux and I message it over WhatsApp, so I can hand it something at 2am and it deals with it. It holds context across everything I care about, tracks goals without me logging anything, and schedules its own work. The third version has been running reliably for months.</p>
+    <p class="tech">Node.js, Claude API, WhatsApp</p>
+  </article>
+
+  <article class="item">
+    <h3>Environmental monitoring boat <span>2025</span></h3>
+    <div class="role">Systems engineer — third-year design project</div>
+    <p>Six of us built an unmanned boat from nothing: our own PCB, a hull we waterproofed by hand, STM32 firmware reading the water quality sensors, and a 433 MHz link back to a handheld controller. A Python script on the ground turns the live telemetry into a depth map of the area. It went on water and came back with real data.</p>
+    <p class="tech">C, STM32, RF telemetry, PCB design, Python</p>
+  </article>
+
+  <article class="item">
+    <h3>RC car <span>2025</span></h3>
+    <div class="role">Programming lead — ENEL 300</div>
+    <p>Bare-metal C on an AVR128DB28. No RTOS, no HAL, nothing between me and the hardware. I wrote the interrupt handlers for the RF receiver, timer-based PWM for steering and throttle, an ultrasonic driver for obstacle detection out to about a metre, and the LCD driver — all routed onto a board small enough to fit inside the car body. It drove, and it stopped before hitting things.</p>
+    <p class="tech">C, AVR128DB28, 433 MHz RF, ultrasonic</p>
+  </article>
+
+  <article class="item">
+    <h3>Glorek mobile apps <span>2025</span></h3>
+    <div class="role">Lead mobile developer</div>
+    <p>Two React Native apps for a field service platform — one for clients, one for technicians — covering OTP auth, service ordering, job status tracking and payments. I owned the mobile side from the first screen through to real people using it on their phones, working directly with the backend team on the API contracts.</p>
+    <p class="tech">React Native, Node.js, Axios</p>
+  </article>
+
+  <article class="item">
+    <h3>FPGA digital systems <span>2025</span></h3>
+    <div class="role">ENEL 453</div>
+    <p>A semester of designing real digital hardware on a Xilinx Basys3 board: state machines, synchronous counters, debounce logic, seven-segment controllers, all built bottom-up in synthesisable SystemVerilog. The bar wasn't passing a simulation — it was meeting timing on real silicon, where a clock constraint off by a little makes the board misbehave immediately.</p>
+    <p class="tech">SystemVerilog, Vivado, Basys3</p>
+  </article>
+
+  <article class="item">
+    <h3>S.H.A.R.I.F. <span>2025</span></h3>
+    <div class="role">Founder and lead developer</div>
+    <p>Built in third year to find out whether a personal AI assistant was worth having day to day, or just a fun demo. It ran on Telegram, sent me a morning briefing before I was awake, tracked my portfolio, and had a SwiftUI companion app. I kept it running for over a year before retiring it in favour of SHAX. It proved the idea worked.</p>
+    <p class="tech">Node.js, Telegram, SwiftUI</p>
+  </article>
+
+  <article class="item">
+    <h3>Z-transform teaching package <span>2025</span></h3>
+    <div class="role">ENEL 327</div>
+    <p>The course notes had almost nothing useful on Z-transforms, so I wrote the resource I wished existed: the theory, region of convergence, every property, three inverse methods worked from scratch, and real signal processing examples with full solutions. I checked every answer in SymPy and typeset it in LaTeX. My professor handed it out to the whole class.</p>
+    <p class="tech">SymPy, LaTeX, DSP</p>
+  </article>
+</section>
+
+<section id="roles">
+  <h2>Experience</h2>
+
+  <div class="role-row"><div class="l">
+    <div class="t">SCADA and leak detection intern</div>
+    <div class="o">Cenovus Energy — Lloydminster, AB</div>
+    <p class="n">A 12-month co-op with the upstream operations team, on pipeline monitoring, control systems and the real-time data infrastructure that keeps field operations running.</p>
+  </div><div class="d">Sep 2026 — Sep 2027</div></div>
+
+  <div class="role-row"><div class="l">
+    <div class="t">Vice president of events</div>
+    <div class="o">DeepRacer Calgary — Calgary, AB</div>
+    <p class="n">Ran the events side of UCalgary's AWS DeepRacer club for two years: eight competitions, over a hundred people at each, plus sponsors, vendors and the Amazon reps who came in for the bigger ones.</p>
+  </div><div class="d">Sep 2023 — Sep 2025</div></div>
+
+  <div class="role-row"><div class="l">
+    <div class="t">Front-end lead</div>
+    <div class="o">Glorek International — Jeddah, Saudi Arabia</div>
+    <p class="n">Built the iOS and Android apps for Glorek's facility management platform, owning auth, service ordering, job tracking and payments end to end.</p>
+  </div><div class="d">May — Aug 2025</div></div>
+
+  <div class="role-row"><div class="l">
+    <div class="t">Operations coordinator</div>
+    <div class="o">Glorek International — Saudi Arabia</div>
+    <p class="n">Coordinated crews and equipment across several active client sites, and became the main point of contact for a number of them.</p>
+  </div><div class="d">May — Aug 2024</div></div>
+
+  <div class="role-row"><div class="l">
+    <div class="t">Operations coordinator intern</div>
+    <div class="o">Glorek International — Jeddah, Saudi Arabia</div>
+    <p class="n">My first proper job: running operations from the initial brief through to job completion across a high-volume summer.</p>
+  </div><div class="d">May — Aug 2023</div></div>
+
+  <div class="role-row"><div class="l">
+    <div class="t">Operations coordinator, seasonal</div>
+    <div class="o">Al-Raya Supermarkets — Saudi Arabia</div>
+    <p class="n">Staffing and shift scheduling through peak demand at a large regional chain.</p>
+  </div><div class="d">2020 — 2021</div></div>
+</section>
+
+<section id="background">
+  <h2>Background</h2>
+  <p style="max-width:66ch">I was born and raised in Jeddah, Saudi Arabia, and I'm based in Calgary now. I speak Arabic, English and Urdu. I grew up taking apart electronics and cars long before I knew what a resistor was, and that curiosity is more or less the whole reason I'm in this field.</p>
+  <p style="max-width:66ch;margin-top:17px">On the hardware side I work in C on STM32 and AVR, SystemVerilog on FPGAs, and I'm comfortable with I2C, SPI, UART, PWM and RF links, PCB layout, LTspice and Vivado. On the software side it's TypeScript and Node, React and Next.js, React Native and SwiftUI, Python and MATLAB, Postgres and Docker.</p>
+  <p style="max-width:66ch;margin-top:17px">Not everything I've built is public — some of it sits under IP or work-product agreements. Ask me about any of it and I'll tell you what I can.</p>
+</section>
+
+<section class="talk" id="talk">
+  <h2>Get in touch</h2>
+  <p>I'm always happy to talk about hardware, firmware, fintech infrastructure, or anything above.</p>
+  <div class="links">
+    <a href="mailto:shaheermarif@outlook.com">shaheermarif@outlook.com</a>
+    <a href="https://linkedin.com/in/shaheer-m-arif" target="_blank" rel="noreferrer">LinkedIn</a>
+    <a href="https://github.com/shaheer-m-arif" target="_blank" rel="noreferrer">GitHub</a>
+  </div>
+</section>
+
+<footer><span>Shaheer Arif</span><span>Calgary, Alberta</span></footer>
+
+</div>
+</body>
+</html>

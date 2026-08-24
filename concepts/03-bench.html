@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shaheer Arif — Bench</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FAFAF9; --raise:#F1F1EF; --ink:#0A0A0A; --dim:#52525B; --faint:#6B7280;
+  --rule:#E4E4E7; --rule-hi:#D4D4D8; --accent:#1D4ED8; --accent-soft:rgba(29,78,216,.06);
+  --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --gut:clamp(16px,3.4vw,44px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme=light]){
+    --paper:#0B0B0C; --raise:#17171A; --ink:#FAFAFA; --dim:#A1A1AA; --faint:#8A8A93;
+    --rule:#26262A; --rule-hi:#3F3F46; --accent:#60A5FA; --accent-soft:rgba(96,165,250,.08);
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--raise);color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1280px;margin:0 auto;padding:0 var(--gut)}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;line-height:1.05}
+p{margin:0} a{color:inherit;text-decoration:none} ul{margin:0;padding:0;list-style:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ── top rail ────────────────────────────────── */
+.rail{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--rule-hi)}
+.rail-in{max-width:1280px;margin:0 auto;padding:10px var(--gut);display:flex;align-items:center;
+  justify-content:space-between;gap:14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em}
+.rail-id{display:flex;align-items:center;gap:9px;font-weight:600}
+.led{width:7px;height:7px;background:var(--accent);flex:none}
+.rail nav{display:flex;gap:18px}
+.rail nav a{color:var(--dim);transition:color .18s}
+.rail nav a:hover,.rail nav a:focus-visible{color:var(--accent)}
+.rail-s{color:var(--faint)}
+@media (max-width:860px){.rail nav,.rail-s{display:none}}
+
+/* ── panel primitive ─────────────────────────── */
+.panel{border:1px solid var(--rule-hi);background:var(--paper);display:flex;flex-direction:column}
+.panel-hd{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:8px 14px;border-bottom:1px solid var(--rule);font-family:var(--mono);
+  font-size:9.5px;letter-spacing:.13em;color:var(--dim);background:var(--raise)}
+.panel-hd b{color:var(--accent);font-weight:600}
+.panel-bd{padding:clamp(16px,2.2vw,26px);flex:1}
+
+/* ── hero front panel ────────────────────────── */
+.deck{padding:clamp(18px,2.6vw,32px) 0 clamp(28px,4vw,48px)}
+.hero-nm{font-size:clamp(40px,8.4vw,104px);letter-spacing:-.045em;line-height:.94;font-weight:600}
+.hero-rl{font-family:var(--mono);font-size:clamp(12px,1.45vw,14.5px);color:var(--dim);margin-top:18px}
+.hero-rl b{color:var(--accent);font-weight:500}
+.ro-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));
+  gap:1px;background:var(--rule);border-top:1px solid var(--rule);margin-top:clamp(24px,3.4vw,38px)}
+.ro{background:var(--paper);padding:15px 16px 16px;display:flex;flex-direction:column;gap:3px}
+.ro-v{font-family:var(--mono);font-size:clamp(24px,3.4vw,38px);font-weight:500;
+  letter-spacing:-.03em;line-height:1;color:var(--ink)}
+.ro-v.acc{color:var(--accent)}
+.ro-u{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;color:var(--faint);margin-top:5px}
+
+/* ── rack grid ───────────────────────────────── */
+.rack{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+@media (max-width:1000px){.rack{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:680px){.rack{grid-template-columns:1fr}}
+.s6{grid-column:span 6}.s4{grid-column:span 4}.s3{grid-column:span 3}.s2{grid-column:span 2}
+@media (max-width:1000px){.s6,.s4,.s3{grid-column:span 4}.s2{grid-column:span 2}}
+@media (max-width:680px){.s6,.s4,.s3,.s2{grid-column:span 1}}
+
+/* ── section divider ─────────────────────────── */
+.div{display:flex;align-items:center;gap:14px;margin:clamp(34px,4.6vw,58px) 0 14px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--faint)}
+.div b{color:var(--ink);font-weight:600}
+.div i{flex:1;height:1px;background:var(--rule-hi);font-style:normal}
+
+/* ── prose ───────────────────────────────────── */
+.prose p{font-size:clamp(15px,1.55vw,17px);line-height:1.68;color:var(--dim)}
+.prose p+p{margin-top:14px}
+.prose b{color:var(--ink);font-weight:600}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);margin-top:22px}
+.kv div{background:var(--paper);padding:13px 14px}
+.kv b{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.13em;
+  color:var(--faint);font-weight:400;margin-bottom:5px}
+.kv span{font-size:13.5px;font-weight:500}
+
+/* ── status module ───────────────────────────── */
+.st-v{font-size:21px;font-weight:600;letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
+.st-d{font-family:var(--mono);font-size:12px;color:var(--dim);line-height:1.65;margin-top:12px}
+.st-b{display:inline-block;margin-top:15px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.1em;color:var(--accent);border:1px solid var(--accent);padding:3px 8px}
+
+/* ── project module ──────────────────────────── */
+.pm .panel-bd{display:flex;flex-direction:column}
+.pm-t{font-size:17.5px;font-weight:600;letter-spacing:-.018em;margin-bottom:4px}
+.pm-r{font-family:var(--mono);font-size:10.5px;color:var(--accent);margin-bottom:11px}
+.pm-d{font-size:13.8px;line-height:1.6;color:var(--dim);flex:1}
+.pm-tg{display:flex;flex-wrap:wrap;gap:5px;margin-top:15px}
+.pm-tg i{font-style:normal;font-family:var(--mono);font-size:9.5px;color:var(--dim);
+  border:1px solid var(--rule-hi);padding:2px 7px}
+.panel.pm{transition:border-color .18s}
+.panel.pm:hover{border-color:var(--accent)}
+
+/* ── event log ───────────────────────────────── */
+.log{font-family:var(--mono);font-size:12.5px}
+.log-r{display:grid;grid-template-columns:158px 1fr;gap:18px;padding:15px 0;
+  border-bottom:1px solid var(--rule)}
+.log-r:last-child{border-bottom:0}
+@media (max-width:760px){.log-r{grid-template-columns:1fr;gap:8px}}
+.log-t{color:var(--faint);letter-spacing:.02em}
+.log-t u{display:block;text-decoration:none;margin-top:6px;color:var(--accent);font-size:9.5px;letter-spacing:.1em}
+.log-h{font-family:var(--sans);font-size:16px;font-weight:600;letter-spacing:-.015em}
+.log-o{color:var(--dim);font-size:11.5px;margin:4px 0 10px}
+.log-l li{position:relative;padding-left:20px;color:var(--dim);line-height:1.62;margin-bottom:5px;font-size:12px}
+.log-l li::before{content:"\2022";position:absolute;left:4px;top:0;color:var(--accent)}
+
+/* ── channel matrix ──────────────────────────── */
+.mx{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,206px),1fr));
+  gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.ch{background:var(--paper);padding:15px 16px 17px}
+.ch-k{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;color:var(--faint);
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
+.ch-k b{color:var(--accent);font-weight:600}
+.ch ul{display:flex;flex-wrap:wrap;gap:4px}
+.ch li{font-family:var(--mono);font-size:11px;color:var(--dim);
+  border:1px solid var(--rule-hi);padding:2px 7px}
+
+/* ── output ──────────────────────────────────── */
+.out-h{font-size:clamp(32px,6vw,68px);letter-spacing:-.04em;margin-bottom:8px}
+.out-s{font-family:var(--mono);font-size:12px;color:var(--faint);margin-bottom:28px}
+.out a{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:18px 0;
+  border-top:1px solid var(--rule);transition:color .18s,padding-left .18s}
+.out a:hover,.out a:focus-visible{color:var(--accent);padding-left:9px}
+.out-k{font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;color:var(--faint);min-width:80px}
+.out-v{font-size:clamp(15px,2vw,19px);font-weight:500;letter-spacing:-.015em;flex:1}
+.out-a{font-family:var(--mono);font-size:12px;color:var(--faint)}
+.out a:hover .out-a{color:var(--accent)}
+.foot{padding:20px 0 48px;font-family:var(--mono);font-size:10px;color:var(--faint);
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<div class="rail"><div class="rail-in">
+  <span class="rail-id"><i class="led"></i>SHAHEER ARIF</span>
+  <nav><a href="#m1">PROJECTS</a><a href="#m2">LOG</a><a href="#m3">CHANNELS</a><a href="#m4">OUTPUT</a></nav>
+  <span class="rail-s">BENCH · SA-2026 · READY</span>
+</div></div>
+
+<main class="wrap">
+
+  <section class="deck">
+    <div class="panel">
+      <div class="panel-hd"><span><b>FRONT PANEL</b> · SUBJECT SA-2026-EE</span><span>CALGARY, AB</span></div>
+      <div class="panel-bd">
+        <h1 class="hero-nm">SHAHEER<br>ARIF</h1>
+        <p class="hero-rl">Electrical Engineering · University of Calgary, Schulich — <b>firmware to production, one bench</b></p>
+      </div>
+      <div class="ro-strip">
+        <div class="ro"><span class="ro-v">04</span><span class="ro-u">YEAR OF STUDY</span></div>
+        <div class="ro"><span class="ro-v">08</span><span class="ro-u">PROJECTS SHIPPED</span></div>
+        <div class="ro"><span class="ro-v acc">02</span><span class="ro-u">ACTIVE VENTURES</span></div>
+        <div class="ro"><span class="ro-v">07</span><span class="ro-u">LANGUAGES / CODE</span></div>
+        <div class="ro"><span class="ro-v">03</span><span class="ro-u">LANGUAGES / SPOKEN</span></div>
+        <div class="ro"><span class="ro-v">12</span><span class="ro-u">MONTH CO-OP INBOUND</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="div"><b>00</b> SUBJECT UNDER TEST <i></i> 2 MODULES</div>
+  <div class="rack">
+    <div class="panel s4">
+      <div class="panel-hd"><span><b>MOD 01</b> · SUBJECT</span><span>PROFILE</span></div>
+      <div class="panel-bd prose">
+        <p>I'm a fourth-year Electrical Engineering student at the University of Calgary, Schulich School of Engineering. My work sits on both sides of the hardware/software boundary: <b>C firmware on STM32 and AVR microcontrollers</b>, custom PCB design, RF telemetry links and sensor integration built from scratch — and <b>React Native, Node.js backends</b> and AI tooling on the other.</p>
+        <p>Outside the lab I run two ventures. <b>VaultTen</b> is Banking-as-a-Service for Canadian fintechs, built end to end as co-founder and CEO. <b>SHAX</b> is the longer bet: a personal AI operating system that already runs my life rather than waiting to be asked.</p>
+        <div class="kv">
+          <div><b>ORIGIN</b><span>Jeddah, Saudi Arabia</span></div>
+          <div><b>OPERATING AT</b><span>Calgary, Alberta</span></div>
+          <div><b>SPOKEN</b><span>Arabic · English · Urdu</span></div>
+          <div><b>PROFILE</b><span>Third culture kid</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel s2">
+      <div class="panel-hd"><span><b>MOD 02</b> · STATUS</span><span>ARMED</span></div>
+      <div class="panel-bd">
+        <div class="st-v"><i class="led"></i>Cenovus Energy</div>
+        <div class="st-d">SCADA &amp; Leak Detection Co-op<br>Lloydminster, AB<br>Upstream oil &amp; gas — pipeline monitoring, control systems, real-time data infrastructure.</div>
+        <span class="st-b">SEP 2026 — SEP 2027</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="div" id="m1"><b>01</b> MEASUREMENTS · PROJECTS <i></i> 8 MODULES</div>
+  <div class="rack">
+
+    <div class="panel pm s3"><div class="panel-hd"><span><b>M01</b> · SHAX</span><span>2026 · ACTIVE</span></div>
+      <div class="panel-bd"><div class="pm-t">SHAX</div><div class="pm-r">Founder &amp; Lead Developer</div>
+      <p class="pm-d">A personal AI operating system built to run my life, not answer questions about it. Lives on a dedicated Android handset through Termux, wired to the Claude API over WhatsApp. Holds long-running context, tracks goals without me logging anything, triages its own work. Version three has run reliably for months — the foundation everything else builds on.</p>
+      <div class="pm-tg"><i>Node.js</i><i>Claude API</i><i>WhatsApp</i><i>AI OS</i><i>Termux</i></div></div></div>
+
+    <div class="panel pm s3"><div class="panel-hd"><span><b>M02</b> · VAULTTEN</span><span>2026 · ACTIVE</span></div>
+      <div class="panel-bd"><div class="pm-t">VaultTen</div><div class="pm-r">Co-Founder &amp; CEO</div>
+      <p class="pm-d">Banking-as-a-Service for Canadian fintechs: KYC, compliant CAD spending accounts, Mastercard virtual card issuing and real-time settlement against an immutable double-entry ledger. I built the Fastify/PostgreSQL backend and the Next.js dashboards, multi-tenant from day one so sandbox and live traffic never cross. Deployed and live.</p>
+      <div class="pm-tg"><i>TypeScript</i><i>Fastify</i><i>PostgreSQL</i><i>Redis</i><i>Next.js</i></div></div></div>
+
+    <div class="panel pm s2"><div class="panel-hd"><span><b>M03</b> · RC BOAT</span><span>2025</span></div>
+      <div class="panel-bd"><div class="pm-t">Environmental Monitoring RC Boat</div><div class="pm-r">Systems Engineer · Design Project</div>
+      <p class="pm-d">Six of us built an unmanned boat from nothing: our own PCB, a hand-waterproofed hull, STM32 firmware reading water-quality sensors, and a 433 MHz link to a handheld controller. Ground-side Python turns the telemetry into a topographic depth map. It went on water and came back with real data.</p>
+      <div class="pm-tg"><i>C</i><i>STM32</i><i>RF</i><i>PCB</i></div></div></div>
+
+    <div class="panel pm s2"><div class="panel-hd"><span><b>M04</b> · RC CAR</span><span>2025</span></div>
+      <div class="panel-bd"><div class="pm-t">RC Car</div><div class="pm-r">Programming Lead · ENEL 300</div>
+      <p class="pm-d">Bare-metal C on an AVR128DB28 — no RTOS, no HAL, nothing between me and the hardware. Interrupt handlers for the RF receiver, timer-driven PWM for steering and throttle, an HC-SR04 driver good to about a metre, and an LCD driver, all routed onto a board tight enough to fit inside the chassis.</p>
+      <div class="pm-tg"><i>C</i><i>AVR128DB28</i><i>433 MHz</i></div></div></div>
+
+    <div class="panel pm s2"><div class="panel-hd"><span><b>M05</b> · FPGA</span><span>2025</span></div>
+      <div class="panel-bd"><div class="pm-t">FPGA Digital Systems</div><div class="pm-r">Student Developer · ENEL 453</div>
+      <p class="pm-d">A semester of real digital hardware on a Xilinx Basys3: state machines, synchronous counters, debounce logic and seven-segment controllers, built bottom-up in synthesisable SystemVerilog. The bar was never passing simulation — it was meeting timing on real silicon.</p>
+      <div class="pm-tg"><i>SystemVerilog</i><i>Basys3</i><i>Vivado</i></div></div></div>
+
+    <div class="panel pm s2"><div class="panel-hd"><span><b>M06</b> · GLOREK</span><span>2025</span></div>
+      <div class="panel-bd"><div class="pm-t">Glorek Mobile App</div><div class="pm-r">Lead Mobile Developer</div>
+      <p class="pm-d">Shipped the iOS and Android apps for Glorek's field service platform — two distinct apps, one for clients and one for technicians, covering OTP auth, service ordering, job tracking and payments end to end. I owned the mobile side from first screen to real people using it.</p>
+      <div class="pm-tg"><i>React Native</i><i>Node.js</i><i>OTP</i></div></div></div>
+
+    <div class="panel pm s2"><div class="panel-hd"><span><b>M07</b> · S.H.A.R.I.F.</span><span>2025 · RETIRED</span></div>
+      <div class="panel-bd"><div class="pm-t">S.H.A.R.I.F.</div><div class="pm-r">Founder &amp; Lead Developer</div>
+      <p class="pm-d">Built in third year to test whether a personal AI assistant was worth having day to day. Ran on Telegram, sent a morning briefing before I woke up, tracked my portfolio, had a SwiftUI companion on iOS. Ran for over a year before I retired it in favour of SHAX.</p>
+      <div class="pm-tg"><i>Node.js</i><i>Telegram</i><i>SwiftUI</i></div></div></div>
+
+    <div class="panel pm s2"><div class="panel-hd"><span><b>M08</b> · Z-TRANSFORM</span><span>2025</span></div>
+      <div class="panel-bd"><div class="pm-t">Z-Transform Teaching Package</div><div class="pm-r">Author · ENEL 327</div>
+      <p class="pm-d">The course notes had almost nothing usable on Z-transforms, so I wrote the resource I wanted: full theory, region of convergence, every property, three inverse methods worked from scratch, real DSP examples with complete solutions. Verified in SymPy, typeset in LaTeX. My professor handed it to the whole class.</p>
+      <div class="pm-tg"><i>SymPy</i><i>LaTeX</i><i>DSP</i></div></div></div>
+
+  </div>
+
+  <div class="div" id="m2"><b>02</b> EVENT LOG · EXPERIENCE <i></i> 6 ENTRIES</div>
+  <div class="panel">
+    <div class="panel-hd"><span><b>LOG</b> · CHRONOLOGICAL, NEWEST FIRST</span><span>6 ENTRIES</span></div>
+    <div class="panel-bd log">
+      <div class="log-r"><div class="log-t">2026-09 → 2027-09<u>SCHEDULED</u></div><div>
+        <div class="log-h">SCADA &amp; Leak Detection Intern</div><div class="log-o">Cenovus Energy · Lloydminster, AB</div>
+        <ul class="log-l"><li>Joining upstream operations for a 12-month co-op in SCADA and pipeline leak detection.</li>
+        <li>Pipeline monitoring, control systems, and the real-time data infrastructure keeping field operations running.</li>
+        <li>Embedded directly within the field engineering team on active operations.</li></ul></div></div>
+
+      <div class="log-r"><div class="log-t">2023-09 → 2025-09</div><div>
+        <div class="log-h">Vice President of Events</div><div class="log-o">DeepRacer Calgary · Calgary, AB</div>
+        <ul class="log-l"><li>Ran the events side of UCalgary's AWS DeepRacer club for two years — 8 competitions, 100+ attendees each.</li>
+        <li>Handled sponsors, vendors, and the Amazon reps who came in for the bigger events.</li>
+        <li>If something broke on race day, I sorted it out.</li></ul></div></div>
+
+      <div class="log-r"><div class="log-t">2025-05 → 2025-08</div><div>
+        <div class="log-h">Front-End Lead</div><div class="log-o">Glorek International Co. · Jeddah, Saudi Arabia</div>
+        <ul class="log-l"><li>Built the iOS and Android apps for Glorek's facility management platform in React Native.</li>
+        <li>Owned auth, service ordering, job status tracking and payment integration end to end.</li>
+        <li>Worked directly with the backend team on API contracts.</li></ul></div></div>
+
+      <div class="log-r"><div class="log-t">2024-05 → 2024-08</div><div>
+        <div class="log-h">Operations Coordinator</div><div class="log-o">Glorek International Co. · Saudi Arabia</div>
+        <ul class="log-l"><li>Coordinated crews and equipment across multiple active client sites through a busy summer.</li>
+        <li>Became the main contact for several clients — scheduling changes, resource calls, last-minute everything.</li></ul></div></div>
+
+      <div class="log-r"><div class="log-t">2023-05 → 2023-08</div><div>
+        <div class="log-h">Operations Coordinator Intern</div><div class="log-o">Glorek International Co. · Jeddah, Saudi Arabia</div>
+        <ul class="log-l"><li>First proper job. Ran operations from initial brief to job completion across a high-volume summer.</li>
+        <li>Supported recruitment and onboarding for new workers.</li></ul></div></div>
+
+      <div class="log-r"><div class="log-t">2020 → 2021</div><div>
+        <div class="log-h">Operations Coordinator (Seasonal)</div><div class="log-o">Al-Raya Supermarkets · Saudi Arabia</div>
+        <ul class="log-l"><li>Managed staffing and shift scheduling during peak demand at a large regional chain.</li>
+        <li>Tracked costs and produced daily operational reports for my section.</li></ul></div></div>
+    </div>
+  </div>
+
+  <div class="div" id="m3"><b>03</b> CHANNELS · STACK <i></i> 9 ACTIVE</div>
+  <div class="mx">
+    <div class="ch"><div class="ch-k"><span>FIRMWARE</span><b>CH1</b></div><ul><li>C</li><li>STM32</li><li>AVR128DB28</li><li>Arduino</li><li>bare-metal</li></ul></div>
+    <div class="ch"><div class="ch-k"><span>DIGITAL DESIGN</span><b>CH2</b></div><ul><li>SystemVerilog</li><li>Vivado</li><li>Basys3</li><li>timing closure</li></ul></div>
+    <div class="ch"><div class="ch-k"><span>SIGNALS &amp; BUSES</span><b>CH3</b></div><ul><li>I2C</li><li>SPI</li><li>UART</li><li>PWM</li><li>433 MHz RF</li></ul></div>
+    <div class="ch"><div class="ch-k"><span>CIRCUIT</span><b>CH4</b></div><ul><li>PCB layout</li><li>LTspice</li><li>Multisim</li><li>sensor front-ends</li></ul></div>
+    <div class="ch"><div class="ch-k"><span>MOBILE</span><b>CH5</b></div><ul><li>React Native</li><li>SwiftUI</li><li>Axios</li></ul></div>
+    <div class="ch"><div class="ch-k"><span>BACKEND</span><b>CH6</b></div><ul><li>Node.js</li><li>TypeScript</li><li>Fastify</li><li>Express</li><li>PostgreSQL</li><li>Redis</li></ul></div>
+    <div class="ch"><div class="ch-k"><span>FRONT-END</span><b>CH7</b></div><ul><li>React</li><li>Next.js</li><li>Vite</li></ul></div>
+    <div class="ch"><div class="ch-k"><span>SCIENTIFIC</span><b>CH8</b></div><ul><li>Python</li><li>MATLAB</li><li>SymPy</li><li>SQL</li></ul></div>
+    <div class="ch"><div class="ch-k"><span>INFRASTRUCTURE</span><b>CH9</b></div><ul><li>Docker</li><li>Git</li><li>Railway</li><li>Vercel</li><li>Postman</li></ul></div>
+  </div>
+
+  <div class="div" id="m4"><b>04</b> OUTPUT <i></i> TERMINATE</div>
+  <div class="panel">
+    <div class="panel-hd"><span><b>OUT</b> · CONTACT</span><span>OPEN</span></div>
+    <div class="panel-bd">
+      <h2 class="out-h">Let's talk.</h2>
+      <p class="out-s">Open to conversations about hardware, firmware, fintech infrastructure, or anything on this bench.</p>
+      <div class="out">
+        <a href="mailto:shaheermarif@outlook.com"><span class="out-k">EMAIL</span><span class="out-v">shaheermarif@outlook.com</span><span class="out-a">&#8599;</span></a>
+        <a href="https://linkedin.com/in/shaheer-m-arif" target="_blank" rel="noreferrer"><span class="out-k">LINKEDIN</span><span class="out-v">shaheer-m-arif</span><span class="out-a">&#8599;</span></a>
+        <a href="https://github.com/shaheer-m-arif" target="_blank" rel="noreferrer"><span class="out-k">GITHUB</span><span class="out-v">shaheer-m-arif</span><span class="out-a">&#8599;</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><span>SHAHEER ARIF © 2026 · SA-2026-EE</span><span>CALGARY, AB · BENCH IDLE</span></div>
+</main>
+</body>
+</html>

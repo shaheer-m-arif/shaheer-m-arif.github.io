@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shaheer Arif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F0E6; --ink:#262218; --body:#4A463A; --muted:#6E695A;
+  --rule:#DED8C7; --accent:#96552A; --trace:rgba(150,85,42,.62);
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme=light]){
+    --paper:#1A1815; --ink:#E8E3D5; --body:#BFBAAB; --muted:#8B8677;
+    --rule:#302E27; --accent:#D19C6E; --trace:rgba(209,156,110,.55);
+  }
+}
+:root[data-theme=dark]{
+    --paper:#1A1815; --ink:#E8E3D5; --body:#BFBAAB; --muted:#8B8677;
+    --rule:#302E27; --accent:#D19C6E; --trace:rgba(209,156,110,.55);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--body);font-family:var(--serif);
+  font-size:19px;line-height:1.72;-webkit-font-smoothing:antialiased;
+  font-optical-sizing:auto}
+.page{max-width:720px;margin:0 auto;padding:0 24px}
+p{margin:0}
+a{color:inherit}
+h1,h2,h3{margin:0;font-weight:500;color:var(--ink);letter-spacing:-.012em;line-height:1.2}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* ── header ──────────────────────────────────── */
+header{padding:38px 0 0;display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap}
+header .me{font-family:var(--sans);font-size:15px;font-weight:500;color:var(--ink)}
+header nav{display:flex;gap:20px;font-family:var(--sans);font-size:14.5px}
+header nav a{color:var(--muted);text-decoration:none;transition:color .15s}
+header nav a:hover,header nav a:focus-visible{color:var(--accent)}
+
+/* ── opening ─────────────────────────────────── */
+.open{padding:clamp(56px,9vw,104px) 0 clamp(40px,6vw,64px)}
+.open h1{font-size:clamp(34px,5.4vw,52px);font-weight:400;letter-spacing:-.022em;
+  line-height:1.22;color:var(--ink);max-width:19ch}
+.open h1 em{font-style:italic}
+.open .sub{margin-top:26px;font-size:20px;line-height:1.66;max-width:60ch}
+.open .sub+.sub{margin-top:16px}
+.now{margin-top:26px;font-family:var(--sans);font-size:15px;color:var(--muted);line-height:1.6}
+.now b{color:var(--ink);font-weight:500}
+
+/* ── sections ────────────────────────────────── */
+section{padding:clamp(48px,7vw,80px) 0 0}
+section>h2{display:flex;align-items:center;gap:0;font-family:var(--serif);
+  font-size:19px;font-weight:400;font-variant:small-caps;letter-spacing:.075em;
+  color:var(--ink);margin-bottom:34px}
+section>h2 .wire{flex:1;height:1px;background:var(--rule);margin-left:16px}
+section>h2 .sym{flex:none;color:var(--accent);opacity:.85}
+section>h2 .tail{width:44px;height:1px;background:var(--rule)}
+section>h2 .node{flex:none;width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.7}
+
+/* settling scope trace under the headline */
+.trace{display:block;width:100%;height:auto;margin:26px 0 4px;overflow:visible}
+.trace path{fill:none;stroke:var(--trace);stroke-width:1.4;
+  stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.trace circle{fill:var(--accent)}
+
+.gnd{display:flex;align-items:center;gap:9px;color:var(--accent);opacity:.75}
+
+/* ── work ────────────────────────────────────── */
+.item{padding:0 0 clamp(34px,4.6vw,46px)}
+.item:last-child{padding-bottom:0}
+.item h3{font-size:25px;font-weight:500;letter-spacing:-.018em;display:flex;
+  align-items:baseline;gap:11px;flex-wrap:wrap}
+.item h3 span{font-family:var(--sans);font-size:14px;font-weight:400;color:var(--muted);letter-spacing:0}
+.item .role{font-family:var(--sans);font-size:14.5px;color:var(--muted);margin:5px 0 13px}
+.item p{font-size:18.5px;line-height:1.7;max-width:68ch}
+.item .tech{font-family:var(--sans);font-size:14px;color:var(--muted);margin-top:12px;line-height:1.55}
+
+/* ── roles ───────────────────────────────────── */
+.role-row{display:flex;align-items:baseline;justify-content:space-between;gap:18px;
+  padding:16px 0;border-bottom:1px solid var(--rule)}
+.role-row:last-of-type{border-bottom:0}
+.role-row .l{flex:1;min-width:0}
+.role-row .t{font-size:19.5px;color:var(--ink);font-weight:500;letter-spacing:-.012em}
+.role-row .o{font-family:var(--sans);font-size:14.5px;color:var(--muted);margin-top:2px}
+.role-row .d{font-family:var(--sans);font-size:14px;color:var(--muted);white-space:nowrap;flex:none}
+.role-row .n{font-size:17.5px;margin-top:8px;line-height:1.62;max-width:64ch}
+@media (max-width:600px){
+  .role-row{flex-direction:column;gap:4px}
+  .role-row .d{order:-1}
+}
+
+/* ── contact ─────────────────────────────────── */
+.talk{padding:clamp(52px,7vw,84px) 0 0}
+.talk h2{font-size:clamp(30px,4.6vw,42px);font-weight:400;letter-spacing:-.022em;
+  margin-bottom:18px;border:0;padding:0;font-family:var(--serif);color:var(--ink)}
+.talk p{font-size:19px;max-width:56ch;margin-bottom:26px}
+.talk a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;
+  text-decoration-thickness:1px}
+.talk a:hover{text-decoration-thickness:2px}
+.links{display:flex;gap:24px;flex-wrap:wrap;font-family:var(--sans);font-size:16px}
+footer{margin-top:clamp(56px,8vw,88px);padding:20px 0 60px;border-top:1px solid var(--rule);
+  font-family:var(--sans);font-size:13.5px;color:var(--muted);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <span class="me">Shaheer Arif</span>
+  <nav>
+    <a href="#work">Work</a><a href="#roles">Experience</a>
+    <a href="#background">Background</a><a href="#talk">Contact</a>
+  </nav>
+</header>
+
+<div class="open">
+  <h1>I build things that run on real hardware — and the software that talks to&nbsp;them.</h1>
+  <p class="sub">I'm a fourth-year Electrical Engineering student at the University of Calgary. I write C firmware for STM32 and AVR microcontrollers, design the boards it runs on, and get telemetry off them over RF.</p>
+  <p class="sub">I also ship the other half: React Native apps, Node backends, and the AI tooling I use to run my own life. Two of the things below are companies I'm building right now.</p>
+  <svg class="trace" viewBox="0 0 720 64" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <path d="M0 32.00 L3 30.16 L6 28.36 L9 26.62 L12 24.94 L15 23.32 L18 21.78 L21 20.30 L24 18.91 L27 17.59 L30 16.36 L33 15.21 L36 14.16 L39 13.19 L42 12.32 L45 11.54 L48 10.85 L51 10.25 L54 9.76 L57 9.35 L60 9.04 L63 8.82 L66 8.69 L69 8.65 L72 8.70 L75 8.84 L78 9.06 L81 9.35 L84 9.73 L87 10.18 L90 10.70 L93 11.29 L96 11.94 L99 12.65 L102 13.41 L105 14.23 L108 15.10 L111 16.01 L114 16.95 L117 17.93 L120 18.94 L123 19.98 L126 21.04 L129 22.11 L132 23.20 L135 24.29 L138 25.39 L141 26.48 L144 27.58 L147 28.66 L150 29.73 L153 30.79 L156 31.82 L159 32.83 L162 33.82 L165 34.78 L168 35.70 L171 36.59 L174 37.44 L177 38.26 L180 39.03 L183 39.75 L186 40.44 L189 41.07 L192 41.66 L195 42.19 L198 42.68 L201 43.12 L204 43.50 L207 43.84 L210 44.12 L213 44.35 L216 44.53 L219 44.65 L222 44.73 L225 44.76 L228 44.74 L231 44.68 L234 44.57 L237 44.41 L240 44.21 L243 43.98 L246 43.70 L249 43.38 L252 43.03 L255 42.65 L258 42.24 L261 41.79 L264 41.32 L267 40.83 L270 40.32 L273 39.78 L276 39.23 L279 38.67 L282 38.09 L285 37.51 L288 36.92 L291 36.32 L294 35.72 L297 35.12 L300 34.52 L303 33.93 L306 33.34 L309 32.76 L312 32.19 L315 31.64 L318 31.10 L321 30.57 L324 30.06 L327 29.57 L330 29.10 L333 28.65 L336 28.23 L339 27.83 L342 27.45 L345 27.10 L348 26.77 L351 26.48 L354 26.20 L357 25.96 L360 25.75 L363 25.56 L366 25.40 L369 25.27 L372 25.17 L375 25.09 L378 25.04 L381 25.02 L384 25.03 L387 25.06 L390 25.12 L393 25.20 L396 25.30 L399 25.43 L402 25.58 L405 25.75 L408 25.93 L411 26.14 L414 26.36 L417 26.60 L420 26.86 L423 27.12 L426 27.40 L429 27.69 L432 27.99 L435 28.30 L438 28.61 L441 28.93 L444 29.26 L447 29.58 L450 29.91 L453 30.24 L456 30.56 L459 30.89 L462 31.21 L465 31.53 L468 31.84 L471 32.15 L474 32.44 L477 32.73 L480 33.01 L483 33.28 L486 33.54 L489 33.79 L492 34.02 L495 34.24 L498 34.45 L501 34.65 L504 34.83 L507 34.99 L510 35.14 L513 35.28 L516 35.40 L519 35.50 L522 35.59 L525 35.67 L528 35.73 L531 35.77 L534 35.80 L537 35.81 L540 35.81 L543 35.80 L546 35.77 L549 35.73 L552 35.67 L555 35.61 L558 35.53 L561 35.44 L564 35.33 L567 35.22 L570 35.10 L573 34.97 L576 34.84 L579 34.69 L582 34.54 L585 34.38 L588 34.22 L591 34.05 L594 33.88 L597 33.71 L600 33.53 L603 33.35 L606 33.17 L609 32.99 L612 32.82 L615 32.64 L618 32.46 L621 32.29 L624 32.12 L627 31.95 L630 31.79 L633 31.63 L636 31.47 L639 31.32 L642 31.18 L645 31.05 L648 30.92 L651 30.79 L654 30.68 L657 30.57 L660 30.47 L663 30.38 L666 30.30 L669 30.22 L672 30.15 L675 30.09 L678 30.04 L681 30.00 L684 29.97 L687 29.94 L690 29.93 L693 29.92 L696 29.92 L699 29.92 L702 29.94 L705 29.96 L708 29.99 L711 30.02 L714 30.06 L717 30.11 L720 30.17"/><circle cx="720" cy="32" r="2.8"/>
+  </svg>
+  <p class="now"><b>Starting September 2026:</b> a 12-month SCADA and leak detection co-op with Cenovus Energy in Lloydminster, working on pipeline monitoring and real-time control infrastructure.</p>
+</div>
+
+<section id="work">
+  <h2><span>Selected work</span><i class="wire"></i><svg class="sym" width="44" height="12" viewBox="0 0 44 12" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M0 6 H10 l2.5 -4.5 l5 9 l5 -9 l5 9 l2.5 -4.5 H44"/></svg><i class="tail"></i><i class="node"></i></h2>
+
+  <article class="item">
+    <h3>VaultTen <span>2026</span></h3>
+    <div class="role">Co-founder and CEO</div>
+    <p>Banking infrastructure for Canadian fintechs. Companies plug into our API to run KYC, open compliant CAD spending accounts, issue Mastercard virtual cards, and settle transactions in real time against a double-entry ledger — without building a bank themselves. I built the backend and the dashboards, multi-tenant from day one so sandbox and live traffic never cross. It started as a pitch deck and it's a deployed product now.</p>
+    <p class="tech">TypeScript, Fastify, PostgreSQL, Redis, Next.js</p>
+  </article>
+
+  <article class="item">
+    <h3>SHAX <span>2026</span></h3>
+    <div class="role">Founder and lead developer</div>
+    <p>A personal AI system that actually runs my life rather than answering questions about it. It lives on a dedicated Android phone through Termux and I message it over WhatsApp, so I can hand it something at 2am and it deals with it. It holds context across everything I care about, tracks goals without me logging anything, and schedules its own work. The third version has been running reliably for months.</p>
+    <p class="tech">Node.js, Claude API, WhatsApp</p>
+  </article>
+
+  <article class="item">
+    <h3>Environmental monitoring boat <span>2025</span></h3>
+    <div class="role">Systems engineer — third-year design project</div>
+    <p>Six of us built an unmanned boat from nothing: our own PCB, a hull we waterproofed by hand, STM32 firmware reading the water quality sensors, and a 433 MHz link back to a handheld controller. A Python script on the ground turns the live telemetry into a depth map of the area. It went on water and came back with real data.</p>
+    <p class="tech">C, STM32, RF telemetry, PCB design, Python</p>
+  </article>
+
+  <article class="item">
+    <h3>RC car <span>2025</span></h3>
+    <div class="role">Programming lead — ENEL 300</div>
+    <p>Bare-metal C on an AVR128DB28. No RTOS, no HAL, nothing between me and the hardware. I wrote the interrupt handlers for the RF receiver, timer-based PWM for steering and throttle, an ultrasonic driver for obstacle detection out to about a metre, and the LCD driver — all routed onto a board small enough to fit inside the car body. It drove, and it stopped before hitting things.</p>
+    <p class="tech">C, AVR128DB28, 433 MHz RF, ultrasonic</p>
+  </article>
+
+  <article class="item">
+    <h3>Glorek mobile apps <span>2025</span></h3>
+    <div class="role">Lead mobile developer</div>
+    <p>Two React Native apps for a field service platform — one for clients, one for technicians — covering OTP auth, service ordering, job status tracking and payments. I owned the mobile side from the first screen through to real people using it on their phones, working directly with the backend team on the API contracts.</p>
+    <p class="tech">React Native, Node.js, Axios</p>
+  </article>
+
+  <article class="item">
+    <h3>FPGA digital systems <span>2025</span></h3>
+    <div class="role">ENEL 453</div>
+    <p>A semester of designing real digital hardware on a Xilinx Basys3 board: state machines, synchronous counters, debounce logic, seven-segment controllers, all built bottom-up in synthesisable SystemVerilog. The bar wasn't passing a simulation — it was meeting timing on real silicon, where a clock constraint off by a little makes the board misbehave immediately.</p>
+    <p class="tech">SystemVerilog, Vivado, Basys3</p>
+  </article>
+
+  <article class="item">
+    <h3>S.H.A.R.I.F. <span>2025</span></h3>
+    <div class="role">Founder and lead developer</div>
+    <p>Built in third year to find out whether a personal AI assistant was worth having day to day, or just a fun demo. It ran on Telegram, sent me a morning briefing before I was awake, tracked my portfolio, and had a SwiftUI companion app. I kept it running for over a year before retiring it in favour of SHAX. It proved the idea worked.</p>
+    <p class="tech">Node.js, Telegram, SwiftUI</p>
+  </article>
+
+  <article class="item">
+    <h3>Z-transform teaching package <span>2025</span></h3>
+    <div class="role">ENEL 327</div>
+    <p>The course notes had almost nothing useful on Z-transforms, so I wrote the resource I wished existed: the theory, region of convergence, every property, three inverse methods worked from scratch, and real signal processing examples with full solutions. I checked every answer in SymPy and typeset it in LaTeX. My professor handed it out to the whole class.</p>
+    <p class="tech">SymPy, LaTeX, DSP</p>
+  </article>
+</section>
+
+<section id="roles">
+  <h2><span>Experience</span><i class="wire"></i><svg class="sym" width="44" height="12" viewBox="0 0 44 12" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M0 6 H10 a3 3 0 0 1 6 0 a3 3 0 0 1 6 0 a3 3 0 0 1 6 0 a3 3 0 0 1 6 0 H44"/></svg><i class="tail"></i><i class="node"></i></h2>
+
+  <div class="role-row"><div class="l">
+    <div class="t">SCADA and leak detection intern</div>
+    <div class="o">Cenovus Energy — Lloydminster, AB</div>
+    <p class="n">A 12-month co-op with the upstream operations team, on pipeline monitoring, control systems and the real-time data infrastructure that keeps field operations running.</p>
+  </div><div class="d">Sep 2026 — Sep 2027</div></div>
+
+  <div class="role-row"><div class="l">
+    <div class="t">Vice president of events</div>
+    <div class="o">DeepRacer Calgary — Calgary, AB</div>
+    <p class="n">Ran the events side of UCalgary's AWS DeepRacer club for two years: eight competitions, over a hundred people at each, plus sponsors, vendors and the Amazon reps who came in for the bigger ones.</p>
+  </div><div class="d">Sep 2023 — Sep 2025</div></div>
+
+  <div class="role-row"><div class="l">
+    <div class="t">Front-end lead</div>
+    <div class="o">Glorek International — Jeddah, Saudi Arabia</div>
+    <p class="n">Built the iOS and Android apps for Glorek's facility management platform, owning auth, service ordering, job tracking and payments end to end.</p>
+  </div><div class="d">May — Aug 2025</div></div>
+
+  <div class="role-row"><div class="l">
+    <div class="t">Operations coordinator</div>
+    <div class="o">Glorek International — Saudi Arabia</div>
+    <p class="n">Coordinated crews and equipment across several active client sites, and became the main point of contact for a number of them.</p>
+  </div><div class="d">May — Aug 2024</div></div>
+
+  <div class="role-row"><div class="l">
+    <div class="t">Operations coordinator intern</div>
+    <div class="o">Glorek International — Jeddah, Saudi Arabia</div>
+    <p class="n">My first proper job: running operations from the initial brief through to job completion across a high-volume summer.</p>
+  </div><div class="d">May — Aug 2023</div></div>
+
+  <div class="role-row"><div class="l">
+    <div class="t">Operations coordinator, seasonal</div>
+    <div class="o">Al-Raya Supermarkets — Saudi Arabia</div>
+    <p class="n">Staffing and shift scheduling through peak demand at a large regional chain.</p>
+  </div><div class="d">2020 — 2021</div></div>
+</section>
+
+<section id="background">
+  <h2><span>Background</span><i class="wire"></i><svg class="sym" width="44" height="12" viewBox="0 0 44 12" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M0 6 H18 M18 0.5 V11.5 M26 0.5 V11.5 M26 6 H44"/></svg><i class="tail"></i><i class="node"></i></h2>
+  <p style="max-width:66ch">I was born and raised in Jeddah, Saudi Arabia, and I'm based in Calgary now. I speak Arabic, English and Urdu. I grew up taking apart electronics and cars long before I knew what a resistor was, and that curiosity is more or less the whole reason I'm in this field.</p>
+  <p style="max-width:66ch;margin-top:17px">On the hardware side I work in C on STM32 and AVR, SystemVerilog on FPGAs, and I'm comfortable with I2C, SPI, UART, PWM and RF links, PCB layout, LTspice and Vivado. On the software side it's TypeScript and Node, React and Next.js, React Native and SwiftUI, Python and MATLAB, Postgres and Docker.</p>
+  <p style="max-width:66ch;margin-top:17px">Not everything I've built is public — some of it sits under IP or work-product agreements. Ask me about any of it and I'll tell you what I can.</p>
+</section>
+
+<section class="talk" id="talk">
+  <h2>Get in touch</h2>
+  <p>I'm always happy to talk about hardware, firmware, fintech infrastructure, or anything above.</p>
+  <div class="links">
+    <a href="mailto:shaheermarif@outlook.com">shaheermarif@outlook.com</a>
+    <a href="https://linkedin.com/in/shaheer-m-arif" target="_blank" rel="noreferrer">LinkedIn</a>
+    <a href="https://github.com/shaheer-m-arif" target="_blank" rel="noreferrer">GitHub</a>
+  </div>
+</section>
+
+<footer>
+  <span>Shaheer Arif</span>
+  <span class="gnd"><svg width="24" height="14" viewBox="0 0 24 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><path d="M12 0 V5 M4 5 H20 M7 8.5 H17 M10 12 H14"/></svg>Calgary, Alberta</span>
+</footer>
+
+</div>
+</body>
+</html>
