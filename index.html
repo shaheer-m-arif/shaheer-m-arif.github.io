@@ -13,11 +13,25 @@
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#F4F0E6" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1A1815" media="(prefers-color-scheme: dark)" />
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var theme =
+            stored === "light" || stored === "dark"
+              ? stored
+              : window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+          document.documentElement.dataset.theme = theme;
+        } catch (e) {}
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="/assets/dev-CCuH68YJ.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/dev-DCfxfhbp.css">
+    <script type="module" crossorigin src="/assets/dev-ChDMPGDn.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/dev-D1Bpmz0p.css">
   </head>
   <body>
     <div id="root"></div>

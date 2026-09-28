@@ -74,6 +74,44 @@ export function GroundSymbol(props) {
   );
 }
 
+export function SunSymbol(props) {
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <circle cx="12" cy="12" r="4.3" />
+      <path d="M12 2.5v2.6M12 18.9v2.6M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12h2.6M18.9 12h2.6M4.2 19.8l1.8-1.8M18 6l1.8-1.8" />
+    </svg>
+  );
+}
+
+export function MoonSymbol(props) {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M20 14.3A8.4 8.4 0 1 1 9.7 4a6.4 6.4 0 0 0 10.3 10.3Z" />
+    </svg>
+  );
+}
+
 // The settling-scope trace under the hero headline — a fixed decaying
 // sinusoid path, pre-computed and static (no animation, no per-frame work).
 export function ScopeTrace(props) {

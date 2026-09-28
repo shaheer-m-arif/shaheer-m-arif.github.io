@@ -22,7 +22,7 @@ export default function Hero({ headline, intro, now }) {
             src={profilePhoto}
             alt="Portrait of Shaheer Arif"
             width="480"
-            height="640"
+            height="480"
             loading="eager"
           />
         </div>

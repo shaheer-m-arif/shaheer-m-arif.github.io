@@ -17,6 +17,7 @@ export const work = [
   {
     title: "VaultTen",
     year: "2026",
+    active: true,
     role: "Co-founder and CEO",
     body: "Banking infrastructure for Canadian fintechs. Companies plug into our API to run KYC, open compliant CAD spending accounts, issue Mastercard virtual cards, and settle transactions in real time against a double-entry ledger, without building a bank themselves. I built the backend and the dashboards, multi-tenant from day one so sandbox and live traffic never cross. It started as a pitch deck and it's a deployed product now.",
     tech: "TypeScript, Fastify, PostgreSQL, Redis, Next.js",
@@ -24,6 +25,7 @@ export const work = [
   {
     title: "SHAX",
     year: "2026",
+    active: true,
     role: "Founder and lead developer",
     body: "A personal AI system that actually runs my life rather than answering questions about it. It lives on a dedicated Android phone through Termux and I message it over WhatsApp, so I can hand it something at 2am and it deals with it. It holds context across everything I care about, tracks goals without me logging anything, and schedules its own work. The third version has been running reliably for months.",
     tech: "Node.js, Claude API, WhatsApp",
