@@ -77,7 +77,7 @@ export const roles = [
     title: "SCADA and leak detection intern",
     org: "Cenovus Energy, Lloydminster, AB",
     dates: "Sep 2026 – Sep 2027",
-    note: "A 12-month co-op with the upstream operations team, on pipeline monitoring, control systems and the real-time data infrastructure that keeps field operations running.",
+    note: "A 12-month co-op with the midstream operations team, on pipeline monitoring, control systems and the real-time data infrastructure that keeps field operations running.",
   },
   {
     title: "Vice president of events",
