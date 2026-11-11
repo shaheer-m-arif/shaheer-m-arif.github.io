@@ -1,26 +1,33 @@
+import SectionHeading from "./SectionHeading.jsx";
+
 export default function ContactSection({ links }) {
+  const [primary, ...rest] = links;
+  const isExternal = (href) => !href.startsWith("mailto:");
   return (
-    <section className="talk" id="contact">
-      <h2>Get in touch</h2>
-      <p>
-        I'm always happy to talk about hardware, firmware, fintech
-        infrastructure, or anything above.
+    <section id="contact">
+      <SectionHeading index="04">Contact</SectionHeading>
+      <p className="contact-lede">
+        Happy to talk about hardware, firmware, fintech infrastructure, or
+        anything above.
       </p>
-      <div className="links">
-        {links.map((link) => {
-          const external = !link.href.startsWith("mailto:");
-          return (
+      <a className="contact-main" href={primary.href}>
+        {primary.label}
+        <span aria-hidden="true"> &rarr;</span>
+      </a>
+      <ul className="contact-links">
+        {rest.map((link) => (
+          <li key={link.href}>
             <a
-              key={link.href}
               href={link.href}
-              target={external ? "_blank" : undefined}
-              rel={external ? "noreferrer" : undefined}
+              target={isExternal(link.href) ? "_blank" : undefined}
+              rel={isExternal(link.href) ? "noreferrer" : undefined}
             >
+              <span aria-hidden="true">&gt;&gt;&gt;</span>
               {link.label}
             </a>
-          );
-        })}
-      </div>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

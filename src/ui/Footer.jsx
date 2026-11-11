@@ -1,13 +1,9 @@
-import { GroundSymbol } from "./icons.jsx";
-
 export default function Footer({ name, location }) {
   return (
-    <footer>
+    <footer className="foot">
       <span>{name}</span>
-      <span className="gnd">
-        <GroundSymbol />
-        {location}
-      </span>
+      <span>{location}</span>
+      <a href="#top">Back to top &uarr;</a>
     </footer>
   );
 }

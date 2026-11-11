@@ -1,11 +1,9 @@
-export default function SectionHeading({ children, symbol: Symbol }) {
+export default function SectionHeading({ index, children }) {
   return (
-    <h2>
-      <span>{children}</span>
-      <i className="wire" />
-      <Symbol />
-      <i className="tail" />
-      <i className="node" />
+    <h2 className="sec-head">
+      <span className="idx">{index}</span>
+      <span className="ttl">{children}</span>
+      <span className="run" aria-hidden="true" />
     </h2>
   );
 }
