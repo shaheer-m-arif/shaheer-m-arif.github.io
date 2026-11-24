@@ -1,37 +1,31 @@
 import SectionHeading from "./SectionHeading.jsx";
 
-// Same row format as Selected work: a unit/period/org column on the left,
-// title and write-up on the right.
+// Same row format as Selected work.
 export default function ExperienceSection({ roles }) {
   return (
-    <section id="experience">
-      <SectionHeading index="03">Experience</SectionHeading>
-      <div className="work-list">
+    <section className="section" id="experience">
+      <SectionHeading numeral="III">Experience</SectionHeading>
+      <div className="rows">
         {roles.map((role, i) => (
-          <article className="job" key={role.title + role.dates}>
-            <dl className="job-meta">
+          <article className="row" key={role.title + role.dates}>
+            <dl className="row-meta">
               <div>
-                <dt>Unit</dt>
-                <dd className="job-id">E-{String(i + 1).padStart(2, "0")}</dd>
+                <dt className="label">No.</dt>
+                <dd className="num">{String(i + 1).padStart(2, "0")}</dd>
               </div>
               <div>
-                <dt>Period</dt>
+                <dt className="label">Period</dt>
                 <dd>
                   <time>{role.dates}</time>
-                  {role.current && (
-                    <span className="live">
-                      <i className="led" aria-hidden="true" />
-                      Active
-                    </span>
-                  )}
+                  {role.current && <span className="current">Present</span>}
                 </dd>
               </div>
               <div>
-                <dt>Org</dt>
+                <dt className="label">Organisation</dt>
                 <dd>{role.org}</dd>
               </div>
             </dl>
-            <div className="job-body">
+            <div className="row-body">
               <h3>{role.title}</h3>
               <p>{role.note}</p>
             </div>

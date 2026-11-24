@@ -1,9 +1,11 @@
-export default function SectionHeading({ index, children }) {
+// Roman numeral in brass, a large light serif title, and a hairline.
+export default function SectionHeading({ numeral, children }) {
   return (
-    <h2 className="sec-head">
-      <span className="idx">{index}</span>
-      <span className="ttl">{children}</span>
-      <span className="run" aria-hidden="true" />
-    </h2>
+    <div className="sec-head">
+      <span className="numeral" aria-hidden="true">
+        {numeral}
+      </span>
+      <h2>{children}</h2>
+    </div>
   );
 }

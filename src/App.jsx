@@ -24,9 +24,11 @@ export default function App() {
       <StatusBar name={profile.name} nav={nav} />
       <main className="page">
         <Hero
+          name={profile.name}
+          eyebrow={profile.eyebrow}
           headline={profile.headline}
           intro={profile.intro}
-          readout={profile.readout}
+          facts={profile.facts}
           now={profile.now}
         />
         <BackgroundSection paragraphs={background} capabilities={capabilities} />

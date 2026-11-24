@@ -1,49 +1,52 @@
 import profilePhoto from "../assets/profile.jpg";
 
-export default function Hero({ headline, intro, readout, now }) {
+export default function Hero({ name, eyebrow, headline, intro, facts, now }) {
   return (
     <section className="hero" id="top" aria-label="Introduction">
-      <div className="hero-main">
+      <p className="eyebrow rise" style={{ "--i": 0 }}>
+        {eyebrow}
+      </p>
+      <h1 className="name rise" style={{ "--i": 1 }}>
+        {name}
+      </h1>
+
+      <div className="hero-grid">
         <div className="hero-copy">
-          <p className="tag rise" style={{ "--i": 0 }}>
-            Electrical engineering and software
-          </p>
-          <h1 className="rise" style={{ "--i": 1 }}>
+          <p className="tagline rise" style={{ "--i": 2 }}>
             {headline}
-          </h1>
-          {intro.map((para, i) => (
-            <p className="lede rise" style={{ "--i": 2 + i }} key={i}>
-              {para}
-            </p>
-          ))}
+          </p>
+          <div className="ledes rise" style={{ "--i": 3 }}>
+            {intro.map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
+          </div>
         </div>
-        <figure className="hero-photo rise" style={{ "--i": 2 }}>
-          <img
-            src={profilePhoto}
-            alt="Portrait of Shaheer Arif"
-            width="480"
-            height="640"
-            loading="eager"
-          />
+        <figure className="portrait rise" style={{ "--i": 2 }}>
+          <div className="frame">
+            <img
+              src={profilePhoto}
+              alt="Portrait of Shaheer Arif"
+              width="480"
+              height="640"
+              loading="eager"
+            />
+          </div>
         </figure>
       </div>
 
-      <dl className="readout rise" style={{ "--i": 4 }}>
-        {readout.map((cell) => (
-          <div className="cell" key={cell.label}>
-            <dt>{cell.label}</dt>
-            <dd>
-              {cell.live && <i className="led" aria-hidden="true" />}
-              {cell.value}
-            </dd>
+      <dl className="facts rise" style={{ "--i": 4 }}>
+        {facts.map((fact) => (
+          <div key={fact.label}>
+            <dt className="label">{fact.label}</dt>
+            <dd>{fact.value}</dd>
           </div>
         ))}
       </dl>
 
-      <p className="now rise" style={{ "--i": 5 }}>
-        <b>{now.lead}</b>
-        {now.body}
-      </p>
+      <div className="now rise" style={{ "--i": 5 }}>
+        <p className="label">{now.lead}</p>
+        <p className="now-body">{now.body}</p>
+      </div>
     </section>
   );
 }

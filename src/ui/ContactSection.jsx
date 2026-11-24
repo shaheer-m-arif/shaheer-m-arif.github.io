@@ -1,14 +1,16 @@
 import SectionHeading from "./SectionHeading.jsx";
 
+// Layout kept as signed off: lede, large email link with a drawn underline,
+// then the >>> links.
 export default function ContactSection({ links }) {
   const [primary, ...rest] = links;
   const isExternal = (href) => !href.startsWith("mailto:");
   return (
-    <section id="contact">
-      <SectionHeading index="04">Contact</SectionHeading>
+    <section className="section" id="contact">
+      <SectionHeading numeral="IV">Contact</SectionHeading>
       <p className="contact-lede">
-        Happy to talk about hardware, firmware, fintech infrastructure, or
-        anything above.
+        For hardware, firmware, fintech infrastructure, or anything above,
+        write to me.
       </p>
       <a className="contact-main" href={primary.href}>
         {primary.label}
